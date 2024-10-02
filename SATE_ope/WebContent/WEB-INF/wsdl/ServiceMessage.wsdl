@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://service.open.ws.simm.bn.www" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.open.ws.simm.bn.www" xmlns:intf="http://service.open.ws.simm.bn.www" xmlns:tns1="http://bean.open.ws.simm.bn.www" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://service.open.ws.simm.bn.www">
+   <import namespace="http://bean.open.ws.simm.bn.www"/>
+   <element name="sendMessage">
+    <complexType>
+     <sequence>
+      <element name="requestMessage" type="tns1:RequestMessage"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_ReqListMessage">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:ReqListMessage"/>
+    </sequence>
+   </complexType>
+   <element name="sendMessageResponse">
+    <complexType>
+     <sequence>
+      <element name="sendMessageReturn" type="tns1:ResponseMessage"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_RptaListaEnvioCorreos">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:RptaListaEnvioCorreos"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://bean.open.ws.simm.bn.www">
+   <import namespace="http://service.open.ws.simm.bn.www"/>
+   <complexType name="Adjunto">
+    <sequence>
+     <element name="docAdjunto" nillable="true" type="xsd:base64Binary"/>
+     <element name="flagAdjunto" nillable="true" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="DatosCorreo">
+    <sequence>
+     <element name="asunto" nillable="true" type="xsd:string"/>
+     <element name="correoCopia" nillable="true" type="xsd:string"/>
+     <element name="correoDestinatario" nillable="true" type="xsd:string"/>
+     <element name="correoOculto" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DatosParametro">
+    <sequence>
+     <element name="parametro1" nillable="true" type="xsd:string"/>
+     <element name="parametro10" nillable="true" type="xsd:string"/>
+     <element name="parametro11" nillable="true" type="xsd:string"/>
+     <element name="parametro12" nillable="true" type="xsd:string"/>
+     <element name="parametro13" nillable="true" type="xsd:string"/>
+     <element name="parametro14" nillable="true" type="xsd:string"/>
+     <element name="parametro15" nillable="true" type="xsd:string"/>
+     <element name="parametro16" nillable="true" type="xsd:string"/>
+     <element name="parametro17" nillable="true" type="xsd:string"/>
+     <element name="parametro18" nillable="true" type="xsd:string"/>
+     <element name="parametro19" nillable="true" type="xsd:string"/>
+     <element name="parametro2" nillable="true" type="xsd:string"/>
+     <element name="parametro3" nillable="true" type="xsd:string"/>
+     <element name="parametro4" nillable="true" type="xsd:string"/>
+     <element name="parametro5" nillable="true" type="xsd:string"/>
+     <element name="parametro6" nillable="true" type="xsd:string"/>
+     <element name="parametro7" nillable="true" type="xsd:string"/>
+     <element name="parametro8" nillable="true" type="xsd:string"/>
+     <element name="parametro9" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ReqListMessage">
+    <sequence>
+     <element name="adjunto" nillable="true" type="tns1:Adjunto"/>
+     <element name="datosCorreo" nillable="true" type="tns1:DatosCorreo"/>
+     <element name="datosParametro" nillable="true" type="tns1:DatosParametro"/>
+    </sequence>
+   </complexType>
+   <complexType name="RequestMessage">
+    <sequence>
+     <element name="codRequermiento" nillable="true" type="xsd:int"/>
+     <element name="reqListMessage" nillable="true" type="impl:ArrayOf_tns1_ReqListMessage"/>
+    </sequence>
+   </complexType>
+   <complexType name="RptaListaEnvioCorreos">
+    <sequence>
+     <element name="codDetalleReq" nillable="true" type="xsd:string"/>
+     <element name="codRetorno" nillable="true" type="xsd:string"/>
+     <element name="correoDestinatario" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ResponseMessage">
+    <sequence>
+     <element name="codComunicacion" nillable="true" type="xsd:string"/>
+     <element name="codRetorno" nillable="true" type="xsd:string"/>
+     <element name="nroRegistrosError" nillable="true" type="xsd:int"/>
+     <element name="nroRegistrosOk" nillable="true" type="xsd:int"/>
+     <element name="rptaListaEnvioCorreos" nillable="true" type="impl:ArrayOf_tns1_RptaListaEnvioCorreos"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="sendMessageResponse">
+
+      <wsdl:part element="impl:sendMessageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendMessageRequest">
+
+      <wsdl:part element="impl:sendMessage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ServiceMessage">
+
+      <wsdl:operation name="sendMessage">
+
+         <wsdl:input message="impl:sendMessageRequest" name="sendMessageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sendMessageResponse" name="sendMessageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServiceMessageSoapBinding" type="impl:ServiceMessage">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sendMessage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendMessageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendMessageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServiceMessageService">
+
+      <wsdl:port binding="impl:ServiceMessageSoapBinding" name="ServiceMessage">
+
+         <wsdlsoap:address location="http://10.7.12.73:9080/WsSimm/services/ServiceMessage"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,234 @@
+body, html{
+	background: url(../img/plantillaBN/bg-body_sv.jpg) repeat;
+}
+
+#cabecera{
+	height: 100px;
+	text-align: right;
+}
+
+
+#cabecera img{
+	margin: 18px 28px 0 0;
+}
+
+
+#bn-contenidos #cuerpo h1{
+	color: #3b3b3b;
+	font: 14px 'daxcompact-regularregular';
+	position: absolute;
+	left: 110px;
+	top: 80px;
+}
+
+#bn-contenidos #cuerpo #logo{
+	left: 45px;
+    position: absolute;
+    top: -37px;
+}
+
+#bn-contenidos #cuerpo #usuario{
+	color: #343434;
+	font: 16px/16px 'daxcompact-mediumregular';
+	z-index: 21;
+	position: absolute;
+	top: 10px;
+	left: 378px;
+}
+
+#bn-contenidos #cuerpo #cerrar {
+	background: url(../img/plantillaBN/btn-cerrar.jpg) no-repeat 880px 3px;
+	border-bottom: 1px solid #c0c0c0;
+	color: #343434;
+	font: 16px/20px 'daxcompact-boldregular';
+	margin: 0 auto;
+	text-align: right;
+	padding: 5px 35px 17px 0px;
+	width: 874px;
+}
+
+#bn-contenidos #cuerpo #cerrar a {
+	color: #343434;
+}
+
+#bn-contenidos #cuerpo #menu{
+	background: #fff;
+	padding: 1px;
+	float: left;
+	margin: 78px 26px 0px 50px;
+	overflow: hidden;
+	width: 244px;
+}
+
+#bn-contenidos #cuerpo #menu .curvas{
+	background: #bebebe;
+	overflow: hidden;
+	padding: 1px 1px 0px 1px;
+} 
+
+#bn-contenidos #cuerpo #menu .curvas .curvas{
+	background: none;
+	overflow: hidden;
+	padding: 0px;
+}
+
+#bn-contenidos #cuerpo #menu ul{
+	border-bottom: none; 
+	overflow: hidden;
+}
+
+#bn-contenidos #cuerpo #menu ul li{
+	background: url(../img/plantillaBN/bg-menu.jpg) repeat-x;
+	overflow: hidden;
+}
+
+#bn-contenidos #cuerpo #menu ul li:hover,
+#bn-contenidos #cuerpo #menu ul li.active{
+	background: url(../img/plantillaBN/bg-menu-active.jpg) repeat-x;
+}
+
+#bn-contenidos #cuerpo #menu ul li a{
+	background: url(../img/plantillaBN/flecha.jpg) no-repeat 220px 11px;
+	border-bottom: 1px solid #bebebe;
+	color: #313131;
+	display: block;
+	height: 33px;
+	font: 15px/33px 'daxcompact-mediumregular';
+	padding: 0px 0px 0px 20px;
+}
+
+#bn-contenidos #cuerpo #menu ul li a:hover,
+#bn-contenidos #cuerpo #menu ul li.active a{
+	background: url(../img/plantillaBN/flecha-active.jpg) no-repeat 220px 13px;
+}
+
+#bn-contenidos #cuerpo #menu ul li.active ul{
+	display: block;
+}
+
+#bn-contenidos #cuerpo #menu ul li ul{
+	background: #fff;
+	border: none;
+	display: none;
+}
+
+#bn-contenidos #cuerpo #menu ul li ul li,
+#bn-contenidos #cuerpo #menu ul li ul li:hover{
+	background: none;
+	font: 11px arial;
+}
+
+#bn-contenidos #cuerpo #menu ul li ul li a,
+#bn-contenidos #cuerpo #menu ul li.active ul li a{
+	background: url(../img/plantillaBN/bgLIMenu.jpg) no-repeat 21px 10px;
+	color: #323232;
+	padding: 3px 0px 0px 42px;
+	font: 11px arial;
+	height: 30px;
+}
+
+#bn-contenidos #cuerpo #menu ul li ul li a:hover,
+#bn-contenidos #cuerpo #menu ul li ul li a.sub-active{
+	background: url(../img/plantillaBN/bgLIMenuActive.jpg) no-repeat 21px 10px;
+	color: #c20a13;
+}
+
+#pie-pagina{
+	color: #676767;
+	text-align: center;
+	font: 11px arial;
+	padding: 26px 0px 30px 0px;
+}
+
+.limpiar:after { content: "."; display: block; height: 0; font-size:0; clear: both; visibility:hidden; }
+.limpiar{ display: inline-block;
+}
+* html .limpiar { height: 1%; }
+.limpiar{display:block;} 
+
+#bn-contenidos #cuerpo .generar-clave-chica{
+	overflow:hidden;
+	bottom:-23px;
+	padding-left:60px;
+	margin-top:10px;
+}
+
+#bn-contenidos #cuerpo .generar-clave-chica img{ float:left;}
+
+#bn-contenidos #cuerpo .generar-clave-chica .generar-clave-contenido{
+	background: url(../img/plantillaBN/mapeo.jpg) no-repeat;
+	height: 90px;
+	padding: 12px 20px 0px 55px;
+	width: 218px;
+	float:left;
+	margin-top:30px;
+}
+
+#bn-contenidos #cuerpo .generar-clave-chica .generar-clave-contenido p{
+	color: #444444;
+	font: italic 12px/20px arial;
+	padding:0;
+}
+
+#bn-contenidos #cuerpo .generar-clave-chica .generar-clave-contenido p a{
+	background: url(../imagenes/flecha-roja.jpg) right center no-repeat;
+	color: #c00a13;
+	font: italic 12px/20px arial;
+	padding: 0px 14px 0px 0px;
+	text-decoration: underline;
+}
+
+#bn-contenidos #cuerpo #limp #contacto span{
+	color: #c21315 ;
+	font: italic 13px/22px arial;
+}
+
+.ui-layout-unit-content{
+	background: url(../img/plantillaBN/bg-body_sv.jpg) repeat;
+}
+
+.transparentBackground tr,
+.transparentBackground td { background: transparent !important; }
+
+.ui-panel {
+   background-color: rgba(r,g,b,a);
+}
+
+.ui-widget-content .ui-state-default
+	{
+	background: #c21315;
+	color:#c21315;
+	font:12px 'daxcompact-mediumregular';
+
+}
+
+.mensajeErroLogin {
+
+        margin-top: -13px;
+
+        font-size: 13px;
+
+        margin-bottom: 10px;
+
+        margin-left: 56px;
+
+        color : #c21315;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,246 @@
+#bn-contenidos{
+	margin: 0 auto;
+	width: 650px;
+}
+
+
+
+#multired-virtual{
+	float: left;
+	padding: 110px 0px 0px 110px;
+}
+
+#bn-contenidos #cuerpo form {
+	background: url(../img/plantillaBN/loginAdmin.png) no-repeat;
+	height: 378px;
+	float: left;
+	margin: 40px 0px 0px -100px;
+	padding: 0px 0px 0px 0px;																																																																																										30px;
+	width: 848px;
+	/* text-align:center; */
+}
+
+#bn-contenidos #cuerpo form h2{
+	color: #fff;
+	fodddddnt: 18px/39px 'daxcompact-regularregular';
+	height: 39px;
+	text-align: center;
+}
+
+#bn-contcenidos #cuerpo h2{
+	color: #343434;
+	font: 18px/39px 'daxcompact-regularregular';
+	height: 39px;
+	text-align: center;
+	font: 22px 'daxcompact-boldregular';
+}
+
+#bn-contenidos #cuerpo form .limpiar{
+	padding: 0px 0px 11px 0px;
+}
+
+#bn-contenidos #cuerpo form label{
+	color: #444444;
+	cursor: pointer;
+	font: 13px/23px arial;
+	text-align: right;
+	float: left;
+	padding: 0px 5px 0px 0px;
+	width: 140px;
+}
+
+#bn-contenidos #cuerpo form input.grande{
+	background: url(../img/plantillaBN/input-grande.jpg) no-repeat;
+	border: none;
+	float: left;
+	color: #444444;
+	font: 13px/23px arial;
+	padding: 0px 10px;
+	height: 23px;
+	width: 100px;
+}
+
+#bn-contenidos #cuerpo form input.pequeno{
+	background: url(../img/plantillaBN/input-pequeno.jpg) no-repeat;
+	border: none;
+	color: #444444;
+	float: left;
+	font: 13px/23px arial;
+	padding: 0px 10px;
+	height: 23px;
+	width: 165px;
+}
+
+#bn-contenidos #cuerpo form p.center{
+	text-align: center;
+}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
+#bn-contenidos #cuerpo form p.center a{
+	color: #c00a13;
+	font: italic 11px arial;
+	margin: 0px 0px 0px 138px;
+	text-decoration: underline;
+}
+
+#bn-contenidos #cuerpo form input[type="submit"]{
+	background: url(../img/plantillaBN/boton.jpg) no-repeat;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	text-align: center;
+	margin: 5px 0px 0px 115px;
+	height: 33px;
+	font: 18px/33px 'daxcompact-mediumregular';
+	width: 120px;
+}
+
+.commandButton{
+	/* background: url(../img/plantillaBN/boton.jpg) no-repeat;
+	border: none;
+	color: #fff; */
+	cursor: pointer;
+	text-align: center;
+	height: 33px;
+	font: 18px/33px 'daxcompact-mediumregular';
+	width: 120px;
+}
+
+
+#bn-contenidos #cuerpo form input[type="submit"]:hover{
+	background: url(../img/plantillaBN/boton-active.jpg) no-repeat;
+}
+
+.commandButton:hover{
+	/* background: url(../img/plantillaBN/boton-active.jpg) no-repeat; */
+}
+
+#bn-contenidos #cuerpo form .texto{
+	position: absolute;
+	left: 95px;
+	top: 84px;
+	width: 260px;
+}
+
+#bn-contenidos #cuerpo form .texto-olvide-clave{
+	margin: 20px 0px 0px 0px;
+	bottom: 65px;
+	right: 102px;
+}
+
+#bn-contenidos #cuerpo form .texto-olvide-clave{
+	color: #ba1113;
+	font: 11px arial;
+}
+
+#bn-contenidos #cuerpo form .texto-olvide-clave a{
+	color: #ba1113;
+	text-decoration: underline;
+}
+
+#bn-contenidos #cuerpo form .texto-olvide-clave a:hover{
+	text-decoration: none;
+}
+
+#bn-contenidos #cuerpo form .texto-usuario{
+	position: absolute;
+	color: #676767;
+	font: 13px/16px 'daxcompact-mediumregular';
+	right: 75px;
+	top: 228px;
+	width: 80px;
+}
+
+#bn-contenidos #cuerpo form p{
+	color: #000;
+	font: italic 12px/20px arial; 
+	padding: 0px 0px 30px 0px;
+}
+
+#bn-contenidos #cuerpo form p.tributos{
+	color: #444444;
+	font: italic 12px/20px arial; 
+	padding: 0px 0px 9px 0px;
+}
+
+#bn-contenidos #cuerpo form p.crear-usuario{
+	background: url(../img/plantillaBN/crea-usuario.jpg) no-repeat;
+	color: #444444;
+	font: italic 12px/21px arial;
+	padding: 0px 0px 14px 24px; 
+}
+
+#bn-contenidos #cuerpo form p.terminos-condiciones{
+	background: url(../img/plantillaBN/terminos-condiciones.jpg) no-repeat;
+	color: #444444;
+	font: italic 12px/21px arial;
+	padding: 0px 0px 0px 24px; 
+}
+
+#bn-contenidos #cuerpo form p.crear-usuario a,
+#bn-contenidos #cuerpo form p.terminos-condiciones a{
+	color: #c00a13;
+}
+
+#bn-contenidos #cuerpo form p.crear-usuario a:hover,
+#bn-contenidos #cuerpo form p.terminos-condiciones a:hover{
+	text-decoration: underline;
+}
+
+
+#bn-contenidos #cuerpo form .etiquetas-form{
+	padding: 160px 0px 0px 230px;
+	width: 226px;
+	margin:0 auto;
+}
+
+#bn-contenidos #cuerpo form .etiquetas-form .titulo-form{
+	color: #343434;
+	font: 22px 'daxcompact-boldregular';
+	text-align: center;
+	padding: 0px 0px 22px 0px;
+}
+
+#pie-pagina{
+	color: #676767;
+	text-align: center;
+	font: 11px arial;
+	padding: 26px 0px 30px 0px;
+}
+
+ul.ui-selectmenu-menu {
+	width: 218px !important;
+}
+
+ul.select-chico {
+	width: 108px !important;
+}
+
+.ui-messages.ui-widget {
+    display: inline-block;
+    font: 13px 'daxcompact-regularregular';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="utf-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="Service1" targetNamespace="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsp:Policy wsu:Id="BasicHttpsBinding_IService1_policy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+					<wsp:Policy>
+						<sp:TransportToken>
+							<wsp:Policy>
+								<sp:HttpsToken RequireClientCertificate="false"/>
+							</wsp:Policy>
+						</sp:TransportToken>
+						<sp:AlgorithmSuite>
+							<wsp:Policy>
+								<sp:Basic256/>
+							</wsp:Policy>
+						</sp:AlgorithmSuite>
+						<sp:Layout>
+							<wsp:Policy>
+								<sp:Strict/>
+							</wsp:Policy>
+						</sp:Layout>
+					</wsp:Policy>
+				</sp:TransportBinding>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+			<xs:element name="Apertura_Clientes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Apertura_ClientesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Apertura_ClientesResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Modificacion_Clientes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Modificacion_ClientesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Modificacion_ClientesResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Apertura_Tarjetas">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Apertura_TarjetasResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Apertura_TarjetasResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Modificacion_Tarjetas">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Modificacion_TarjetasResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Modificacion_TarjetasResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consulta_Movimientos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consulta_MovimientosResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Consulta_MovimientosResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Anulaciones">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnulacionesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="AnulacionesResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Cash_In">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Cash_InResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Cash_InResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Nominacion_Tarjeta">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Nominacion_TarjetaResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Nominacion_TarjetaResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Reemision_Tarjeta">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Reemision_TarjetaResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Reemision_TarjetaResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consultas">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ConsultasResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ConsultasResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consulta_Saldos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consulta_SaldosResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Consulta_SaldosResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Compras">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ComprasResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ComprasResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Cambio_Pin">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Cambio_PinResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Cambio_PinResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Validacion_Pin">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Validacion_PinResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Validacion_PinResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Autoreversa">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AutoreversaResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="AutoreversaResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Reseteo_Pin">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Reseteo_PinResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Reseteo_PinResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Informacion_Tarjeta">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Informacion_TarjetaResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Informacion_TarjetaResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Generacion_CVV2">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Generacion_CVV2Response">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Generacion_CVV2Result" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consulta_Datos_Tarjeta">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consulta_Datos_TarjetaResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Consulta_Datos_TarjetaResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consulta_Movimientos_Expediente">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consulta_Movimientos_ExpedienteResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Consulta_Movimientos_ExpedienteResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consulta_Datos_Expediente">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="XML" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consulta_Datos_ExpedienteResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Consulta_Datos_ExpedienteResult" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+			<xs:element name="anyType" nillable="true" type="xs:anyType"/>
+			<xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+			<xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+			<xs:element name="boolean" nillable="true" type="xs:boolean"/>
+			<xs:element name="byte" nillable="true" type="xs:byte"/>
+			<xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+			<xs:element name="decimal" nillable="true" type="xs:decimal"/>
+			<xs:element name="double" nillable="true" type="xs:double"/>
+			<xs:element name="float" nillable="true" type="xs:float"/>
+			<xs:element name="int" nillable="true" type="xs:int"/>
+			<xs:element name="long" nillable="true" type="xs:long"/>
+			<xs:element name="QName" nillable="true" type="xs:QName"/>
+			<xs:element name="short" nillable="true" type="xs:short"/>
+			<xs:element name="string" nillable="true" type="xs:string"/>
+			<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+			<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+			<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+			<xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+			<xs:element name="char" nillable="true" type="tns:char"/>
+			<xs:simpleType name="char">
+				<xs:restriction base="xs:int"/>
+			</xs:simpleType>
+			<xs:element name="duration" nillable="true" type="tns:duration"/>
+			<xs:simpleType name="duration">
+				<xs:restriction base="xs:duration">
+					<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+					<xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+					<xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="guid" nillable="true" type="tns:guid"/>
+			<xs:simpleType name="guid">
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:attribute name="FactoryType" type="xs:QName"/>
+			<xs:attribute name="Id" type="xs:ID"/>
+			<xs:attribute name="Ref" type="xs:IDREF"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="IService1_Apertura_Clientes_InputMessage">
+		<wsdl:part element="tns:Apertura_Clientes" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Apertura_Clientes_OutputMessage">
+		<wsdl:part element="tns:Apertura_ClientesResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Modificacion_Clientes_InputMessage">
+		<wsdl:part element="tns:Modificacion_Clientes" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Modificacion_Clientes_OutputMessage">
+		<wsdl:part element="tns:Modificacion_ClientesResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Apertura_Tarjetas_InputMessage">
+		<wsdl:part element="tns:Apertura_Tarjetas" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Apertura_Tarjetas_OutputMessage">
+		<wsdl:part element="tns:Apertura_TarjetasResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Modificacion_Tarjetas_InputMessage">
+		<wsdl:part element="tns:Modificacion_Tarjetas" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Modificacion_Tarjetas_OutputMessage">
+		<wsdl:part element="tns:Modificacion_TarjetasResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consulta_Movimientos_InputMessage">
+		<wsdl:part element="tns:Consulta_Movimientos" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consulta_Movimientos_OutputMessage">
+		<wsdl:part element="tns:Consulta_MovimientosResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Anulaciones_InputMessage">
+		<wsdl:part element="tns:Anulaciones" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Anulaciones_OutputMessage">
+		<wsdl:part element="tns:AnulacionesResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Cash_In_InputMessage">
+		<wsdl:part element="tns:Cash_In" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Cash_In_OutputMessage">
+		<wsdl:part element="tns:Cash_InResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Nominacion_Tarjeta_InputMessage">
+		<wsdl:part element="tns:Nominacion_Tarjeta" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Nominacion_Tarjeta_OutputMessage">
+		<wsdl:part element="tns:Nominacion_TarjetaResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Reemision_Tarjeta_InputMessage">
+		<wsdl:part element="tns:Reemision_Tarjeta" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Reemision_Tarjeta_OutputMessage">
+		<wsdl:part element="tns:Reemision_TarjetaResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consultas_InputMessage">
+		<wsdl:part element="tns:Consultas" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consultas_OutputMessage">
+		<wsdl:part element="tns:ConsultasResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consulta_Saldos_InputMessage">
+		<wsdl:part element="tns:Consulta_Saldos" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consulta_Saldos_OutputMessage">
+		<wsdl:part element="tns:Consulta_SaldosResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Compras_InputMessage">
+		<wsdl:part element="tns:Compras" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Compras_OutputMessage">
+		<wsdl:part element="tns:ComprasResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Cambio_Pin_InputMessage">
+		<wsdl:part element="tns:Cambio_Pin" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Cambio_Pin_OutputMessage">
+		<wsdl:part element="tns:Cambio_PinResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Validacion_Pin_InputMessage">
+		<wsdl:part element="tns:Validacion_Pin" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Validacion_Pin_OutputMessage">
+		<wsdl:part element="tns:Validacion_PinResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Autoreversa_InputMessage">
+		<wsdl:part element="tns:Autoreversa" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Autoreversa_OutputMessage">
+		<wsdl:part element="tns:AutoreversaResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Reseteo_Pin_InputMessage">
+		<wsdl:part element="tns:Reseteo_Pin" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Reseteo_Pin_OutputMessage">
+		<wsdl:part element="tns:Reseteo_PinResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Informacion_Tarjeta_InputMessage">
+		<wsdl:part element="tns:Informacion_Tarjeta" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Informacion_Tarjeta_OutputMessage">
+		<wsdl:part element="tns:Informacion_TarjetaResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Generacion_CVV2_InputMessage">
+		<wsdl:part element="tns:Generacion_CVV2" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Generacion_CVV2_OutputMessage">
+		<wsdl:part element="tns:Generacion_CVV2Response" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consulta_Datos_Tarjeta_InputMessage">
+		<wsdl:part element="tns:Consulta_Datos_Tarjeta" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consulta_Datos_Tarjeta_OutputMessage">
+		<wsdl:part element="tns:Consulta_Datos_TarjetaResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consulta_Movimientos_Expediente_InputMessage">
+		<wsdl:part element="tns:Consulta_Movimientos_Expediente" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consulta_Movimientos_Expediente_OutputMessage">
+		<wsdl:part element="tns:Consulta_Movimientos_ExpedienteResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consulta_Datos_Expediente_InputMessage">
+		<wsdl:part element="tns:Consulta_Datos_Expediente" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="IService1_Consulta_Datos_Expediente_OutputMessage">
+		<wsdl:part element="tns:Consulta_Datos_ExpedienteResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="IService1">
+		<wsdl:operation name="Apertura_Clientes">
+			<wsdl:input message="tns:IService1_Apertura_Clientes_InputMessage" wsaw:Action="http://tempuri.org/IService1/Apertura_Clientes"/>
+			<wsdl:output message="tns:IService1_Apertura_Clientes_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Apertura_ClientesResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Modificacion_Clientes">
+			<wsdl:input message="tns:IService1_Modificacion_Clientes_InputMessage" wsaw:Action="http://tempuri.org/IService1/Modificacion_Clientes"/>
+			<wsdl:output message="tns:IService1_Modificacion_Clientes_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Modificacion_ClientesResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Apertura_Tarjetas">
+			<wsdl:input message="tns:IService1_Apertura_Tarjetas_InputMessage" wsaw:Action="http://tempuri.org/IService1/Apertura_Tarjetas"/>
+			<wsdl:output message="tns:IService1_Apertura_Tarjetas_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Apertura_TarjetasResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Modificacion_Tarjetas">
+			<wsdl:input message="tns:IService1_Modificacion_Tarjetas_InputMessage" wsaw:Action="http://tempuri.org/IService1/Modificacion_Tarjetas"/>
+			<wsdl:output message="tns:IService1_Modificacion_Tarjetas_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Modificacion_TarjetasResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Consulta_Movimientos">
+			<wsdl:input message="tns:IService1_Consulta_Movimientos_InputMessage" wsaw:Action="http://tempuri.org/IService1/Consulta_Movimientos"/>
+			<wsdl:output message="tns:IService1_Consulta_Movimientos_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Consulta_MovimientosResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Anulaciones">
+			<wsdl:input message="tns:IService1_Anulaciones_InputMessage" wsaw:Action="http://tempuri.org/IService1/Anulaciones"/>
+			<wsdl:output message="tns:IService1_Anulaciones_OutputMessage" wsaw:Action="http://tempuri.org/IService1/AnulacionesResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Cash_In">
+			<wsdl:input message="tns:IService1_Cash_In_InputMessage" wsaw:Action="http://tempuri.org/IService1/Cash_In"/>
+			<wsdl:output message="tns:IService1_Cash_In_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Cash_InResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Nominacion_Tarjeta">
+			<wsdl:input message="tns:IService1_Nominacion_Tarjeta_InputMessage" wsaw:Action="http://tempuri.org/IService1/Nominacion_Tarjeta"/>
+			<wsdl:output message="tns:IService1_Nominacion_Tarjeta_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Nominacion_TarjetaResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Reemision_Tarjeta">
+			<wsdl:input message="tns:IService1_Reemision_Tarjeta_InputMessage" wsaw:Action="http://tempuri.org/IService1/Reemision_Tarjeta"/>
+			<wsdl:output message="tns:IService1_Reemision_Tarjeta_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Reemision_TarjetaResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Consultas">
+			<wsdl:input message="tns:IService1_Consultas_InputMessage" wsaw:Action="http://tempuri.org/IService1/Consultas"/>
+			<wsdl:output message="tns:IService1_Consultas_OutputMessage" wsaw:Action="http://tempuri.org/IService1/ConsultasResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Consulta_Saldos">
+			<wsdl:input message="tns:IService1_Consulta_Saldos_InputMessage" wsaw:Action="http://tempuri.org/IService1/Consulta_Saldos"/>
+			<wsdl:output message="tns:IService1_Consulta_Saldos_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Consulta_SaldosResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Compras">
+			<wsdl:input message="tns:IService1_Compras_InputMessage" wsaw:Action="http://tempuri.org/IService1/Compras"/>
+			<wsdl:output message="tns:IService1_Compras_OutputMessage" wsaw:Action="http://tempuri.org/IService1/ComprasResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Cambio_Pin">
+			<wsdl:input message="tns:IService1_Cambio_Pin_InputMessage" wsaw:Action="http://tempuri.org/IService1/Cambio_Pin"/>
+			<wsdl:output message="tns:IService1_Cambio_Pin_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Cambio_PinResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Validacion_Pin">
+			<wsdl:input message="tns:IService1_Validacion_Pin_InputMessage" wsaw:Action="http://tempuri.org/IService1/Validacion_Pin"/>
+			<wsdl:output message="tns:IService1_Validacion_Pin_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Validacion_PinResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Autoreversa">
+			<wsdl:input message="tns:IService1_Autoreversa_InputMessage" wsaw:Action="http://tempuri.org/IService1/Autoreversa"/>
+			<wsdl:output message="tns:IService1_Autoreversa_OutputMessage" wsaw:Action="http://tempuri.org/IService1/AutoreversaResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Reseteo_Pin">
+			<wsdl:input message="tns:IService1_Reseteo_Pin_InputMessage" wsaw:Action="http://tempuri.org/IService1/Reseteo_Pin"/>
+			<wsdl:output message="tns:IService1_Reseteo_Pin_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Reseteo_PinResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Informacion_Tarjeta">
+			<wsdl:input message="tns:IService1_Informacion_Tarjeta_InputMessage" wsaw:Action="http://tempuri.org/IService1/Informacion_Tarjeta"/>
+			<wsdl:output message="tns:IService1_Informacion_Tarjeta_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Informacion_TarjetaResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Generacion_CVV2">
+			<wsdl:input message="tns:IService1_Generacion_CVV2_InputMessage" wsaw:Action="http://tempuri.org/IService1/Generacion_CVV2"/>
+			<wsdl:output message="tns:IService1_Generacion_CVV2_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Generacion_CVV2Response"/>
+		</wsdl:operation>
+		<wsdl:operation name="Consulta_Datos_Tarjeta">
+			<wsdl:input message="tns:IService1_Consulta_Datos_Tarjeta_InputMessage" wsaw:Action="http://tempuri.org/IService1/Consulta_Datos_Tarjeta"/>
+			<wsdl:output message="tns:IService1_Consulta_Datos_Tarjeta_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Consulta_Datos_TarjetaResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Consulta_Movimientos_Expediente">
+			<wsdl:input message="tns:IService1_Consulta_Movimientos_Expediente_InputMessage" wsaw:Action="http://tempuri.org/IService1/Consulta_Movimientos_Expediente"/>
+			<wsdl:output message="tns:IService1_Consulta_Movimientos_Expediente_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Consulta_Movimientos_ExpedienteResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="Consulta_Datos_Expediente">
+			<wsdl:input message="tns:IService1_Consulta_Datos_Expediente_InputMessage" wsaw:Action="http://tempuri.org/IService1/Consulta_Datos_Expediente"/>
+			<wsdl:output message="tns:IService1_Consulta_Datos_Expediente_OutputMessage" wsaw:Action="http://tempuri.org/IService1/Consulta_Datos_ExpedienteResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BasicHttpsBinding_IService1" type="tns:IService1">
+		<wsp:PolicyReference URI="#BasicHttpsBinding_IService1_policy"/>
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="Apertura_Clientes">
+			<soap:operation soapAction="http://tempuri.org/IService1/Apertura_Clientes" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Modificacion_Clientes">
+			<soap:operation soapAction="http://tempuri.org/IService1/Modificacion_Clientes" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Apertura_Tarjetas">
+			<soap:operation soapAction="http://tempuri.org/IService1/Apertura_Tarjetas" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Modificacion_Tarjetas">
+			<soap:operation soapAction="http://tempuri.org/IService1/Modificacion_Tarjetas" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Consulta_Movimientos">
+			<soap:operation soapAction="http://tempuri.org/IService1/Consulta_Movimientos" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Anulaciones">
+			<soap:operation soapAction="http://tempuri.org/IService1/Anulaciones" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Cash_In">
+			<soap:operation soapAction="http://tempuri.org/IService1/Cash_In" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Nominacion_Tarjeta">
+			<soap:operation soapAction="http://tempuri.org/IService1/Nominacion_Tarjeta" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Reemision_Tarjeta">
+			<soap:operation soapAction="http://tempuri.org/IService1/Reemision_Tarjeta" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Consultas">
+			<soap:operation soapAction="http://tempuri.org/IService1/Consultas" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Consulta_Saldos">
+			<soap:operation soapAction="http://tempuri.org/IService1/Consulta_Saldos" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Compras">
+			<soap:operation soapAction="http://tempuri.org/IService1/Compras" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Cambio_Pin">
+			<soap:operation soapAction="http://tempuri.org/IService1/Cambio_Pin" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Validacion_Pin">
+			<soap:operation soapAction="http://tempuri.org/IService1/Validacion_Pin" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Autoreversa">
+			<soap:operation soapAction="http://tempuri.org/IService1/Autoreversa" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Reseteo_Pin">
+			<soap:operation soapAction="http://tempuri.org/IService1/Reseteo_Pin" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Informacion_Tarjeta">
+			<soap:operation soapAction="http://tempuri.org/IService1/Informacion_Tarjeta" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Generacion_CVV2">
+			<soap:operation soapAction="http://tempuri.org/IService1/Generacion_CVV2" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Consulta_Datos_Tarjeta">
+			<soap:operation soapAction="http://tempuri.org/IService1/Consulta_Datos_Tarjeta" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Consulta_Movimientos_Expediente">
+			<soap:operation soapAction="http://tempuri.org/IService1/Consulta_Movimientos_Expediente" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Consulta_Datos_Expediente">
+			<soap:operation soapAction="http://tempuri.org/IService1/Consulta_Datos_Expediente" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Service1">
+		<wsdl:port binding="tns:BasicHttpsBinding_IService1" name="BasicHttpsBinding_IService1">
+			<soap:address location="https://testwsgestiontarjetas.izipay.pe/WCFGestionTarjetas/Service1.svc"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

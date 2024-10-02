@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.ope.persistence.mapper.internal.ClienteMapper">
+
+	<resultMap id="mapCliente" type="Cliente">
+		<result property="id" column="B06_ID_CLI" />
+		<result property="nombres" column="B06_NOMBRES" />
+		<result property="apPaterno" column="B06_APPATERNO" />
+		<result property="apMaterno" column="B06_APMATERNO" />
+		<result property="tipoDocumento" column="B06_TIPO_DOCUMENTO" />
+		<result property="nroDocumento" column="B06_NUM_DOCUMENTO" />
+		<result property="fechaNacimiento" column="B06_FEC_NACIMIENTO" />
+		<result property="estadoCivil" column="B06_EST_CIVIL" />
+		<result property="sexo" column="B06_SEXO" />
+		<result property="telefonoCasa" column="B06_TELEF_CASA" />
+	</resultMap>
+	
+</mapper>

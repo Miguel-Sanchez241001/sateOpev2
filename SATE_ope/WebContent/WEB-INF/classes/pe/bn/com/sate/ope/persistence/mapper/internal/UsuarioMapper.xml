@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.ope.persistence.mapper.internal.UsuarioMapper">
+
+	<resultMap id="mapUsuario" type="Usuario">
+		<result property="id" column="B02_REP"></result>
+		<result property="token" column="B02_TOKEN"></result>
+		<result property="caducidadToken" column="B02_CADUCIDAD_TOKEN"></result>
+		<result property="tipoDocumento" column="B02_TIPO_DOCUMENTO"></result>
+		<result property="caducidadClave" column="B02_CADUCIDAD_CLAVE"></result>
+		<result property="numeroDocumento" column="B02_NUM_DOCUMENTO"></result>
+		<result property="clave" column="B02_CLAVE"></result>
+		<result property="nombres" column="B02_NOMBRES"></result>
+		<result property="apPaterno" column="B02_APPATERNO"></result>
+		<result property="apMaterno" column="B02_APMATERNO"></result>
+		<result property="correoLaboral" column="B02_CORREO"></result>
+		<result property="telefonoFijo" column="B02_TELEFONO_FIJO"></result>
+		<result property="telefonoMovil" column="B02_TELEFONO_MOVIL"></result>
+		<result property="estado" column="B02_ESTADO"></result>
+		<result property="fechaRegistro" column="B02_FEC_REGISTRO"></result>
+		<result property="motivoBaja" column="B02_MOTIVO_BAJA"></result>
+		<result property="codigoTelefono" column="B02_COD_TELEFONO"></result>
+		<result property="estadoToken" column="B02_ESTADO_TOKEN"></result>
+		<result property="motivoBloqueoToken" column="B02_MOTIVO_BLOQUEO_TOKEN"></result>
+		<result property="anexo" column="B02_ANEXO"></result>
+		<result property="nivelFirmante" column="B02_NIVEL_FIRMANTE"></result>
+		<result property="operadora" column="B02_OPERADORA"></result>
+		<result property="estadoClave" column="B02_ESTADO_CLAVE"></result>
+		<result property="correoPersonal" column="B02_CORREO_PERSONAL"></result>
+
+		<result property="username" column="B02_USERNAME"></result>
+		<result property="password" column="B02_PASSWORD"></result>
+		<result property="usuarioPerfil" column="B02_PERFIL_USUARIO"></result>
+
+		<result property="flagCambioClave" column="B02_FLAG_CAMBIO_CLAVE"></result>
+	</resultMap>
+</mapper>

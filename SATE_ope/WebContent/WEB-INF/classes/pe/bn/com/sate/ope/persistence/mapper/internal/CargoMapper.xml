@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.ope.persistence.mapper.internal.CargoMapper">
+
+	<resultMap id="mapCargo" type="Cargo">
+		<result property="fechaCorte" column="B15_FEC_CORTE"></result>
+		<result property="fechaProceso" column="B15_FEC_PROCESO"></result>
+		<result property="numeroCuenta" column="B15_NUM_CUENTA"></result>
+		<result property="montoCargado" column="B15_MONTO_CARGADO"></result>
+		<result property="montoPendiente" column="B15_MONTO_PENDIENTE"></result>
+		<result property="saldoInicial" column="B15_SALDO_INICIAL"></result>
+		<result property="saldoFinal" column="B15_SALDO_FINAL"></result>
+	</resultMap>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.ope.persistence.mapper.internal.PermisosMapper">
+
+	<insert id="registrarPermisos" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="permisos" item="element" index="index">
+			INTO BN_SATE.BNSATE10_PER_PERMISOS
+			(B04_ID_USU,B10_COD_FUNCIONALIDAD,B10_DESCRIPCION,B10_ESTADO) VALUES
+			(#{element.idUsuario},#{element.codFuncionalidad},#{element.descripcion},#{element.estado})
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+	
+	<resultMap id="mapPermiso" type="Permiso">
+		<result property="id" column="B10_ID_PER" />
+		<result property="idRol" column="B10_ID_ROL" />
+		<result property="codFuncionalidad" column="B10_COD_FUNCIONALIDAD" />
+		<result property="descripcion" column="B10_DESCRIPCION" />
+		<result property="estado" column="B10_ESTADO" />
+	</resultMap>
+
+</mapper>

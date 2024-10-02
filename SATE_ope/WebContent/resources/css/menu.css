@@ -1,0 +1,153 @@
+
+#contenidoCentral {
+    position: relative;
+    background-color: #ffffff;
+    padding: 0px;
+}
+
+#left {
+    float: left;
+    background-color: #ffffff;
+    padding: 5px;
+    width: 170px;
+    clear: both;
+}
+
+#periodoRegistro {
+    position: relative;
+    text-align: right;
+    font-size: 14px;
+}
+
+#barraTiempo {
+    position: relative;
+    text-align: right;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.barraPerfil {
+    position: relative;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.barraPerfil .label{
+    font-weight: bold;
+}
+
+.panelSubModulo {
+    text-align:center; 
+    width: 220px; 
+    display: inline-block; 
+    margin: 10px 10px 10px 10px;
+}
+
+.menu {
+    background-color: #ffffff;
+    padding: 0px;
+    width: 70px;
+    margin-bottom: 10px;
+}
+
+.ui-growl-item-container { 
+    background-color: #ff6666
+} 
+
+.footer {
+    position: relative;
+    clear:both;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+.menuDesplegable {
+    width: 100% !important;
+    min-width: 200px; 
+}
+
+.panelSinBorde tr, .panelSinBorde td{
+    border: none !important;
+}
+
+.panelPeriodoRegistro , .panelPeriodoRegistro .ui-panel-content{
+    background-color: #ff9999 !important;
+    color: #ffffff;
+    padding: 2px 0px 2px 0px;
+}
+
+.panelPerfil, .panelPerfil .ui-panel-content{
+    background-color: #036fab !important;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 5px 0px 0px 0px;
+}
+
+.barraDocente {
+    position: relative;
+    background-color: #ffffff;
+    color: #000000;
+    margin-bottom: 0px;
+    
+}
+
+.barraDocente .label{
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.contenido {
+    background-color: #ffffff;
+    position: relative;
+    margin: 10px 10px 10px 10px;
+}
+
+.contenido:link:hover, .contenido a:visited:hover  {
+    color: #99ccff;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+.top {
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+.barraSubmodulo {
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    margin: 0px 0px 1px 0px;
+}
+
+.titulo {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.top a:link, .top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+.top a:link:hover, .top a:visited:hover  {
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+.ui-menu .ui-menu-parent .ui-menu-child{
+    width: 250px !important;
+}
+.noBorders tr, .noBorders td {
+    background: none !important;
+    border: none !important;
+}
+
+
+
+

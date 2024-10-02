@@ -1,0 +1,18 @@
+.no-imprimir{
+	display: none;
+}
+
+.imprimir{
+	display: block !important;
+}
+
+#bn-contenidos #cuerpo{
+	border: none;
+}
+
+img.logo{
+	display: none;
+}
+img.logo{
+	display: none;
+}

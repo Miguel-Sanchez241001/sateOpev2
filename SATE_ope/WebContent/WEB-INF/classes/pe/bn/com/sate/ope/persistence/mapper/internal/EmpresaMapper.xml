@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.ope.persistence.mapper.internal.EmpresaMapper">
+
+	<resultMap id="mapEmpresa" type="Empresa">
+		<result property="id" column="B00_ID_EMP"></result>
+		<result property="cuentaCorriente" column="B00_NUM_CUENTA_CORRIENTE"></result>
+		<result property="cic" column="B00_CIC"></result>
+		<result property="ruc" column="B00_NUM_RUC"></result>
+		<result property="tipo" column="B00_TIPO"></result>
+		<result property="razonSocial" column="B00_RAZON_SOCIAL"></result>
+		<result property="direccion" column="B00_DIRECCION"></result>
+		<result property="referencia" column="B00_REFERENCIA"></result>
+		<result property="ubigeo" column="B00_UBIGEO"></result>
+		<result property="nombreCorto" column="B00_NOMBRE_CORTO"></result>
+		<result property="telefonoFijo" column="B00_TELEFONO"></result>
+	</resultMap>
+</mapper>

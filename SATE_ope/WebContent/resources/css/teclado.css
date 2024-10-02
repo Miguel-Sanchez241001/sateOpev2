@@ -1,0 +1,59 @@
+@CHARSET "ISO-8859-1";
+
+table.teclado {
+	border-collapse: collapse;
+}
+
+table.teclado td {
+	border: none;
+	padding: 2px !important;
+}
+
+table.teclado button {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	color: #3A393D !important;
+	box-shadow: none;
+	background-image: none !important;
+	background: linear-gradient(#EEEEEE, #D1D1D1) !important;
+	font-size: 17.5px !important;
+	border: 1px solid #919191;
+	border-radius: 7.5px !important;
+	width: 25px;
+	height: 27px;
+	font-family: 'daxcompact-mediumregular' !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.teclado .ui-button-text {
+	padding: 0px !important;
+}
+
+table.teclado button.limpiar {
+	font-weight: normal !important;
+	color: #fff !important;
+	width: 57px;
+	height: 27px;
+	background: linear-gradient(#919191, #5A5A59) !important;
+}
+
+table.teclado button:hover {
+	color: #fff !important;
+	background: linear-gradient(#919191, #5A5A59) !important;
+}
+
+table.teclado button:selected {
+	outline: none !important;
+	border: none !important;
+}
+
+table.teclado button:focus {
+	outline: none !important;
+	border: none !important;
+}
+
+table.teclado button:active {
+	outline: none !important;
+	border: none !important;
+}

@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Sistema de Administraci&oacute;n de Tarjetas
+		Empresariales</title>
+	<!-- <link type="text/css" rel="stylesheet" href="resources/css/style.css" /> -->
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="Content-Language" content="es" />
+	<meta name="robots" content="index,follow" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta http-equiv="expires" content="0" />
+
+
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{request.contextPath}/resources/img/favicon.ico" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/resetearcss.css" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/bn-principal.css" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/tipografias.css" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/select.css" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/home.css" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/teclado.css" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/mejoras.css" />
+
+	<script type="text/javascript"
+		src="#{request.contextPath}/resources/js/jquery.ui.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/resources/js/select.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/resources/js/bn-funciones.js"></script>
+
+</h:head>
+<h:body>
+
+	<div class="cabecera sombra-inferior">
+		<div class="cabecera-izq">
+			<span class="sp1"></span> <span class="sp2"></span>
+
+		</div>
+		<div class="cabecera-der">
+			<h1></h1>
+			<img src="#{request.contextPath}/resources/img/logo_bn.png"></img>
+
+		</div>
+	</div>
+
+	<div class="login-form">
+
+		<div>
+			<h1 class="candado">
+				<img src="#{request.contextPath}/resources/img/candado.png" /> <span>Usted
+					se encuentra en una </span><span style="color: #c21315;">zona
+					segura</span>
+			</h1>
+
+			<div class="login-div sombra-inferior">
+				<h:form name="formlog" id="formlog" prependId="false">
+
+					<table class="tabla-sate noBorders redondeado ">
+
+						<tr>
+							<td><h:outputLabel style="text-align:right;float:right;"
+									for="ruc" value="Número de RUC:" /></td>
+							<td colspan="2"><center>
+									<p:inputText id="ruc" required="true" name="ruc"
+										style="font-size:12px;width:90%;"
+										value="#{loginController.loginModel.ruc}" maxlength="11"
+										onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+										requiredMessage="Ingrese un número de RUC"
+										validatorMessage="El RUC debe tener 11 dígitos">
+										<f:validateLength minimum="11" maximum="11" />
+									</p:inputText>
+								</center></td>
+						</tr>
+
+						<tr>
+							<td><h:outputLabel style="text-align:right;float:right;"
+									for="tipoDocumento" value="Tipo de documento :"
+									styleClass="grande" /></td>
+							<td colspan="2"><center>
+									<p:selectOneMenu id="tipoDocumento" panelStyleClass="panel"
+										name="tipoDocumento" styleClass="form-control"
+										style="font-size:12px !important;width:90%;"
+										widgetVar="tipoDocumentoWv" required="true"
+										value="#{loginController.loginModel.tipoDocumentoSeleccionado}"
+										requiredMessage="Seleccione un tipo de documento">
+										<f:validator validatorId="loginModelValidator" />
+										<p:ajax event="change" update="formlog:numeroDocumento"
+											listener="#{loginController.loginModel.setTipoDocumentoSeleccionado(loginController.loginModel.tipoDocumentoSeleccionado)}" />
+										<f:selectItems
+											value="#{loginController.loginModel.listaTipoDocumento}"
+											var="item" itemLabel="#{item.nombre}"
+											itemValue="#{item.codigoBduc}" />
+									</p:selectOneMenu>
+								</center></td>
+						</tr>
+						<tr>
+							<td><h:outputLabel style="text-align:right;float:right;"
+									for="numeroDocumento" value="Número de documento:"
+									styleClass="grande" /></td>
+							<td colspan="2"><center>
+									<p:inputText id="numeroDocumento" name="numeroDocumento"
+										value="#{loginController.loginModel.numeroDocumento}"
+										required="true"
+										disabled="#{loginController.loginModel.tipoDocumentoSeleccionado.isEmpty() || loginController.loginModel.tipoDocumentoSeleccionado=='0'}"
+										style="font-size:12px !important;width:90%;"
+										onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+										maxlength="#{loginController.loginModel.obtenerDocumentoLength(loginController.loginModel.tipoDocumentoSeleccionado)}"
+										requiredMessage="#{loginController.loginModel.obtenerDocumentoRequiredMessage(loginController.loginModel.tipoDocumentoSeleccionado)}"
+										validatorMessage="#{loginController.loginModel.obtenerDocumentoValidatorMessage(loginController.loginModel.tipoDocumentoSeleccionado)}">
+										<f:validateLength
+											minimum="#{loginController.loginModel.obtenerDocumentoLength(loginController.loginModel.tipoDocumentoSeleccionado)}" />
+									</p:inputText>
+								</center></td>
+						</tr>
+						<tr>
+							<td><h:outputLabel for="tecladoPg"
+									value="Ingresa tu clave usando el teclado virtual:" /></td>
+							<td><h:panelGroup id="tecladoPg">
+									<table class="teclado" style="margin: auto;">
+										<tr>
+											<td><p:commandButton process="@this"
+													update="formlog:password"
+													actionListener="#{loginController.loginModel.teclado.escribirTecla(0)}"
+													value="#{loginController.loginModel.teclado.listaTeclas.get(0)}" /></td>
+											<td><p:commandButton process="@this"
+													update="formlog:password"
+													actionListener="#{loginController.loginModel.teclado.escribirTecla(1)}"
+													value="#{loginController.loginModel.teclado.listaTeclas.get(1)}" /></td>
+											<td><p:commandButton process="@this"
+													update="formlog:password"
+													actionListener="#{loginController.loginModel.teclado.escribirTecla(2)}"
+													value="#{loginController.loginModel.teclado.listaTeclas.get(2)}" /></td>
+										</tr>
+										<tr>
+											<td><p:commandButton process="@this"
+													update="formlog:password"
+													actionListener="#{loginController.loginModel.teclado.escribirTecla(3)}"
+													value="#{loginController.loginModel.teclado.listaTeclas.get(3)}" /></td>
+											<td><p:commandButton process="@this"
+													update="formlog:password"
+													actionListener="#{loginController.loginModel.teclado.escribirTecla(4)}"
+													value="#{loginController.loginModel.teclado.listaTeclas.get(4)}" /></td>
+											<td><p:commandButton process="@this"
+													update="formlog:password"
+													actionListener="#{loginController.loginModel.teclado.escribirTecla(5)}"
+													value="#{loginController.loginModel.teclado.listaTeclas.get(5)}" /></td>
+										</tr>
+										<tr>
+											<td><p:commandButton process="@this"
+													update="formlog:password"
+													actionListener="#{loginController.loginModel.teclado.escribirTecla(6)}"
+													value="#{loginController.loginModel.teclado.listaTeclas.get(6)}" /></td>
+											<td><p:commandButton process="@this"
+													update="formlog:password"
+													actionListener="#{loginController.loginModel.teclado.escribirTecla(7)}"
+													value="#{loginController.loginModel.teclado.listaTeclas.get(7)}" /></td>
+											<td><p:commandButton process="@this"
+													update="formlog:password"
+													actionListener="#{loginController.loginModel.teclado.escribirTecla(8)}"
+													value="#{loginController.loginModel.teclado.listaTeclas.get(8)}" /></td>
+										</tr>
+										<tr>
+											<td><p:commandButton process="@this"
+													update="formlog:password"
+													actionListener="#{loginController.loginModel.teclado.escribirTecla(9)}"
+													value="#{loginController.loginModel.teclado.listaTeclas.get(9)}" /></td>
+											<td colspan="2"><p:commandButton process="@this"
+													update="formlog:password" styleClass="limpiar"
+													style="font-size:11.5px !important;"
+													actionListener="#{loginController.loginModel.teclado.limpiar()}"
+													value="LIMPIAR" /></td>
+
+										</tr>
+
+									</table>
+								</h:panelGroup></td>
+							<td style="width: 30%;">
+								<div id="campo-clave" style="text-align: center;">
+									<span style="font-size: 11px !important; color: #7f7f7f;">
+										Ingresa tu <b>Clave de Internet (06 d&iacute;gitos)</b>
+									</span>
+
+									<p:password
+										style="font-size:12.5px !important;background:#fff !important;text-align:center;width:70%;margin:5px;"
+										name="password"
+										value="#{loginController.loginModel.teclado.clave}"
+										id="password" maxlength="6" required="true" redisplay="true"
+										onkeydown="javascript:return false;"
+										requiredMessage="Ingrese una clave"
+										validatorMessage="La clave debe tener 6 dígitos">
+										<f:validateLength minimum="6" />
+									</p:password>
+									<br></br>
+									<p:commandLink process="@this" id="recuperarClaveBtn"
+										styleClass="commandLink" onstart="recuperarClaveWv.show();"
+										update=":formlogRecuperar" value="Olvid&eacute; mi clave" />
+
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><h:outputLabel for="captchaImg"
+									style="text-align:right;"
+									value="Ingresa las letras de la imagen:" /></td>
+							<td>
+								<div class="capcha">
+									<center>
+										<img id="captchaImg" src="" style="margin: 5px auto;" /> <br></br>
+
+										<p:commandLink process="@this" value="Cambiar imagen"
+											id="generarCaptchaLink" styleClass="commandLink"
+											actionListener="#{loginController.generarCaptcha()}" />
+									</center>
+								</div>
+							</td>
+							<td><center>
+									<p:inputText id="capcha" name="capcha" required="true"
+										style="text-align:center; font-size: 12.5px !important;width:70%;"
+										onkeyup="this.value=this.value.toUpperCase()" maxlength="5"
+										requiredMessage="Ingrese un texto captcha"
+										value="#{loginController.loginModel.captchaTexto}">
+									</p:inputText>
+								</center></td>
+						</tr>
+					</table>
+
+					<p:inputText id="username" type="hidden" name="username"
+						label="username" style="width:100%"
+						value="#{loginController.loginModel.usernameDomain}">
+					</p:inputText>
+					<br></br>
+					<div style="margin: auto;">
+						<p:messages id="messages" showDetail="false" closable="true" />
+					</div>
+					<div class="dashed"></div>
+					<p:commandButton id="btnLogin" value="INGRESAR"
+						validateClient="true" styleClass="loginBtn" update="formlog"
+						onclick="generateUserName();" ajax="false"
+						actionListener="#{loginController.iniciarSesion()}" />
+						
+					
+
+
+				</h:form>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="pie-pagina">
+
+		<div id="titulo-pie-pagina">Banco de la Naci&oacute;n |
+			Ministerio de Econom&iacute;a y Finanzas</div>
+
+		<div id="oficinas">
+			<p>Oficina Principal: Av. Javier Prado Este 2499. San Borja.
+				Central Telef&oacute;nica: 519-2000.</p>
+			<p>Atenci&oacute;n en Oficinas Administrativas: Lunes a Viernes
+				de 8:30 a 17:30 horas. Refrigerio de: 13:00 a 14:00 horas</p>
+			<p>Atenci&oacute;n en Oficina de Tr&aacute;mite Documentario:
+				Lunes a Viernes de 9:00 a 17:00 horas (Horario corrido).</p>
+		</div>
+
+	</div>
+
+
+	<p:dialog id="recuperarClave" widgetVar="recuperarClaveWv" modal="true"
+		draggable="false" resizable="false" header="Reiniciar clave">
+
+		<h:form id="formlogRecuperar" style="width: 400px; font-size: 11px;"
+			prependId="false">
+			<center>
+				<table style="width: 90%; margin: 2.5% 0 2.5% -10%;"
+					class="redondeado">
+					<tr>
+						<td><h:outputLabel style="text-align:right;float:right;"
+								for="ruc" value="Número de RUC:" /></td>
+						<td><p:inputText id="rucRecuperar" required="true" name="ruc"
+								style="font-size:12px; margin-left:5%;width:90%"
+								value="#{loginController.loginModel.rucRecuperar}"
+								maxlength="11"
+								onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+								requiredMessage="Ingrese un número de RUC"
+								validatorMessage="El RUC debe tener 11 dígitos">
+								<f:validateLength minimum="11" maximum="11" />
+							</p:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel style="text-align:right;float:right;"
+								for="tipoDocumento" value="Tipo de documento :"
+								styleClass="grande" /></td>
+						<td><p:selectOneMenu id="tipoDocumentoRecuperar"
+								name="tipoDocumento" styleClass="form-control"
+								style="text-align:left;font-size:12px !important;margin-left:5%;width:90%"
+								widgetVar="tipoDocumentoRecuperarWv" required="true"
+								value="#{loginController.loginModel.tipoDocumentoRecuperar}"
+								requiredMessage="Seleccione un tipo de documento">
+								<f:validator validatorId="loginModelValidator" />
+								<p:ajax event="change"
+									update="formlogRecuperar:numeroDocumentoRecuperar"
+									listener="#{loginController.loginModel.setTipoDocumentoRecuperar(loginController.loginModel.tipoDocumentoRecuperar)}" />
+								<f:selectItems
+									value="#{loginController.loginModel.listaTipoDocumento}"
+									var="item" itemLabel="#{item.nombre}"
+									itemValue="#{item.codigoBduc}" />
+							</p:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel style="text-align:right;float:right;"
+								for="numeroDocumento" value="Número de documento:"
+								styleClass="grande" /></td>
+						<td><p:inputText id="numeroDocumentoRecuperar"
+								name="numeroDocumento"
+								value="#{loginController.loginModel.numeroDocumentoRecuperar}"
+								required="true"
+								disabled="#{loginController.loginModel.tipoDocumentoRecuperar == ''}"
+								style="font-size:12px !important; margin-left:5%;width:90%"
+								onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+								maxlength="#{loginController.loginModel.obtenerDocumentoLength(loginController.loginModel.tipoDocumentoRecuperar)}"
+								requiredMessage="#{loginController.loginModel.obtenerDocumentoRequiredMessage(loginController.loginModel.tipoDocumentoRecuperar)}"
+								validatorMessage="#{loginController.loginModel.obtenerDocumentoValidatorMessage(loginController.loginModel.tipoDocumentoRecuperar)}">
+								<f:validateLength
+									minimum="#{loginController.loginModel.obtenerDocumentoLength(loginController.loginModel.tipoDocumentoRecuperar)}" />
+							</p:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel style="text-align:right;float:right;"
+								for="correoRecuperar" value="Correo Electrónico:"
+								styleClass="grande" /></td>
+						<td><p:inputText id="correoRecuperar"
+								style="font-size:12px; margin-left:5%;width:90%"
+								value="#{loginController.loginModel.correoRecuperar}"
+								maxlength="40" required="true"
+								requiredMessage="Ingrese un correo electrónico"
+								validatorMessage="Formato inv&aacute;lido en correo">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText></td>
+					</tr>
+				</table>
+
+				<p:messages id="messagesRecuperar" showDetail="false"
+					closable="true" />
+
+				<div style="margin: 15px 0 5px 0;">
+					<h:outputText value="¿Desea Reniciar su clave?" />
+				</div>
+				<div class="smallBtn">
+					<p:commandButton style="margin:5px;" id="Aceptar" value="Si"
+						actionListener="#{loginController.recuperarClave()}"
+						update="formlogRecuperar" styleClass="smallBtn" />
+					<p:commandButton style="margin:5px;" process="@this" id="cancelar"
+						value="No" oncomplete="recuperarClaveWv.hide()"
+						styleClass="smallBtn" update=":formlog" />
+				</div>
+			</center>
+		</h:form>
+
+	</p:dialog>
+
+
+	<p:ajaxStatus onprocess="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog id="statusDia" widgetVar="statusDialog" modal="true"
+		draggable="false" closable="false" resizable="false"
+		showHeader="false">
+		<center>
+			<p:outputLabel value="Cargando.." style="font-size:12px" />
+			<br />
+		</center>
+		<p:graphicImage name="/img/ajaxloadingbar.gif" />
+	</p:dialog>
+
+	<script type="text/javascript">
+		$("html, body").animate({
+			scrollTop : $("body").height() * .1
+		}, 750);
+
+		window.onload = function() {
+			document.getElementById('generarCaptchaLink').onclick();
+		}
+
+		function cargarCaptcha(byteArray) {
+			document.getElementById("captchaImg").src = "data:image/jpeg;base64,"
+					+ byteArray;
+		};
+
+		function generateUserName() {
+			$("#username").val(
+					$("#ruc").val() + '-'
+							+ PF('tipoDocumentoWv').getSelectedValue() + '-'
+							+ $('#numeroDocumento').val())
+		};
+	</script>
+
+</h:body>
+
+</html>

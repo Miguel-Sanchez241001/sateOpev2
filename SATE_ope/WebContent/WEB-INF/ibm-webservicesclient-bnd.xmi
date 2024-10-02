@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ibm.etools.webservice.wscbnd:ClientBinding
+	xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:com.ibm.etools.webservice.wscbnd="http://www.ibm.com/websphere/appserver/schemas/5.0.2/wscbnd.xmi"
+	xmi:id="ClientBinding_1540147413075">
+	<serviceRefs xmi:id="ServiceRef_1540147413076"
+		serviceRefLink="service/ServiceReniec2Service">
+		<portQnameBindings
+			xmi:id="PortQnameBinding_1540147413076"
+			portQnameNamespaceLink="http://interfaz.mq2.bn"
+			portQnameLocalNameLink="ServiceReniec2"
+			overriddenEndpointURI="http://10.7.106.115:80/WSConsultaReniec/services/ServiceReniec2" />
+	</serviceRefs>
+	<serviceRefs xmi:id="ServiceRef_1540168109702"
+		serviceRefLink="service/GatewayInterfaceService">
+		<portQnameBindings
+			xmi:id="PortQnameBinding_1540168109702"
+			portQnameNamespaceLink="http://interfaz.service.bn.pe"
+			portQnameLocalNameLink="GatewayInterface"
+			overriddenEndpointURI="http://desktop-v992aca:8089/mockGatewayInterfaceSoapBinding" />
+	</serviceRefs>
+	<serviceRefs xmi:id="ServiceRef_1540169874579"
+		serviceRefLink="service/ParametroInterfazKeyService">
+		<portQnameBindings
+			xmi:id="PortQnameBinding_1540169874579"
+			portQnameNamespaceLink="http://service.ws.comp.bn.com.pe"
+			portQnameLocalNameLink="ParametroInterfazKey"
+			overriddenEndpointURI="http://desktop-v992aca:8089/mockParametroInterfazKeySoapBinding" />
+	</serviceRefs>
+	<serviceRefs xmi:id="ServiceRef_1540760429495"
+		serviceRefLink="service/ServiceSixSecurityAdvanceService">
+		<portQnameBindings
+			xmi:id="PortQnameBinding_1540760429495"
+			portQnameNamespaceLink="http://ws.novatronic.com/"
+			portQnameLocalNameLink="ServiceSixSecurityAdvancePort"
+			overriddenEndpointURI="http://10.7.12.45:8080/WebServiceSixSecurityAdvance/ServiceSixSecurityAdvancePort" />
+	</serviceRefs>
+	<serviceRefs xmi:id="ServiceRef_1541201607896"
+		serviceRefLink="service/ServiceMessageService">
+		<portQnameBindings
+			xmi:id="PortQnameBinding_1541201607896"
+			portQnameNamespaceLink="http://service.open.ws.simm.bn.www"
+			portQnameLocalNameLink="ServiceMessage"
+			overriddenEndpointURI="http://10.7.12.73:9080/WsSimm/services/ServiceMessage" />
+	</serviceRefs>
+	<serviceRefs xmi:id="ServiceRef_1724249698600"
+		serviceRefLink="service/Service1">
+		<portQnameBindings
+			xmi:id="PortQnameBinding_1724249698600"
+			portQnameNamespaceLink="http://tempuri.org/"
+			portQnameLocalNameLink="BasicHttpsBinding_IService1"
+			overriddenEndpointURI="https://testwsgestiontarjetas.izipay.pe/WCFGestionTarjetas/Service1.svc" />
+	</serviceRefs>
+</com.ibm.etools.webservice.wscbnd:ClientBinding>

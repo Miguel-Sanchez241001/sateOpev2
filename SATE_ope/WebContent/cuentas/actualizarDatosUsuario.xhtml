@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h2>ACTUALIZAR DATOS DE USUARIO</h2>
+
+
+
+
+		<p:panel style="margin:30px 80px 30px 80px;padding:20px;">
+			<div class="tab">
+				<button class="active tab-links" id="datosContactoTab"
+					onclick="seleccionarTab(event, 'datosContacto')">Datos de
+					contacto</button>
+				<button class="tab-links" id="cambioClaveTab"
+					onclick="seleccionarTab(event, 'cambioClave')">Cambio de
+					clave</button>
+			</div>
+			<div id="datosContacto" class="tab-content" style="display: block;">
+				<h:form id="formActualizarDatosContacto">
+					<center>
+						<h:panelGrid style="width:80%;text-align:center;" columns="1">
+							<p:panelGrid id="pgDatosContacto" columns="2"
+								style="margin:15px auto;text-align:left;">
+
+								<h:outputText value="Tipo de documento *" />
+								<h:outputText value="Número de documento *"
+									style="margin-left:20px;" />
+								<p:inputText id="itTipoDocumento" maxlength="12" readonly="true"
+									style="vertical-align:middle;" required="true"
+									onkeypress="return validarNumDocumento(event)"
+									requiredMessage="Ingrese un número de documento"
+									value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.descripcionTipoDocumento(actualizarDatosUsuarioController.actualizarDatosUsuarioModel.usuario.tipoDocumento)}">
+									<f:validateLength minimum="8" maximum="12" />
+								</p:inputText>
+								<p:inputText id="itNumDocumento" maxlength="12" readonly="true"
+									style="margin-left:20px;vertical-align:middle;" required="true"
+									onkeypress="return validarNumDocumento(event)"
+									requiredMessage="Ingrese un número de documento"
+									value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.usuario.numeroDocumento}">
+									<f:validateLength minimum="8" maximum="12" />
+								</p:inputText>
+
+
+
+								<h:outputText value="Nombres *" />
+								<h:outputText value="Apellido Paterno *"
+									style="margin-left:20px;" />
+								<p:inputText id="itNombres" maxlength="30"
+									onkeypress="return validarSoloLetras(event)" readonly="true"
+									required="true" requiredMessage="Ingrese nombre(s)"
+									value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.usuario.nombres}" />
+								<p:inputText id="itApPaterno" style="margin-left:20px;"
+									maxlength="30" onkeypress="return validarSoloLetras(event)"
+									readonly="true" required="true"
+									requiredMessage="Ingrese el apellido paterno"
+									value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.usuario.apPaterno}" />
+
+
+
+								<h:outputText value="Apellido Materno *" />
+								<h:outputText value="Perfil *" style="margin-left:20px;" />
+								<p:inputText id="ipMaterno" required="true" maxlength="30"
+									onkeypress="return validarSoloLetras(event)" readonly="true"
+									requiredMessage="Ingrese el apellido materno"
+									value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.usuario.apMaterno}">
+								</p:inputText>
+								<p:inputText id="itPerfil" required="true"
+									style="margin-left:20px;" readonly="true"
+									onkeypress="return validarSoloNumeros(event)" maxlength="9"
+									requiredMessage="Ingrese el número de celular"
+									value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.perfilLetras}">
+								</p:inputText>
+
+
+								<h:outputText value="Correo electrónico *" />
+								<h:outputText value="Celular *" style="margin-left:20px;" />
+
+								<p:inputText id="itEmail" required="true" maxlength="30"
+									requiredMessage="Ingrese correo electrónico"
+									validatorMessage="Correo electrónico no válido"
+									value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.usuario.correoLaboral}">
+									<p:ajax update="msgs" event="keyup" />
+									<f:validateRegex
+										pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+								</p:inputText>
+								<p:inputText id="itCelular" required="true"
+									style="margin-left:20px;"
+									onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+									maxlength="9" requiredMessage="Ingrese el número de celular"
+									validatorMessage="Número de celular no válido"
+									value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.usuario.telefonoMovil}">
+									<p:ajax update="msgs" event="keyup" />
+									<f:validateRegex pattern="9[0-9]*" />
+								</p:inputText>
+							</p:panelGrid>
+
+							<div class="dashed"></div>
+
+							<p:commandButton id="actualizarUsuario" value="Actualizar"
+								styleClass="btnGrande"
+								actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuario()}"
+								process="@this itEmail,itCelular"
+								update="formActualizarDatosContacto:msgs"
+								onstart="statusDialog.show();" oncomplete="statusDialog.hide();" />
+
+
+						</h:panelGrid>
+
+						<div style="margin: auto;">
+							<p:messages id="msgs" showDetail="true" showSummary="false"
+								closable="true" />
+						</div>
+					</center>
+				</h:form>
+			</div>
+			<div id="cambioClave" class="tab-content">
+				<h:form id="formActualizarDatosClave">
+
+					<center>
+						<h:panelGrid id="pgDatosContrasenia"
+							style="width:80%;text-align:center;">
+							<h:panelGrid columns="3" id="pgCambiarContrasenia"
+								style="margin:auto" styleClass="tablaCambioClave">
+								<h:panelGroup id="tecladoActual">
+									<table>
+										<tr>
+											<td><h:outputText value="Clave actual *" /></td>
+										</tr>
+										<tr>
+											<td><p:password id="itContraseniaActual" maxlength="6"
+													redisplay="true" style="width:75px; text-align:center;"
+													required="true" onkeydown="javascript:return false;"
+													requiredMessage="Ingrese una clave"
+													validatorMessage="La clave actual debe tener 6 dígitos"
+													value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.clave}">
+													<f:validateLength minimum="6" />
+												</p:password></td>
+										</tr>
+										<tr>
+											<td><table class="teclado" style="margin: auto;">
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaActual"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.escribirTecla(0)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.listaTeclas.get(0)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaActual"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.escribirTecla(1)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.listaTeclas.get(1)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaActual"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.escribirTecla(2)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.listaTeclas.get(2)}" /></td>
+													</tr>
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaActual"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.escribirTecla(3)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.listaTeclas.get(3)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaActual"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.escribirTecla(4)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.listaTeclas.get(4)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaActual"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.escribirTecla(5)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.listaTeclas.get(5)}" /></td>
+													</tr>
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaActual"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.escribirTecla(6)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.listaTeclas.get(6)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaActual"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.escribirTecla(7)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.listaTeclas.get(7)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaActual"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.escribirTecla(8)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.listaTeclas.get(8)}" /></td>
+													</tr>
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaActual"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.escribirTecla(9)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.listaTeclas.get(9)}" /></td>
+														<td colspan="2"><p:commandButton process="@this"
+																styleClass="limpiar"
+																update="formActualizarDatosClave:itContraseniaActual"
+																style="font-size:11.5px !important;"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoActual.limpiar()}"
+																value="LIMPIAR" /></td>
+
+													</tr>
+
+												</table></td>
+										</tr>
+
+									</table>
+
+								</h:panelGroup>
+
+								<h:panelGroup id="tecladoNueva">
+
+									<table>
+										<tr>
+											<td><h:outputText value="Nueva clave *" /></td>
+										</tr>
+										<tr>
+											<td><p:password id="itContraseniaNueva" maxlength="6"
+													redisplay="true" style="text-align:center;width:75px;"
+													required="true" onkeydown="javascript:return false;"
+													requiredMessage="Ingrese una clave nueva"
+													validatorMessage="La clave nueva debe tener 6 dígitos"
+													value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.clave}">
+													<f:validateLength minimum="6" maximum="6" />
+												</p:password></td>
+										</tr>
+										<tr>
+											<td><table class="teclado" style="margin: auto;">
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.escribirTecla(0)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.listaTeclas.get(0)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.escribirTecla(1)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.listaTeclas.get(1)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.escribirTecla(2)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.listaTeclas.get(2)}" /></td>
+													</tr>
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.escribirTecla(3)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.listaTeclas.get(3)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.escribirTecla(4)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.listaTeclas.get(4)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.escribirTecla(5)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.listaTeclas.get(5)}" /></td>
+													</tr>
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.escribirTecla(6)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.listaTeclas.get(6)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.escribirTecla(7)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.listaTeclas.get(7)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.escribirTecla(8)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.listaTeclas.get(8)}" /></td>
+													</tr>
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.escribirTecla(9)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.listaTeclas.get(9)}" /></td>
+														<td colspan="2"><p:commandButton process="@this"
+																styleClass="limpiar"
+																update="formActualizarDatosClave:itContraseniaNueva"
+																style="font-size:11.5px !important;"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoNueva.limpiar()}"
+																value="LIMPIAR" /></td>
+
+													</tr>
+
+												</table></td>
+										</tr>
+									</table>
+
+
+								</h:panelGroup>
+
+								<h:panelGroup id="tecladoConfirmar">
+
+									<table>
+										<tr>
+											<td><h:outputText value="Confimar clave *" /></td>
+										</tr>
+										<tr>
+											<td><p:password id="itConfirmarContrasenia"
+													maxlength="6" redisplay="true"
+													style="text-align:center;width:75px;" required="true"
+													onkeydown="javascript:return false;"
+													requiredMessage="Ingrese una confirmación de clave"
+													validatorMessage="La confirmación de clave debe tener 6 dígitos"
+													value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.clave}">
+													<f:validateLength minimum="6" maximum="6" />
+												</p:password></td>
+										</tr>
+										<tr>
+											<td><table class="teclado" style="margin: auto;">
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.escribirTecla(0)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.listaTeclas.get(0)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.escribirTecla(1)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.listaTeclas.get(1)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.escribirTecla(2)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.listaTeclas.get(2)}" /></td>
+													</tr>
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.escribirTecla(3)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.listaTeclas.get(3)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.escribirTecla(4)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.listaTeclas.get(4)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.escribirTecla(5)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.listaTeclas.get(5)}" /></td>
+													</tr>
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.escribirTecla(6)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.listaTeclas.get(6)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.escribirTecla(7)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.listaTeclas.get(7)}" /></td>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.escribirTecla(8)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.listaTeclas.get(8)}" /></td>
+													</tr>
+													<tr>
+														<td><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.escribirTecla(9)}"
+																value="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.listaTeclas.get(9)}" /></td>
+														<td colspan="2"><p:commandButton process="@this"
+																update="formActualizarDatosClave:itConfirmarContrasenia"
+																style="font-size:11.5px !important;"
+																styleClass="limpiar"
+																actionListener="#{actualizarDatosUsuarioController.actualizarDatosUsuarioModel.tecladoConfirmar.limpiar()}"
+																value="LIMPIAR" /></td>
+
+													</tr>
+
+
+												</table></td>
+										</tr>
+									</table>
+								</h:panelGroup>
+							</h:panelGrid>
+							<div class="dashed">
+
+								<p:commandButton id="cambiarContrasenia" value="Actualizar"
+									styleClass="btnGrande"
+									actionListener="#{actualizarDatosUsuarioController.cambiarContrasenia()}"
+									process="@this itContraseniaActual,itContraseniaNueva,itConfirmarContrasenia"
+									update="formActualizarDatosClave msgs"
+									onstart="statusDialog.show();"
+									oncomplete="statusDialog.hide();">
+									<center>
+										<div style="background: gray; width: 100px;" id="esteBtn"></div>
+									</center>
+								</p:commandButton>
+
+
+							</div>
+
+							<div style="margin: auto;">
+								<p:messages id="msgs" showDetail="true" showSummary="false"
+									closable="true" />
+							</div>
+
+						</h:panelGrid>
+					</center>
+				</h:form>
+			</div>
+		</p:panel>
+
+
+		<script type="text/javascript">
+			let esUsuarioNuevo2 = false;
+
+			if (esUsuarioNuevo2) {
+				$("#flecha2").css("display", "block");
+				$("#flecha").css("display", "none");
+			}
+
+			function seleccionarTab(evt, cityName) {
+				var i, tabcontent, tablinks;
+				$(".tab-content").css("display", "none");
+
+				$(".tab-links").removeClass("active")
+
+				$("#" + cityName).css("display", "block");
+
+				$(evt.target).addClass("active");
+
+				if (esUsuarioNuevo2) {
+					if ($("#cambioClave").css("display") == "block") {
+						$("#flecha2").css(
+								{
+									"top" : $('#esteBtn').position().top,
+									"left" : $('#esteBtn').position().left
+											+ $('#esteBtn').width()
+								});
+					} else {
+						$("#flecha2")
+								.css(
+										{
+											"top" : $('#cambioClaveTab')
+													.position().top,
+											"left" : $('#cambioClaveTab')
+													.position().left
+													+ $('#cambioClaveTab')
+															.width() * 1.24
+										});
+					}
+				}
+
+			}
+
+			$("#flecha2").css(
+					{
+						"top" : $('#cambioClaveTab').position().top,
+						"left" : $('#cambioClaveTab').position().left
+								+ $('#cambioClaveTab').width() * 1.24
+					});
+
+			var tipDoc;
+
+			function validarNumDocumento(e) {
+				var tecla = e.keyCode;
+				if (tecla == 8 || tecla == 9 || tecla == 13) {
+					return true;
+				}
+				var patron;
+				if (tipDoc == 1) {
+					patron = /[0-9]/;
+				} else if (tipDoc == 4) {
+					patron = /^[a-z0-9]+$/i;
+				} else if (tipDoc == 5) {
+					patron = /^[a-z0-9]+$/i;
+				}
+
+				var tecla_final = String.fromCharCode(tecla);
+				return patron.test(tecla_final);
+			}
+
+			function validarSoloLetras(e) {
+				var tecla = e.keyCode;
+				if (tecla == 8 || tecla == 9 || tecla == 13) {
+					return true;
+				}
+				var patron = /^[a-zA-Z]*$/;
+				var tecla_final = String.fromCharCode(tecla);
+				return patron.test(tecla_final);
+			}
+
+			function validarSoloNumeros(e) {
+				var tecla = e.keyCode;
+				if (tecla == 8 || tecla == 9 || tecla == 13) {
+					return true;
+				}
+				var patron = /[0-9]/;
+				var tecla_final = String.fromCharCode(tecla);
+				return patron.test(tecla_final);
+			}
+
+			function onCall() {
+				tipDoc = PF("selectTipoDocumento").getSelectedValue();
+			}
+		</script>
+
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,30 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/plantilla/plantilla.xhtml">
+
+	<ui:define name="metadata" />
+	<ui:define name="content">
+
+		<div class="cover-contenedor">
+			<div class="fondo-bn"></div>
+			<div class="fondo-bn-txt">
+				<h1>¡BIENVENIDO AL SISTEMA ADMINISTRATIVO DE TARJETA
+					EMPRESARIAL!</h1>
+
+				<h:panelGroup rendered="#{seguridadController.esUsuarioNuevo()}">
+					<span>Debe cambiar su clave para tener acceso a las demas
+						opciones</span>
+				</h:panelGroup>
+			</div>
+		</div>
+		<p:commandButton id="btnPrueba" value="prueba"
+						 styleClass="loginBtn" process="@this"				 
+						action="#{loginController.prueba()}" />	
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://interfaz.service.bn.pe" xmlns:impl="http://interfaz.service.bn.pe" xmlns:intf="http://interfaz.service.bn.pe" xmlns:tns2="http://bean.service.bn.pe" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://bean.service.bn.pe">
+   <complexType name="RequestGateway">
+    <sequence>
+     <element name="datos" nillable="true" type="xsd:string"/>
+     <element name="filler" nillable="true" type="xsd:string"/>
+     <element name="longitud" nillable="true" type="xsd:string"/>
+     <element name="transid" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ResponseGateway">
+    <sequence>
+     <element name="datos" nillable="true" type="xsd:string"/>
+     <element name="filler" nillable="true" type="xsd:string"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element name="msgno" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://interfaz.service.bn.pe">
+   <import namespace="http://bean.service.bn.pe"/>
+   <element name="enviarTramaConsultaResponse">
+    <complexType>
+     <sequence>
+      <element name="enviarTramaConsultaReturn" nillable="true" type="tns2:ResponseGateway"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="enviarTramaConsulta">
+    <complexType>
+     <sequence>
+      <element name="request" nillable="true" type="tns2:RequestGateway"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  </wsdl:types>
+  <wsdl:message name="enviarTramaConsultaRequest">
+    <wsdl:part element="intf:enviarTramaConsulta" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="enviarTramaConsultaResponse">
+    <wsdl:part element="intf:enviarTramaConsultaResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="GatewayInterface">
+    <wsdl:operation name="enviarTramaConsulta">
+      <wsdl:input message="intf:enviarTramaConsultaRequest" name="enviarTramaConsultaRequest"/>
+      <wsdl:output message="intf:enviarTramaConsultaResponse" name="enviarTramaConsultaResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GatewayInterfaceSoapBinding" type="intf:GatewayInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="enviarTramaConsulta">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="enviarTramaConsultaRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="enviarTramaConsultaResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GatewayInterfaceService">
+    <wsdl:port binding="intf:GatewayInterfaceSoapBinding" name="GatewayInterface">
+      <wsdlsoap:address location="http://10.7.12.64:9080/WSGatewayService/services/GatewayInterface"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

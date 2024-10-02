@@ -1,0 +1,310 @@
+/*
+Project Name: Banco de la Nacion Multired
+Author: the Medialab team
+Author URI: http://www.medialabla.com/
+Description: Main CSS for Banco de la Naci&oacute;n
+Version: 1.0
+Tags: Banco de la Naci&oacute;n, Banco, Banco Peru, Banco Lima, Per&uacute;, per&uacute;, banco provincias...
+*/
+
+/* =Global
+----------------------------------------------- */
+#cuerpo-01{
+    font: 24px 'daxcompact-mediumregular';
+    padding: 0px 0px 22px 0px;
+}
+
+
+#cuerpo h1{
+    font: 24px 'daxcompact-mediumregular';
+    padding: 0px 0px 22px 0px;
+}
+
+#login{
+
+}
+
+#login #border-superior{
+
+}
+
+#login #border-inferior{
+    
+}
+
+#login #login-contenido .panel-input{
+	margin: 0 0 25px 0;
+}
+
+#login #login-contenido{
+    background: url(../img/plantillaBN/border-derecha.png) repeat-y right top #fff;
+    border-left: 1px solid #d4d4d4;
+    color: #555555;
+    font: 12px arial;
+    margin: 0 auto;
+    position: relative;
+    padding: 18px 54px 30px 52px;
+    overflow: hidden;
+    text-align: left;
+    width: 536px;
+}
+
+.ui-widget, .ui-widget-content{
+	font-size:0.8em;
+}
+
+#login #login-contenido #border-inferior{
+    border-bottom: 1px dashed #B8B8B8;
+    bottom: 80px;
+    height: 1px;
+    position: absolute;
+    left: 0px;
+    width: 99%;
+}
+
+#login #login-contenido p{
+    text-align: justify;
+}
+
+#login #login-contenido #comunicate{
+    bottom: 0;
+    color: #555555;
+    font: 11px arial;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+#login #login-contenido form{
+    padding: 0px 0px 0px 60px;
+    position: relative;
+}
+
+#login #login-contenido form{
+
+}
+#login #login-contenido form button[type="submit"]{
+    background: url(../img/plantillaBN/boton.jpg) no-repeat;
+    //border: none;
+    color: #fff;
+    cursor: pointer;
+    //height: 30px;
+    font: bold 14px arial;
+    margin: 30px 0 0 190px;
+    text-align: center;
+    //width: 100px;
+    border-radius: 8px;
+}
+
+#login #login-contenido form .fila{
+    margin: 0px 0px 26px 40px;
+}
+
+.fila-1{ 
+	margin: 0px 0px 14px 0px;
+}
+
+.ui-icon-triangle-1-s {
+	background-image: url(../img/favicon.ico) !important;
+}
+
+#login #login-contenido form .ui-selectonemenu{
+	//border:none;
+	border-radius:8px;
+	float:left;
+	top: 0px;
+	border-color:#C7C7C7;
+}
+#login #login-contenido form .ui-selectonemenu-label{
+	width: 236px;
+	border-radius:8px;
+}
+#login #login-contenido form .ui-selectonemenu-trigger{
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border:none;
+}
+
+#login #login-contenido form label{
+    color: #4f4f4f;
+    font: 13px/23px arial;
+    float: left;
+    padding: 0px 4px 0px 8px;
+}
+#login #login-contenido form label.ui-outputlabel {
+    text-align: right;
+   width: 138px;
+}
+
+#login #login-contenido form .tipo-documento{
+    background: url(../img/plantillaBN/select.jpg) no-repeat;
+    height: 23px !important;
+    float: left;
+    width: 250px !important;
+}
+
+#login #login-contenido form .tipo-documento span{
+    color: #7b7b7b;
+    font: 12px/23px arial !important;
+    padding: 0px 0px 0px 12px;
+}
+
+#login #login-contenido form  .input-grande{
+    //background: url(../img/plantillaBN/input-grande.jpg) no-repeat;
+    //border: none;
+    //float: left;
+    color: #7b7b7b;
+    font: 12px/23px arial;
+    padding: 0px 12px 0px 12px;
+    height: 23px;
+    width: 226px;
+    border-radius: 12px;
+    float:left;
+    border-color: #C7C7C7;
+}
+
+#login #login-contenido #botones-clave{
+    float: left;
+    padding: 0px 0px 0px 6px;
+    width: 92px;
+}
+
+#login #login-contenido #botones-clave div{
+    background: url(../img/plantillaBN/btn-boton.jpg) no-repeat;
+    color: #343434;
+    display: block;
+    font: 16px/25px 'daxcompact-boldregular';
+    height: 25px;
+    float: left;
+    margin: 0px 5px 5px 0px;
+    text-align: center;
+    width: 25px;
+    cursor:pointer;
+}
+
+#login #login-contenido #botones-clave div:hover{
+    background: url(../img/plantillaBN/btn-boton-active.jpg) no-repeat;
+    color: #fff;
+}
+
+#login #login-contenido #botones-clave div.limpiar{
+    background: url(../img/plantillaBN/btn-limpiar.jpg) no-repeat;
+    color: #fff;
+    font: 12px/25px 'daxcompact-boldregular';
+    width: 55px;
+}
+
+#login #login-contenido #campo-clave{
+    float: left;
+    padding: 0px 0px 0px 40px;
+    width: 110px;
+}
+
+#login #login-contenido #campo-clave p{
+    color: #7b7b7b;
+    font: 11px/13px arial;
+    text-align: center;
+    padding: 0px 5px 10px;
+}
+
+#login #login-contenido #campo-clave input{
+    border: none;
+    height: 23px;
+    padding: 0px 20px 0 20px;
+    width: 70px;
+    border-radius: 12px;
+}
+
+#login #login-contenido #campo-clave .olvido-clave {
+    padding: 20px 0px 0px 0px;
+    position: relative;
+}
+
+#login #login-contenido #campo-clave a.olvide-clave{
+    background: url(../img/plantillaBN/olvide-clave.jpg) no-repeat;
+    color: #ba1113;
+    display: block;
+    font: 12px arial;
+    height: 24px;
+    font: 12px/24px arial;
+    text-align: left;
+    text-decoration: underline;
+    padding: 0px 0px 0px 27px;
+}
+
+#login #login-contenido #campo-clave .texto-olvide-clave{
+    display: none;
+    position: absolute;
+    right: -140px;
+    top: 2px;
+}
+
+#login #login-contenido #campo-clave .olvido-clave:hover .texto-olvide-clave{
+    display: block;
+}
+
+#login #login-contenido #campo-clave .texto-olvide-clave img{
+    position: absolute;
+    top: 23px;
+    left: -15px;
+}
+
+#login #login-contenido #campo-clave .texto-olvide-clave div{
+    background: #000;
+    color: #d5d5d5;
+    height: 40px;
+    text-align: center;
+    font: 11px/12px arial;
+    padding: 12px 0px;
+    width: 120px;
+}
+
+#login #login-contenido .capcha{
+    float: left;
+    padding: 0px 18px 0px 6px;
+}
+
+#login #login-contenido .capcha div{
+    padding: 0px 0px 8px 0px;
+}
+
+#login #login-contenido .capcha a{
+    background: url(../img/plantillaBN/cambiar-capcha.jpg) no-repeat;
+    color: #ba1113;
+    display: block;
+    font: 12px arial;
+    text-decoration: underline;
+    padding: 3px 0px 2px 22px;
+}
+
+#login #login-contenido input.capcha{
+    background: url(../img/plantillaBN/bg-input-small.jpg) no-repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #7B7B7B;
+    float: left;
+    font: 12px/23px arial;
+    height: 23px;
+    padding: 0 20px;
+    width: 70px;
+    border-radius: 12px;
+}
+
+ul.tipo-documento{
+    width: 217px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

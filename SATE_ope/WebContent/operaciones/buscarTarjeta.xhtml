@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h2>BUSCAR TARJETA</h2>
+
+		<h:form id="formBuscarTarjeta">
+
+			<center>
+				<p:panel style="margin:30px 80px 30px 80px;padding:20px;">
+
+					<h:panelGrid style="width:90%;" columns="1">
+						<p:panelGrid columns="4" id="pgBusqueda"
+							style="margin:20px auto 20px auto;" layout="grid">
+							<h:outputText value="Consultar por" />
+							<p:selectOneMenu id="somTipoBusqueda"
+								widgetVar="selectTipoBusqueda" onchange="onCall(this)"
+								style="width:162px;vertical-align:middle;margin-left:20px;"
+								value="#{buscarTarjetaController.buscarTarjetaModel.tipoBusqueda}"
+								required="true" requiredMessage="Seleccione tipo de documento">
+								<p:ajax event="change" update="formBuscarTarjeta:pgBusqueda" />
+								<f:selectItems
+									value="#{buscarTarjetaController.buscarTarjetaModel.listaTipoBusqueda}"
+									var="item" itemLabel="#{item.descripcion}"
+									itemValue="#{item.id}" />
+							</p:selectOneMenu>
+							<p:inputText style="margin-left:20px;" id="numDocumento"
+								required="true"
+								onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+								value="#{buscarTarjetaController.buscarTarjetaModel.numDocumento}"
+								maxlength="#{buscarTarjetaController.buscarTarjetaModel.obtenerBusquedaLength()}"
+								requiredMessage="#{buscarTarjetaController.buscarTarjetaModel.obtenerBusquedaRequiredMessage()}"
+								validatorMessage="#{buscarTarjetaController.buscarTarjetaModel.obtenerBusquedaValidatorMessage()}">
+								<f:validateLength
+									minimum="#{buscarTarjetaController.buscarTarjetaModel.obtenerBusquedaLength()}" />
+							</p:inputText>
+							<p:commandButton value="Buscar" onclick="statusDialog.show();"
+								oncomplete="statusDialog.hide();"
+								process="@this somTipoBusqueda,numDocumento"
+								actionListener="#{buscarTarjetaController.buscarTarjeta()}"
+								update=":formBuscarTarjeta:pgResultado msgs" />
+
+						</p:panelGrid>
+						<div class="dashed"></div>
+					</h:panelGrid>
+
+
+					<h:panelGrid id="pgResultado" style="width:90%;text-align:center;"
+						columns="1">
+						<p:panelGrid style="margin:auto;text-align:left;" columns="2"
+							rendered="#{buscarTarjetaController.buscarTarjetaModel.busquedaRealizada}"
+							layout="grid">
+
+							<p:panel style="margin:10px 20px;padding:20px;">
+								<h3 style="text-align: center">Datos del tarjetahabiente</h3>
+								<div class="dashed"></div>
+								<h:panelGrid columns="2">
+									<h:outputText value="Tipo de documento" />
+									<h:outputText value="Número de documento"
+										style="margin-left:20px;" />
+									<p:inputText id="somTipoDocumento" readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.descripcionTipoDocumento(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.cliente.tipoDocumento)}" />
+									<p:inputText id="numeroDocumento" readonly="true"
+										style="margin-left:20px;"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.cliente.nroDocumento}" />
+
+									<h:outputText value="Nombres" />
+									<h:outputText value="Apellidos" style="margin-left:20px;" />
+									<p:inputText id="itNombres" readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.cliente.nombres}" />
+									<p:inputText id="itApellidos" style="margin-left:20px;"
+										readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.cliente.apPaterno}" />
+								</h:panelGrid>
+
+							</p:panel>
+
+							<p:panel style="margin: 10px 20px;padding:20px;">
+								<h3 style="text-align: center">Datos de contacto</h3>
+								<div class="dashed"></div>
+
+								<h:panelGrid columns="2">
+									<h:outputText value="Operador celular" />
+									<h:outputText value="Número de celular"
+										style="margin-left:20px;" />
+									<p:selectOneMenu style="width:162px" id="somOperador"
+										required="true"
+										disabled="#{!buscarTarjetaController.buscarTarjetaModel.tipoOperacionActualizar}"
+										requiredMessage="Seleccione un operador celular"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.operadorCelular}">
+										<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+										<f:selectItems var="item" itemLabel="#{item.descripcion}"
+											value="#{buscarTarjetaController.buscarTarjetaModel.listaOperadorMovil}"
+											itemValue="#{item.id}" />
+									</p:selectOneMenu>
+									<p:inputText id="numCelular" style="margin-left:20px;"
+										maxlength="9" required="true"
+										onkeypress="return validarSoloNumeros(event)"
+										readonly="#{!buscarTarjetaController.buscarTarjetaModel.tipoOperacionActualizar}"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.numeroCelular}"
+										requiredMessage="Ingrese el número de celular">
+									</p:inputText>
+									<h:outputText value="Correo electrónico" />
+									<h:outputText value="Teléfono de casa"
+										style="margin-left:20px;" />
+									<p:inputText id="email" maxlength="30"
+										readonly="#{!buscarTarjetaController.buscarTarjetaModel.tipoOperacionActualizar}"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.email}"
+										validatorMessage="Correo electrónico no válido">
+										<p:ajax update="msgs" event="keyup" />
+										<f:validateRegex
+											pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+									</p:inputText>
+									<p:inputText id="telefonoCasa" style="margin-left:20px;"
+										maxlength="7" onkeypress="return validarSoloNumeros(event)"
+										readonly="#{!buscarTarjetaController.buscarTarjetaModel.tipoOperacionActualizar}"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.cliente.telefonoCasa}"
+										required="true" requiredMessage="Ingrese teléfono de casa">
+									</p:inputText>
+								</h:panelGrid>
+
+
+							</p:panel>
+
+
+
+
+							<p:panel style="margin:10px 20px;padding:20px;">
+								<h3 style="text-align: center">Datos de la tarjeta</h3>
+								<div class="dashed"></div>
+								<h:panelGrid columns="2">
+
+									<h:outputText value="Número" />
+									<h:outputText value="Estado" style="margin-left:20px;" />
+									<p:inputText id="itNumeroTarjeta" readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.descripcionNumeroTarjeta(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.numTarjeta)}" />
+									<p:inputText id="itEstadoTarjeta" style="margin-left:20px;"
+										readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.descripcionEstadoTarjeta(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.estado)}" />
+
+									<h:outputText value="Tipo de tarjeta" />
+									<h:outputText value="Tipo de moneda" style="margin-left:20px;" />
+									<p:inputText id="itTipoTarjeta" readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.descripcionTipoTarjeta(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.tipoTarjeta,buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.diseno)}" />
+									<p:inputText style="margin-left:20px;" readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.descripcionTipoMoneda(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.tipoMoneda)}" />
+
+
+									<h:outputText value="Disposición de efectivo?" />
+									<h:outputText value="Uso en el extranjero?"
+										style="margin-left:20px;" />
+									<p:inputText readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.descripcionDisposicionEfectivo(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.usoDispocionEfectivo)}" />
+									<p:inputText style="margin-left:20px;" readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.usoExtranjero}" />
+
+
+									<h:outputText value="Nro.Autorización vigente" />
+									<h:outputText value="Fecha de autorización vigente"
+										style="margin-left:20px;" />
+
+									<p:inputText readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.formatoNroAutorizacion(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.nroAutorizacion)}" />
+									<p:inputText readonly="true" style="margin-left:20px;"
+										value="#{buscarTarjetaController.buscarTarjetaModel.formatoFechaAutorizacion(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.fechaAutorizacion)}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</p:inputText>
+
+								</h:panelGrid>
+
+								<h:panelGrid>
+									<h:outputText value="Unidad ejecutora" />
+									<p:inputText readonly="true" style="width:340px;"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.empresa}" />
+								</h:panelGrid>
+
+								<h:panelGrid columns="2">
+									<h:outputText value="Usuario creador" />
+									<h:outputText value="Fecha de creación"
+										style="margin-left:20px;" />
+									<p:inputText readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.formatoUsuarioCreador(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.usuarioCreacion)}" />
+									<p:inputText style="margin-left:20px;" readonly="true"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.fechaCreacion}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</p:inputText>
+								</h:panelGrid>
+								<br></br>
+								<h:panelGrid columns="2">
+									<h:outputText value="Observaciones" style="position:relative;" />
+									<p:inputTextarea style="margin-left:20px;" rows="5" cols="33"
+										readonly="true" styleClass="text-area"
+										value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.observaciones}" />
+
+
+								</h:panelGrid>
+							</p:panel>
+
+							<h:panelGroup>
+								<p:panel style="margin: 10px 20px;padding:20px;">
+									<h3 style="text-align: center">Datos de credito</h3>
+									<div class="dashed"></div>
+									<h:panelGrid columns="2">
+										<h:outputText value="Fecha inicio de linea" />
+										<h:outputText value="Fecha termino de linea"
+											style="margin-left:20px;" />
+										<p:inputText readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.formatoFecha(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.fechaInicioLinea)}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</p:inputText>
+										<p:inputText readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.formatoFecha(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.fechaTerminoLinea)}"
+											style="margin-left:20px;">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</p:inputText>
+
+										<h:outputText value="Monto linea asignado" />
+										<h:outputText value="Monto linea actual"
+											style="margin-left:20px;" />
+										<p:inputText readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.formatoMonto(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.montoLineaAsignado)}" />
+										<p:inputText style="margin-left:20px;" readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.formatoMonto(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.montoLineaActual)}" />
+
+										<h:outputText value="Monto compras usado" />
+										<h:outputText value="Monto por procesar"
+											style="margin-left:20px;" />
+										<p:inputText readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.formatoMonto(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.montoCompraUsado)}" />
+										<p:inputText style="margin-left:20px;" readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.formatoMonto(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.montoPorProcesar)}" />
+									</h:panelGrid>
+									<br></br>
+									<h:panelGrid columns="2">
+										<h:outputText value="Disp. efectivo usado" />
+										<p:inputText readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.formatoMonto(buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.dispEfectivoUsado)}" />
+									</h:panelGrid>
+								</p:panel>
+
+
+
+								<p:panel style="margin: 10px 20px;padding:20px;">
+									<h3 style="text-align: center">Datos de entrega</h3>
+									<div class="dashed"></div>
+									<h:panelGrid>
+										<h:outputText value="Entregar tarjeta en" />
+										<p:inputText readonly="true" style="width:340px;"
+											value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.descripcionUbicacion}" />
+									</h:panelGrid>
+
+									<h:panelGrid columns="2">
+
+										<h:outputText value="Departamento" />
+										<h:outputText value="Provincia" />
+										<p:inputText readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.entregaDepartamento}" />
+										<p:inputText readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.entregaProvincia}" />
+
+										<h:outputText value="Distrito" />
+										<h:outputText />
+										<p:inputText readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.entregaDistrito}" />
+									</h:panelGrid>
+
+
+									<h:panelGrid>
+										<h:outputText value="Dirección " />
+										<p:inputText style="width:340px;" readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.entregaDireccion}" />
+
+										<h:outputText value="Referencia" />
+										<p:inputText style="width:340px;" readonly="true"
+											value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjeta.entregaReferencia}" />
+									</h:panelGrid>
+								</p:panel>
+
+							</h:panelGroup>
+						</p:panelGrid>
+
+
+						<p:panelGrid columns="1"
+							style="margin-top:30px;width:90%;margin:auto;"
+							rendered="#{buscarTarjetaController.buscarTarjetaModel.busquedaRealizada}">
+							<div class="dashed"></div>
+
+							<p:commandButton id="cancelarTarjeta" value="Cancelar Solicitud"
+								styleClass="btnGrande"
+								rendered="#{buscarTarjetaController.buscarTarjetaModel.tipoOperacionCancelar}"
+								actionListener="#{buscarTarjetaController.cancelarTarjeta()}"
+								update="formBuscarTarjeta" />
+							<p:commandButton id="actualizarDatos" value="Actualizar"
+								styleClass="btnGrande"
+								rendered="#{buscarTarjetaController.buscarTarjetaModel.tipoOperacionActualizar}"
+								actionListener="#{buscarTarjetaController.actualizarDatosContactoTarjetaHabiente()}"
+								update="formBuscarTarjeta" />
+						</p:panelGrid>
+
+						<div>
+							<p:messages id="msgs" showDetail="true" showSummary="false"
+								closable="true" />
+						</div>
+
+					</h:panelGrid>
+				</p:panel>
+			</center>
+
+		</h:form>
+
+		<p:dialog id="dgSeleccionarTarjeta" modal="true" closable="true"
+			appendTo="@(body)" resizable="false" closeOnEscape="false"
+			draggable="false" position="center" showEffect="clip"
+			hideEffect="clip" header="Seleccionar Tarjeta"
+			widgetVar="wvSeleccionarTajeta">
+			<h:form id="formSeleccionarTarjeta">
+				<p:panelGrid id="panel-seleccionarTarjeta" columns="1"
+					style="widht:100%">
+					<h:outputText value="Lista de tarjetas" />
+					<p:dataTable id="tablaTarjetas"
+						selection="#{buscarTarjetaController.buscarTarjetaModel.tarjetaSeleccionada}"
+						value="#{buscarTarjetaController.buscarTarjetaModel.datosTarjetaCliente.tarjetas}"
+						selectionMode="single" var="firmante" rowKey="#{firmante.id}"
+						emptyMessage="No hay tarjetas"
+						style="width:100%;table-layout: fixed;" rowIndexVar="index">
+						<p:ajax event="rowSelect"
+							listener="#{buscarTarjetaController.seleccionarTarjeta()}"
+							update=":formBuscarTarjeta:pgResultado"
+							onclick="statusDialog.show();"
+							oncomplete="PF('wvSeleccionarTajeta').hide();statusDialog.hide();" />
+						<p:column headerText="Nro."
+							style="widht:20%;text-align:center; vertical-align: middle;">
+							<h:outputText value="#{firmante.id}" />
+						</p:column>
+						<p:column headerText="Número de tarjeta"
+							style="widht:30%;text-align:left; vertical-align: middle;">
+							<h:outputText
+								value="#{buscarTarjetaController.buscarTarjetaModel.descripcionNumeroTarjeta(firmante.numTarjeta)}" />
+						</p:column>
+						<p:column headerText="Unidad Ejecutora/empresa"
+							style="widht:50%; text-align:left;vertical-align: middle;">
+							<h:outputText value="#{firmante.empresa}" />
+						</p:column>
+						<p:column headerText="Tipo"
+							style="widht:50%; text-align:left;vertical-align: middle;">
+							<h:outputText
+								value="#{buscarTarjetaController.buscarTarjetaModel.descripcionTipoTarjeta(firmante.tipoTarjeta,firmante.diseno)}" />
+						</p:column>
+						<p:column headerText="Estado"
+							style="widht:50%; text-align:left;vertical-align: middle;">
+							<h:outputText
+								value="#{buscarTarjetaController.buscarTarjetaModel.descripcionEstadoTarjeta(firmante.estado)}" />
+						</p:column>
+					</p:dataTable>
+				</p:panelGrid>
+
+				<script type="text/javascript">
+					var tipDoc;
+
+					function validarNumDocumento(e) {
+						var tecla = e.keyCode;
+						if (tecla == 8 || tecla == 9 || tecla == 13) {
+							return true;
+						}
+						var patron;
+						if (tipDoc == '1' || tipDoc == 'N') {
+							patron = /[0-9]/;
+						} else if (tipDoc == '2') {
+							patron = /^[a-z0-9]+$/i;
+						}
+
+						var tecla_final = String.fromCharCode(tecla);
+						return patron.test(tecla_final);
+					}
+
+					function validarSoloLetras(e) {
+						var tecla = e.keyCode;
+						if (tecla == 8 || tecla == 9 || tecla == 13) {
+							return true;
+						}
+						var patron = /^[a-zA-Z]*$/;
+						var tecla_final = String.fromCharCode(tecla);
+						return patron.test(tecla_final);
+					}
+
+					function validarSoloNumeros(e) {
+						var tecla = e.keyCode;
+						if (tecla == 8 || tecla == 9 || tecla == 13) {
+							return true;
+						}
+						var patron = /[0-9]/;
+						var tecla_final = String.fromCharCode(tecla);
+						return patron.test(tecla_final);
+					}
+
+					function onCall() {
+						tipDoc = PF("selectTipoBusqueda").getSelectedValue();
+						console.log("tipoDocumento:" + tipDoc);
+					}
+				</script>
+
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

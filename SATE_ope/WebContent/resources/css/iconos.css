@@ -1,0 +1,63 @@
+
+.salir{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/salir.png") !important;
+}
+
+.imprimir{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/imprimir.png") !important;
+}
+
+.excel{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/excel.png") !important;
+}
+.guardar{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/guardar.png") !important;
+}
+.agregar{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/agregar.png") !important;
+}
+.editar{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/editar.png") !important;
+}
+.eliminar{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/eliminar.png") !important;
+}
+.limpiar_icon{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/limpiar.png") !important;
+}
+.buscar{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/buscar.png") !important;
+}
+.aceptar{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/aceptar.png") !important;
+}
+.cancelar{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/cancelar.png") !important;
+}
+.word{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/word.png") !important;
+}
+.pdf{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/pdf.png") !important;
+}
+.detalles{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/detalles.png") !important;
+}
+.cerrarSesion{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/iconos/cerrarSesion.png") !important;
+}
+
+.impExcel{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/plantillaBN/iconos/xls.gif") !important;
+}
+
+
+.impWord{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/plantillaBN/iconos/doc.gif") !important;
+}
+
+
+.impPDF{
+	background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/plantillaBN/iconos/pdf.gif") !important;
+}
+

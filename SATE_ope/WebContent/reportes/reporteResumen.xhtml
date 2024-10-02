@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h2>REPORTES</h2>
+
+		<h:form id="formReporteTarjeta">
+
+			<center>
+				<p:panel style="margin:30px 80px 30px 80px;padding:20px;">
+					<h:panelGrid style="width:80%;text-align:center;">
+						<p:panelGrid columns="2" style="margin:0 auto 10px;">
+							<h:outputText value="Reporte resumen *" />
+
+							<p:selectOneMenu id="selectTipoReporte"
+								style="width:300px;vertical-align:middle;"
+								value="#{reporteResumenController.reporteResumenModel.tipoReporteSeleccionado}"
+								required="true" requiredMessage="Seleccione tipo de documento">
+								<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+								<f:selectItems
+									value="#{reporteResumenController.reporteResumenModel.listaReporteResumen}"
+									var="item" itemLabel="#{item.descripcion}"
+									itemValue="#{item.id}" />
+							</p:selectOneMenu>
+							<h:outputText value="Fecha corte *" />
+							<h:panelGrid columns="4">
+								<h:outputText value="del" />
+								<p:selectOneMenu id="selectFechaCorteInicial"
+									style="width:100px;vertical-align:middle;"
+									value="#{reporteResumenController.reporteResumenModel.fechaCorteInicialSeleccionada}"
+									required="true" requiredMessage="Seleccione una fecha inicial">
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<f:selectItems
+										value="#{reporteResumenController.reporteResumenModel.listaFechaCorte}"
+										var="item" itemLabel="#{item}" itemValue="#{item}" />
+								</p:selectOneMenu>
+								<h:outputText value="al" />
+								<p:selectOneMenu id="selectFechaCorteFinal"
+									style="width:100px;vertical-align:middle;"
+									value="#{reporteResumenController.reporteResumenModel.fechaCorteFinalSeleccionada}"
+									required="true" requiredMessage="Seleccione una fecha final">
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<f:selectItems
+										value="#{reporteResumenController.reporteResumenModel.listaFechaCorte}"
+										var="item" itemLabel="#{item}" itemValue="#{item}" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+						</p:panelGrid>
+					
+							<p:commandButton id="buscarDatosReporte" value="Buscar"
+								styleClass="btnGrande"
+								process="@this selectTipoReporte,selectFechaCorteInicial,selectFechaCorteFinal"
+								update="formReporteTarjeta"
+								actionListener="#{reporteResumenController.buscarReporte()}" />
+						
+
+						<div>
+							<p:messages id="msgs" showDetail="true" showSummary="false"
+								closable="true" />
+						</div>
+
+						<div class="dashed"></div>
+
+						<p:panel id="pgReporte" style="margin-top:10px;border:none;">
+							<center>
+								<p:panel id="listaTarjetasPanel"
+									rendered="#{reporteResumenController.reporteResumenModel.listaTarjetas!=null and !reporteResumenController.reporteResumenModel.listaTarjetas.isEmpty() and reporteResumenController.reporteResumenModel.tipoReporteSeleccionado==1}">
+									<p:panelGrid id="pgExporter" columns="2"
+										style="float:right;margin-right:2px;">
+										<h:commandLink>
+											<img
+												src="#{request.contextPath}/resources/img/plantillaBN/iconos/xls.gif" />
+											<p:dataExporter type="xls" target="dtListadoTarjetas"
+												fileName="listaTarjetas" />
+										</h:commandLink>
+									</p:panelGrid>
+									<p:dataTable var="tarjeta" id="dtListadoTarjetas"
+										paginator="true" paginatorPosition="bottom" rows="5"
+										paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport}
+									 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+										currentPageReportTemplate="{currentPage} de {totalPages}"
+										rowsPerPageTemplate="5,10,15"
+										value="#{reporteResumenController.reporteResumenModel.listaTarjetas}"
+										rowKey="#{tarjeta.id}"
+										style="table-layout: fixed;margin-top:30px;width:80%;"
+										rowIndexVar="index" emptyMessage="No hay tarjetas">
+
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Unidad Ejecutora" />
+											</f:facet>
+											<h:outputText
+												value="#{tarjeta.razonSocialUE!=null?tarjeta.razonSocialUE:'--'}" />
+										</p:column>
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Usuario creador" />
+											</f:facet>
+											<h:outputText
+												value="#{tarjeta.usuarioCreacion!=null?tarjeta.usuarioCreacion:'--'}" />
+										</p:column>
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Fecha Creación" />
+											</f:facet>
+											<h:outputText
+												value="#{tarjeta.fechaCreacion!=null?tarjeta.fechaCreacion:'--'}">
+												<f:convertDateTime type="date"
+													pattern="dd/MM/yyyy hh:mm:ss a" />
+											</h:outputText>
+										</p:column>
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Estado Tarjeta" />
+											</f:facet>
+											<h:outputText
+												value="#{tarjeta.estado!=null?reporteResumenController.reporteResumenModel.estadoEnLetras(tarjeta.estado):'--'}" />
+										</p:column>
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Fecha Estado Tarjeta" />
+											</f:facet>
+											<h:outputText
+												value="#{tarjeta.fechaEstado!=null?tarjeta.fechaEstado:'--'}">
+												<f:convertDateTime type="date"
+													pattern="dd/MM/yyyy hh:mm:ss a" />
+											</h:outputText>
+										</p:column>
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Tipo de Tarjeta" />
+											</f:facet>
+											<h:outputText
+												value="#{tarjeta.tipoTarjeta!=null?tarjeta.tipoTarjeta:'--'}" />
+										</p:column>
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Número de Tarjeta" />
+											</f:facet>
+											<h:outputText
+												value="#{tarjeta.numTarjeta!=null?tarjeta.numTarjeta:'--'}" />
+										</p:column>
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Tipo de Documento" />
+											</f:facet>
+											<h:outputText
+												value="#{reporteResumenController.reporteResumenModel.tipoDocumentoLetras(tarjeta.tipoDocumento)}" />
+										</p:column>
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Número de Documento" />
+											</f:facet>
+											<h:outputText
+												value="#{tarjeta.numeroDocumento!=null?tarjeta.numeroDocumento:'--'}" />
+										</p:column>
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Nombres" />
+											</f:facet>
+											<h:outputText
+												value="#{tarjeta.nombres!=null?tarjeta.nombres:'--'}" />
+										</p:column>
+										<p:column style="text-align: center">
+											<f:facet name="header">
+												<h:outputText value="Apellidos" />
+											</f:facet>
+											<h:outputText
+												value="#{tarjeta.apellidos!=null?tarjeta.apellidos:'--'}" />
+										</p:column>
+									</p:dataTable>
+								</p:panel>
+
+								<p:dataTable var="transaccion" id="dtListadoTransacciones"
+									rendered="#{reporteResumenController.reporteResumenModel.listaTransacciones!=null and !reporteResumenController.reporteResumenModel.listaTransacciones.isEmpty() and reporteResumenController.reporteResumenModel.tipoReporteSeleccionado==2}"
+									value="#{reporteResumenController.reporteResumenModel.listaTransacciones}"
+									rowKey="#{transaccion.id}"
+									style="table-layout: fixed;margin-top:30px;width:80%;"
+									rowIndexVar="index">
+
+									<p:columnGroup type="header">
+										<p:row>
+											<p:column headerText="Fecha Operación*" />
+											<p:column headerText="Fecha Posteo" />
+											<p:column headerText="Operación" />
+											<p:column headerText="Comercio" />
+											<p:column headerText="Monto" />
+											<p:column headerText="Autorización PMC" />
+											<p:column headerText="N° Autorización" />
+											<p:column headerText="Estado" />
+										</p:row>
+									</p:columnGroup>
+
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{transaccion.fechaOperacion!=null?transaccion.fechaOperacion:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{transaccion.fechaPosteo!=null?transaccion.fechaPosteo:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{transaccion.operacion!=null?transaccion.operacion!=null:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{transaccion.comercio!=null?transaccion.comercio:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{transaccion.monto!=null?transaccion.monto!=null:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{transaccion.autorizacionPMC!=null?transaccion.autorizacionPMC:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{transaccion.numeroAutorizacion!=null?transaccion.numeroAutorizacion:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{transaccion.estado!=null?transaccion.estado:'--'}" />
+									</p:column>
+								</p:dataTable>
+
+
+
+								<p:dataTable var="cargo" id="dtListadoCargos"
+									rendered="#{reporteResumenController.reporteResumenModel.listaCargos!=null and !reporteResumenController.reporteResumenModel.listaCargos.isEmpty() and reporteResumenController.reporteResumenModel.tipoReporteSeleccionado==3}"
+									value="#{reporteResumenController.reporteResumenModel.listaCargos}"
+									rowKey="#{cargo.id}"
+									style="table-layout: fixed;margin-top:30px;width:80%;"
+									rowIndexVar="index">
+
+									<p:columnGroup type="header">
+										<p:row>
+											<p:column headerText="Fecha de corte" />
+											<p:column headerText="Fecha Proceso" />
+											<p:column headerText="Número de cuenta" />
+											<p:column headerText="Monto cargado" />
+											<p:column headerText="Monto pendiente por cargar" />
+											<p:column headerText="Saldo Inicial Cuenta" />
+											<p:column headerText="Saldo Final Cuenta" />
+										</p:row>
+
+									</p:columnGroup>
+
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{cargo.fechaCorte!=null?cargo.fechaCorte:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{cargo.fechaProceso!=null?cargo.fechaProceso:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{cargo.numeroCuenta!=null?cargo.numeroCuenta:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{cargo.MontoCargado!=null?cargo.MontoCargado:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{cargo.MontoPendiente!=null?cargo.MontoPendiente:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{cargo.saldoInicial!=null?cargo.saldoInicial:'--'}" />
+									</p:column>
+									<p:column style="text-align: center">
+										<h:outputText
+											value="#{cargo.saldoFinal!=null?cargo.saldoFinal:'--'}" />
+									</p:column>
+								</p:dataTable>
+							</center>
+						</p:panel>
+					</h:panelGrid>
+				</p:panel>
+			</center>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

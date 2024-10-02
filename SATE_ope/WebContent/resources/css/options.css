@@ -1,0 +1,115 @@
+/*
+Project Name: Banco de la Nacion Multired
+Author: the Medialab team
+Author URI: http://www.medialabla.com/
+Description: Main CSS for Banco de la Naci&oacute;n
+Version: 1.0
+Tags: Banco de la Naci&oacute;n, Banco, Banco Peru, Banco Lima, Per&uacute;, per&uacute;, banco provincias...
+*/
+
+
+/* =Global
+----------------------------------------------- */
+
+#barra-opciones h1 {
+    font: 18px/44px 'daxcompact-mediumregular';
+    text-align: left;
+    margin: 0 0 0 16px;
+}
+#barra-opciones h1 img {
+    vertical-align: top;
+}
+#barra-opciones #cerrar-sesion {
+    right: 16px;
+    position: absolute;
+    top: 14px; /*28px */
+}
+#barra-opciones #cerrar-sesion a {
+    background: url(../img/plantillaBN/cerrar-sesion.jpg) no-repeat right center;
+    color: #2a2a2a;
+    display: block;
+    font: 14px/29px 'daxcompact-mediumregular';
+    height: 29px;
+    text-transform: uppercase;
+    text-align: left;
+    width: 115px;
+}
+#bienvenidos-contenido {
+    background: url(../img/plantillaBN/border-derecha.jpg) repeat-y right top;
+    padding: 0px 4px 0px 0px;
+    width: 900px;
+}
+#datos-personales {
+    background: #cfcfcf;
+    /* url(../img/plantillaBN/border-derecha.jpg) repeat-y right top #d7d7d7; */
+    border: 1px solid #adadad;
+    padding: 0px 2px 0px 0px;
+    /* text-align: left; */
+    /* width: 899px; */
+}
+#datos-personales #nombres,
+#datos-personales #ultimo-ingreso,
+#datos-personales #tipo-cambio {
+   /*  border-right: 1px dashed #939393;
+    border-bottom: 1px solid #adadad;
+    color: #343434; */
+    float: left;
+}
+#datos-personales #nombres {
+    font: 18px 'daxcompact-mediumregular';
+/*     height: 35px; */
+    padding: 6px 2px 6px 19px;
+    float:left;
+    width: 55%;
+}
+#datos-personales #nombres span {
+    color: #c51416;
+    position: relative;
+}
+#datos-personales #nombres span.contenedor-imagen {
+    margin: 0px 0px 0px 10px;
+}
+#datos-personales #nombres span.contenedor-imagen img {
+    position: absolute;
+    top: -10px;
+    left: 0px;
+}
+#datos-personales #ultimo-ingreso {
+    color: #202020;
+    font: 11px arial;
+    height: 48px;
+    padding: 2px 20px 10px 19px;
+    width: 100px;
+}
+#datos-personales #ultimo-ingreso p {
+    line-height: 16px;
+}
+#datos-personales #ultimo-ingreso span {
+    color: #c51416;
+}
+#datos-personales #options {
+    border: none;
+    /* border-bottom: 1px solid #adadad; */
+    color: #202020;
+    font: 11px arial;
+    height: 28px;
+    padding: 6px 20px 9px;
+    width: 55%;
+    display: inline-block;
+}
+#datos-personales #options p {
+    line-height: 16px;
+}
+#datos-personales #options span {
+    color: #c51416;
+}
+
+
+#datos-personales #sesion {
+margin:10px;
+    float:right;
+    width:12.5%;
+}
+
+
+

@@ -1,0 +1,78 @@
+#d  #menu{
+	background: #fff;
+	padding: 1px;
+	float: left !important;
+	margin: 10px 0px 0px 15px !important;
+	overflow: hidden;
+	width: 200px;
+}
+
+#bn-contenidos  #menu .curvas{
+	background: #bebebe;
+	overflow: hidden;
+	padding: 1px 1px 0px 1px;
+} 
+
+#bn-contenidos  #menu .curvas .curvas{
+	background: none;
+	overflow: hidden;
+	padding: 0px;
+}
+
+#bn-contenidos  #menu ul{
+	border-bottom: none; 
+	overflow: hidden;
+}
+
+#bn-contenidos  #menu ul li{
+	background: url(../images/menu/bg-menu.jpg) repeat-x;
+	overflow: hidden;
+}
+
+#bn-contenidos  #menu ul li:hover,
+#bn-contenidos  #menu ul li.active{
+	background: url(../images/menu/bg-menu-active.jpg) repeat-x;
+}
+
+#bn-contenidos  #menu ul li a{
+	background: url(../images/menu/flecha.jpg) no-repeat 175px 11px;
+	border-bottom: 1px solid #bebebe;
+	color: #313131;
+	display: block;
+	height: 33px;
+	font: 15px/33px 'daxcompact-mediumregular';
+	padding: 0px 0px 0px 20px;
+}
+
+#bn-contenidos  #menu ul li a:hover,
+#bn-contenidos  #menu ul li.active a{
+	background: url(../images/menu/flecha-active.jpg) no-repeat 175px 13px;
+}
+
+#bn-contenidos  #menu ul li.active ul{
+	display: block;
+}
+
+#bn-contenidos  #menu ul li ul{
+	background: #d7d7d7;
+	border: none;
+	display: none;
+}
+
+#bn-contenidos #menu ul li ul li,
+#bn-contenidos #menu ul li ul li:hover{
+	background: none;
+}
+
+#bn-contenidos #menu ul li ul li a,
+#bn-contenidos #menu ul li.active ul li a{
+	background: url(../images/menu/flecha-ploma.jpg) no-repeat 21px 10px;
+	color: #666666;
+	padding: 0px 0px 0px 42px;
+}
+
+#bn-contenidos #menu ul li ul li a:hover,
+#bn-contenidos #menu ul li ul li a.sub-active{
+	background: url(../images/menu/flecha-roja.jpg) no-repeat 21px 10px;
+	color: #c20a13;
+}

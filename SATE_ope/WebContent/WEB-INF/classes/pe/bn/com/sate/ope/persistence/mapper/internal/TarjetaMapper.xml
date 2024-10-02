@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.ope.persistence.mapper.internal.TarjetaMapper">
+
+
+	<resultMap id="mapTarjeta" type="Tarjeta">
+		<result property="id" column="B05_ID_TAR" />
+		<result property="idEmpresa" column="B00_ID_EMP" />
+		<result property="idUsu" column="B04_ID_USU" />
+		<result property="idCli" column="B06_ID_CLI" />
+		<result property="numTarjeta" column="B05_NUM_TARJETA" />
+		<result property="disposicionEfectivo" column="B05_DISP_EFECTIVO" />
+		<result property="porcentajeDisposicionEfectivo" column="B05_PORCENTAJE_DISP_EFECT" />
+		<result property="usoDispocionEfectivo" column="B05_USO_DISP_EFECT" />
+		<result property="usoExtranjero" column="B05_USO_EXTRANJERO" />
+		<result property="usoComprasWeb" column="B05_USO_COMPRAS_WEB" />
+		<result property="tipoTarjeta" column="B05_TIPO_TARJETA" />
+		<result property="observaciones" column="B05_OBSERVACIONES" />
+		<result property="tipoMoneda" column="B05_TIPO_MONEDA" />
+		<result property="entregaUbicacion" column="B05_ENTREGA_UBICACION" />
+		<result property="entregaAgenciaBN" column="B05_ENTREGA_AGENCIA_BN" />
+		<result property="entregaDepartamento" column="B05_ENTREGA_DEPARTAMENTO" />
+		<result property="entregaProvincia" column="B05_ENTREGA_PROVINCIA" />
+		<result property="entregaDistrito" column="B05_ENTREGA_DISTRITO" />
+		<result property="entregaUbigeo" column="B05_ENTREGA_UBIGEO" />
+		<result property="entregaDireccion" column="B05_ENTREGA_DIRECCION" />
+		<result property="entregaReferencia" column="B05_ENTREGA_REFERENCIA" />
+		<result property="nroAutorizacion" column="B05_NRO_AUTORIZACION" />
+		<result property="fechaAutorizacion" column="B05_FEC_AUTORIZACION" />
+		<result property="fechaCreacion" column="B05_FEC_CREACION" />
+		<result property="usuarioCreacion" column="B05_USUARIO_CREACION" />
+		<result property="fechaInicioLinea" column="B05_FEC_INICIO_LINEA" />
+		<result property="fechaTerminoLinea" column="B05_FEC_TERMINO_LINEA" />
+		<result property="montoLineaAsignado" column="B05_MONTO_LINEA_ASIGNADO" />
+		<result property="montoLineaActual" column="B05_MONTO_LINEA_ACTUAL" />
+		<result property="montoCompraUsado" column="B05_MONTO_COMPRA_USADO" />
+		<result property="montoPorProcesar" column="B05_MONTO_POR_PROCESAR" />
+		<result property="dispEfectivoUsado" column="B05_DISP_USADO" />
+		<result property="descripcionUbicacion" column="ENTREGA_UBICACION_UE" />
+		<result property="empresa" column="BN00_EMPRESA" />
+		<result property="motivoBloqueo" column="B07_MOTIVO" />
+		<result property="fechaBloqueo" column="B07_FEC_REGISTRO" />
+		<result property="usuarioBloqueo" column="B07_USUARIO_CREA" />
+		<result property="estado" column="B07_ESTADO" />
+		<result property="email" column="B05_EMAIL" />
+		<result property="operadorCelular" column="B05_OPERADOR_CELULAR" />
+		<result property="numeroCelular" column="B05_NUM_CELULAR" />
+		<result property="diseno" column="B05_DISENO" />
+		<result property="numeroCuenta" column="B05_NUM_CUENTA" />
+		<result property="estadoCuenta" column="B05_EST_CUENTA" />
+		<result property="fechaAperturaCuenta" column="B05_FEC_APERTURA_CUENTA" />
+		<result property="flagActualizarEstadoCuenta" column="B05_FLAG_ACT_EST_CUENTA" />
+	</resultMap>
+
+
+	<resultMap id="mapSolicitudTarjeta" type="SolicitudTarjeta">
+		<result property="id" column="B05_ID_TAR" />
+		<result property="tipoDocumento" column="B06_TIPO_DOCUMENTO" />
+		<result property="numDocumento" column="B06_NUM_DOCUMENTO" />
+		<result property="nombres" column="B06_NOMBRES" />
+		<result property="apellidos" column="APELLIDOS" />
+		<result property="dispEfectivo" column="B05_USO_DISP_EFECT" />
+		<result property="usoExtranjero" column="B05_USO_EXTRANJERO" />
+		<result property="tipoTarjeta" column="B05_TIPO_TARJETA" />
+		<result property="diseno" column="B05_DISENO" />
+	</resultMap>
+
+
+	<resultMap id="mapTarjetaResumen" type="TarjetaResumen">
+		<result property="id" column="B05_ID_TAR" />
+		<result property="razonSocialUE" column="B00_RAZON_SOCIAL" />
+		<result property="usuarioCreacion" column="b05_usuario_creacion" />
+		<result property="fechaCreacion" column="b05_fec_creacion" />
+		<result property="estado" column="b07_estado" />
+		<result property="fechaEstado" column="b07_fec_registro" />
+		<result property="tipoTarjeta" column="B05_TIPO_TARJETA" />
+		<result property="diseno" column="B05_DISENO" />
+		<result property="numTarjeta" column="B05_NUM_TARJETA" />
+		<result property="tipoDocumento" column="b06_tipo_documento" />
+		<result property="numeroDocumento" column="b06_num_documento" />
+		<result property="nombres" column="b06_nombres" />
+		<result property="apellidos" column="b06_apellidos" />
+
+	</resultMap>
+
+</mapper>

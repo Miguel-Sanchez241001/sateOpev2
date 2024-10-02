@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.ope.persistence.mapper.external.AgenciaMapper">
+
+	<resultMap id="mapAgencia" type="Agencia">
+		<result property="codAgencia" column="B09_CODIGO" />
+		<result property="descripcion" column="B09_DESCRIPCION" />
+		<result property="codDepartamento" column="B09_COD_DEPARTAMENTO" />
+		<result property="codProvincia" column="B09_COD_PROVINCIA" />
+		<result property="codDistrito" column="B09_COD_DISTRITO" />
+		<result property="direccion" column="B09_DIRECCION" />
+	</resultMap>
+	
+</mapper>

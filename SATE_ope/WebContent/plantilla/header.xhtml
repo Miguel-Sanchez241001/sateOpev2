@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<div class="cabecera sombra-inferior">
+		<div class="cabecera-izq">
+			<span class="sp1"></span> <span class="sp2"></span>
+		</div>
+		<div class="cabecera-der">
+			<h1></h1>
+			<img src="#{request.contextPath}/resources/img/logo_bn.png"></img>
+		</div>
+	</div>
+
+
+	<div class="cabecera-datos">
+		<div class="cabecera-datos-izq">
+			<table>
+				<tr>
+					<td><span class="sp-rojo">Usuario:</span> <span
+						class="sp-gris">#{cabeceraController.cabeceraModel.usuario.nombreCompleto()}</span></td>
+					<td><span class="sp-rojo">Perfil: </span><span class="sp-gris">#{cabeceraController.cabeceraModel.usuario.rol}</span></td>
+
+					<td rowspan="2" ><p:button styleClass="cerrarSesion"
+							href="/j_spring_security_logout" value="CERRAR SESIÓN" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><span class="sp-rojo">#{cabeceraController.cabeceraModel.tipoEmpresaLetras(cabeceraController.cabeceraModel.tipoEmpresa)}
+							: </span><span class="sp-gris">#{cabeceraController.cabeceraModel.razonSocial}</span></td>
+
+				</tr>
+			</table>
+		</div>
+		<!-- 		<div class="cabecera-datos-der"> -->
+
+		<!-- 			<p:button styleClass="cerrarSesion" href="/j_spring_security_logout" -->
+		<!-- 				value="CERRAR SESIÓN" /> -->
+		<!-- 				<a styleClass="cerrarSesion" href="j_spring_security_logout">CERRAR SESIÓN</a> -->
+		<!-- 		</div> -->
+
+	</div>
+
+
+	<p:idleMonitor
+		timeout="#{seguridadController.tiempoMaximoInactividad()}">
+		<p:ajax event="idle"
+			listener="#{seguridadController.forzarCierreSesion()}"
+			oncomplete="PF('sessionExpiredDialog').show();" />
+	</p:idleMonitor>
+
+	<p:dialog style="background-color:#f0f0f0;position:absolute"
+		header="Sesion Expirada" widgetVar="sessionExpiredDialog" modal="true"
+		closable="false" resizable="false" draggable="false">
+		<div style="float: left; margin: 20px 0 20px 20px">
+			<p:graphicImage style="float:left" name="img/chica.png" />
+		</div>
+
+		<div style="float: right; margin: 20px 0 0 0">
+			<h:outputText
+				style="position:relative;background: url(#{request.contextPath}/resources/img/plantillaBN/mapeo.jpg) no-repeat;height: 100px;padding: 35px 20px 0px 70px;width: 200px;float:right;margin-top:30px;"
+				value="#{seguridadController.mensajeSesionExpirada()}" />
+		</div>
+
+		<f:facet name="footer">
+			<div style="background-color: #f0f0f0; text-align: center;">
+				<p:button value="Aceptar"
+					outcome="#{seguridadController.paginaLogin()}" />
+			</div>
+		</f:facet>
+	</p:dialog>
+
+
+</ui:composition>

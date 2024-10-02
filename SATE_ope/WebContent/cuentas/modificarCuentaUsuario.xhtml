@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+
+		<h2>MODIFICAR CUENTA DE USUARIO</h2>
+		<h:form id="formModificarCuenta">
+			<center>
+				<p:panel style="margin:30px 80px 30px 80px;padding:20px;">
+					<center>
+						<h:panelGrid id="pgPrincipal" style="width:80%;text-align:center;"
+							columns="1">
+							<h3 style="text-align: center">Buscar datos del usuario</h3>
+							<div class="dashed"></div>
+							<p:panelGrid columns="2" style="margin:auto;text-align:left;">
+
+								<h:outputText value="Tipo de documento *" />
+								<h:outputText value="Número de documento *"
+									style="margin-left:20px;" />
+								<p:selectOneMenu id="somTipoDocumento"
+									widgetVar="selectTipoDocumento"
+									style="width:172px;vertical-align:middle;"
+									onchange="onCall(this)"
+									value="#{modificarUsuarioController.modificarUsuarioModel.tipoDocumentoSeleccionado}"
+									required="true" requiredMessage="Seleccione tipo de documento">
+									<p:ajax event="change" update="formModificarCuenta:pgPrincipal"
+										listener="#{modificarUsuarioController.modificarUsuarioModel.limpiarNumeroDocumento()}" />
+									<f:selectItems
+										value="#{modificarUsuarioController.modificarUsuarioModel.listaTipoDocumento}"
+										var="item" itemLabel="#{item.nombre}"
+										itemValue="#{item.codigoBduc}" />
+								</p:selectOneMenu>
+								<h:panelGroup>
+									<p:inputText id="numDocumento"
+										style="margin-left:20px;vertical-align:middle;"
+										required="true"
+										value="#{modificarUsuarioController.modificarUsuarioModel.numDocumentoSeleccionado}"
+										onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+										maxlength="#{modificarUsuarioController.modificarUsuarioModel.obtenerDocumentoLength()}"
+										requiredMessage="#{modificarUsuarioController.modificarUsuarioModel.obtenerDocumentoRequiredMessage()}"
+										validatorMessage="#{modificarUsuarioController.modificarUsuarioModel.obtenerDocumentoValidatorMessage()}">
+										<f:validateLength
+											minimum="#{crearUsuarioController.crearUsuarioModel.obtenerDocumentoLength()}" />
+									</p:inputText>
+									<p:commandButton value="Buscar" style="margin-left:30px;"
+										onstart="statusDialog.show();"
+										oncomplete="statusDialog.hide();"
+										process="@this somTipoDocumento,numDocumento"
+										actionListener="#{modificarUsuarioController.buscarPersona()}"
+										update=":formModificarCuenta:pgPrincipal msgs" />
+								</h:panelGroup>
+							</p:panelGrid>
+							<div class="dashed"></div>
+							<p:panelGrid columns="2" id="pgDatosPersonales"
+								style="margin:auto;text-align:left;"
+								rendered="#{modificarUsuarioController.modificarUsuarioModel.personaExiste}">
+								<h:outputText value="Nombres *" />
+								<h:outputText value="Apellido Paterno *"
+									style="margin-left:20px;" />
+								<p:inputText id="itNombres" maxlength="30"
+									onkeypress="return validarSoloLetras(event)"
+									readonly="#{modificarUsuarioController.modificarUsuarioModel.personaExiste}"
+									required="true" requiredMessage="Ingrese nombre(s)"
+									value="#{modificarUsuarioController.modificarUsuarioModel.usuarioSeleccionado.nombres}" />
+								<p:inputText id="itApPaterno" style="margin-left:20px;"
+									maxlength="30" onkeypress="return validarSoloLetras(event)"
+									readonly="#{modificarUsuarioController.modificarUsuarioModel.personaExiste}"
+									required="true" requiredMessage="Ingrese el apellido paterno"
+									value="#{modificarUsuarioController.modificarUsuarioModel.usuarioSeleccionado.apPaterno}" />
+
+								<h:outputText value="Apellido Materno *" />
+								<h:outputText value="Celular *" style="margin-left:20px;" />
+								<p:inputText id="ipMaterno" required="true" maxlength="30"
+									onkeypress="return validarSoloLetras(event)"
+									readonly="#{modificarUsuarioController.modificarUsuarioModel.personaExiste}"
+									requiredMessage="Ingrese el apellido materno"
+									value="#{modificarUsuarioController.modificarUsuarioModel.usuarioSeleccionado.apMaterno}">
+								</p:inputText>
+								<p:inputText id="itCelular" required="true"
+									style="margin-left:20px;" readonly="true"
+									onkeypress="return validarSoloNumeros(event)" maxlength="9"
+									requiredMessage="Ingrese el número de celular"
+									value="#{modificarUsuarioController.modificarUsuarioModel.usuarioSeleccionado.telefonoMovil}">
+								</p:inputText>
+
+								<h:outputText value="Correo electrónico *" />
+								<h:outputText value="Perfil *" style="margin-left:20px;" />
+								<p:inputText id="itEmail" required="true" maxlength="30"
+									readonly="true" requiredMessage="Ingrese correo electrónico"
+									validatorMessage="Correo electrónico no válido"
+									value="#{modificarUsuarioController.modificarUsuarioModel.usuarioSeleccionado.correoLaboral}">
+									<p:ajax update="msgs" event="keyup" />
+									<f:validateRegex
+										pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+								</p:inputText>
+
+								<p:selectOneMenu id="somRoles"
+									style="width:162px;vertical-align:middle;margin-left:20px;"
+									value="#{modificarUsuarioController.modificarUsuarioModel.usuarioSeleccionado.usuarioPerfil}"
+									required="true" requiredMessage="Seleccione un perfil">
+									<p:ajax></p:ajax>
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<f:selectItems
+										value="#{modificarUsuarioController.modificarUsuarioModel.roles}"
+										var="item" itemLabel="#{item.descripcion}"
+										itemValue="#{item.id}" />
+								</p:selectOneMenu>
+
+
+							</p:panelGrid>
+							<p:panelGrid style="margin:auto;text-align:left;" id="pgEstado"
+								columns="1"
+								rendered="#{modificarUsuarioController.modificarUsuarioModel.personaExiste}">
+								<h:outputText value="Estado *" style="margin-left:20px;" />
+								<p:selectOneMenu id="estadoUsuario"
+									style="width:162px;vertical-align:middle;margin-left:20px;"
+									value="#{modificarUsuarioController.modificarUsuarioModel.usuarioSeleccionado.estado}"
+									required="true" requiredMessage="Seleccione un estado">
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<f:selectItems
+										value="#{modificarUsuarioController.modificarUsuarioModel.estadosUsuario}"
+										var="item" itemLabel="#{item.descripcion}"
+										itemValue="#{item.id}" />
+								</p:selectOneMenu>
+							</p:panelGrid>
+
+							<h:panelGrid style="width:100%;"
+								rendered="#{modificarUsuarioController.modificarUsuarioModel.personaExiste}">
+								<div class="dashed"></div>
+								<p:commandButton value="Modificar" styleClass="btnGrande"
+									actionListener="#{modificarUsuarioController.modificarCuentaUsuario()}"
+									process="@this somRoles estadoUsuario"
+									update="formModificarCuenta" onstart="statusDialog.show();"
+									oncomplete="statusDialog.hide();" />
+							</h:panelGrid>
+
+							<div style="margin: auto;">
+								<p:messages id="msgs" showDetail="true" showSummary="false"
+									closable="true" />
+							</div>
+
+						</h:panelGrid>
+
+
+					</center>
+
+
+
+
+				</p:panel>
+			</center>
+
+
+		</h:form>
+		<script type="text/javascript">
+			var tipDoc;
+
+			function validarNumDocumento(e) {
+				var tecla = e.keyCode;
+				if (tecla == 8 || tecla == 9 || tecla == 13) {
+					return true;
+				}
+				var patron;
+				if (tipDoc == 1) {
+					patron = /[0-9]/;
+				} else if (tipDoc == 4) {
+					patron = /^[a-z0-9]+$/i;
+				} else if (tipDoc == 5) {
+					patron = /^[a-z0-9]+$/i;
+				}
+
+				var tecla_final = String.fromCharCode(tecla);
+				return patron.test(tecla_final);
+			}
+
+			function validarSoloLetras(e) {
+				var tecla = e.keyCode;
+				if (tecla == 8 || tecla == 9 || tecla == 13) {
+					return true;
+				}
+				var patron = /^[a-zA-Z]*$/;
+				var tecla_final = String.fromCharCode(tecla);
+				return patron.test(tecla_final);
+			}
+
+			function validarSoloNumeros(e) {
+				var tecla = e.keyCode;
+				if (tecla == 8 || tecla == 9 || tecla == 13) {
+					return true;
+				}
+				var patron = /[0-9]/;
+				var tecla_final = String.fromCharCode(tecla);
+				return patron.test(tecla_final);
+			}
+
+			function onCall() {
+				tipDoc = PF("selectTipoDocumento").getSelectedValue();
+			}
+		</script>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h2>CAMBIAR ESTADO TARJETA</h2>
+
+		<h:form id="formCambiarEstadoTarjeta">
+
+			<center>
+				<p:panel style="margin:30px 80px 30px 80px;padding:20px;">
+
+					<h:panelGrid style="width:90%;" columns="1">
+
+						<p:panelGrid id="pgBusqueda" columns="4"
+							style="margin:20px auto 20px auto;" layout="grid">
+							<h:outputText value="Consultar por *" />
+							<p:selectOneMenu id="somTipoBusqueda"
+								style="width:162px;vertical-align:middle;"
+								value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.tipoBusqueda}"
+								required="true" requiredMessage="Seleccione tipo de consulta">
+								<p:ajax event="change"
+									update="formCambiarEstadoTarjeta:pgBusqueda" />
+								<f:selectItems
+									value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.listaTipoBusqueda}"
+									var="item" itemLabel="#{item.descripcion}"
+									itemValue="#{item.id}" />
+							</p:selectOneMenu>
+						<!-- 	<p:inputText id="numDocumento" required="true"
+								onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+								value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.numDocumento}"
+								maxlength="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.obtenerBusquedaLength()}"
+								requiredMessage="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.obtenerBusquedaRequiredMessage()}"
+								validatorMessage="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.obtenerBusquedaValidatorMessage()}">
+								<f:validateLength
+									minimum="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.obtenerBusquedaLength()}" />
+							</p:inputText> -->
+								<p:inputText id="numDocumento" required="true"
+								onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+								value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.numDocumento}"
+								maxlength="19"
+								requiredMessage="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.obtenerBusquedaRequiredMessage()}"
+								validatorMessage="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.obtenerBusquedaValidatorMessage()}">
+								<f:validateLength
+									minimum="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.obtenerBusquedaLength()}" />
+							</p:inputText>
+							<p:commandButton value="Buscar" onclick="statusDialog.show();"
+								oncomplete="statusDialog.hide();"
+								process="@this somTipoBusqueda,numDocumento"
+								actionListener="#{cambiarEstadoTarjetaController.buscarTarjeta()}"
+								update=":formCambiarEstadoTarjeta msgs" />
+
+						</p:panelGrid>
+						<div class="dashed"></div>
+					</h:panelGrid>
+
+					<h:panelGrid id="pgResultado" style="width:90%;text-align:center;"
+						columns="1">
+						<p:panelGrid style="margin:auto;text-align:left;" columns="2"
+							rendered="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.busquedaRealizada}"
+							layout="grid">
+
+							<p:panel style="margin:10px 20px;padding:20px;">
+								<h3 style="text-align: center">Datos del tarjetahabiente</h3>
+								<div class="dashed"></div>
+								<p:panelGrid columns="2">
+									<h:outputText value="Tipo de documento" />
+									<h:outputText value="Número de documento" />
+
+									<p:inputText readonly="true"
+										value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.descripcionTipoDocumento(cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.cliente.tipoDocumento)}"></p:inputText>
+									<p:inputText readonly="true"
+										value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.cliente.nroDocumento}"></p:inputText>
+									<h:outputText value="Nombres" />
+									<h:outputText value="Apellidos" />
+									<p:inputText readonly="true"
+										value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.cliente.nombres}"></p:inputText>
+									<p:inputText readonly="true"
+										value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.cliente.apPaterno}"></p:inputText>
+								</p:panelGrid>
+							</p:panel>
+
+							<p:panel style="margin:10px 20px;padding:20px;">
+								<h3 style="text-align: center">Datos de la tarjeta</h3>
+								<div class="dashed"></div>
+								<p:panelGrid columns="2">
+									<h:outputText value="Número" />
+									<h:outputText value="Tipo" />
+									<p:inputText readonly="true"
+										value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.tarjeta.numTarjeta}" />
+									<p:inputText readonly="true"
+										value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.descripcionTipoTarjeta(cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.tarjeta.tipoTarjeta,cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.tarjeta.diseno)}" />
+									<h:outputText value="Estado" />
+									<h:outputText value="Estado autorización" />
+									<p:inputText readonly="true"
+										value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.descripcionEstadoTarjeta(cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.tarjeta.estado)}" />
+									<p:inputText readonly="true" value="- -" />
+								</p:panelGrid>
+
+							</p:panel>
+
+						</p:panelGrid>
+
+
+						<p:panel
+							rendered="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.busquedaRealizada and cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.busquedaBloqueoTarjeta}"
+							style="margin:10px 50px;padding:20px auto 20px auto;">
+
+							<h3 style="text-align: center">Datos del bloqueo</h3>
+							<div class="dashed"></div>
+							<center>
+								<p:panelGrid columns="3">
+									<h:outputText value="Motivo" />
+									<h:outputText value="Usuario que bloqueó" />
+									<h:outputText value="Fecha" />
+									<p:inputText
+										value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.descripcionMotivoBloqueotarjeta(cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.estadoTarjeta.motivo)}"
+										readonly="true" />
+									<p:inputText
+										value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.estadoTarjeta.usuarioRegistro}"
+										readonly="true" />
+									<p:inputText
+										value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.estadoTarjeta.fechaRegistro}"
+										readonly="true">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</p:inputText>
+								</p:panelGrid>
+							</center>
+						</p:panel>
+
+
+						<p:panelGrid style="margin:20px auto 20px auto;" columns="1"
+							rendered="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.busquedaRealizada}">
+							<h:outputText value="Motivo : " />
+							<p:selectOneRadio id="console"
+								value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.tipoBloqueoSeleccionado}">
+								<p:ajax event="valueChange"
+									update="formCambiarEstadoTarjeta"/>
+								<f:selectItem itemLabel="Tarjeta" itemValue="T" />
+								<f:selectItem itemLabel="Cuenta" itemValue="C" />
+							</p:selectOneRadio>
+
+
+							<p:selectOneMenu id="somMotivo"
+								rendered="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.tipoBloqueoSeleccionado eq 'T'}"
+								value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.motivoSeleccionado}"
+								style="width:162px;vertical-align:middle;" required="true"
+								requiredMessage="Seleccione el motivo">
+								<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+								<f:selectItems var="item" itemLabel="#{item.descripcion}"
+									value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.motivosBloqueoTarjetas}"
+									
+									itemValue="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.obtenerMotivo(item.id,item.descripcion)}"
+											
+									
+									 />
+							</p:selectOneMenu>
+
+							<p:selectOneMenu id="somCuentaEstado"
+								rendered="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.tipoBloqueoSeleccionado eq 'C'}"
+								value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.estadoCuentaSeleccionado}"
+								style="width:162px;vertical-align:middle;" required="true"
+								requiredMessage="Seleccione un estado cuenta">
+								<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+								<f:selectItems var="item" itemLabel="#{item.descripcion}"
+									value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.motivosBloqueoCuenta}"
+									itemValue="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.obtenerEstadoCuenta(item.id,item.descripcion)}" />
+							</p:selectOneMenu>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="margin-top:30px;width:90%;margin:auto;"
+							rendered="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.busquedaRealizada}">
+							<div class="dashed"></div>
+							<p:commandButton id="cambiarEstadoTarjeta" styleClass="btnGrande"
+								value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.valorBoton()}"
+								actionListener="#{cambiarEstadoTarjetaController.cambiarEstadoTarjeta()}"
+								update="formCambiarEstadoTarjeta" />
+						</p:panelGrid>
+
+
+					</h:panelGrid>
+
+					<div>
+						<p:messages id="msgs" showDetail="true" showSummary="false"
+							closable="true" />
+					</div>
+
+				</p:panel>
+			</center>
+		</h:form>
+
+		<p:dialog id="dgSeleccionarTarjeta" modal="true" closable="true"
+			appendTo="@(body)" resizable="false" closeOnEscape="false"
+			draggable="false" position="center" showEffect="clip"
+			header="Seleccionar Representante" widgetVar="wvSeleccionarTajeta">
+			<h:form id="formSeleccionarTarjeta">
+				<p:panelGrid id="panel-seleccionarTarjeta" columns="1"
+					style="widht:100%">
+					<h:outputText value="Lista de tarjetas" />
+					<p:dataTable id="tablaTarjetas"
+						selection="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.tarjetaSeleccionada}"
+						value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.datosTarjetaCliente.tarjetas}"
+						selectionMode="single" var="firmante" rowKey="#{firmante.id}"
+						emptyMessage="No hay tarjetas"
+						style="width:100%;table-layout: fixed;" rowIndexVar="index">
+						<p:ajax event="rowSelect"
+							listener="#{cambiarEstadoTarjetaController.seleccionarTarjeta}"
+							update=":formCambiarEstadoTarjeta"
+							oncomplete="PF('wvSeleccionarTajeta').hide()" />
+						<p:column headerText="Nro."
+							style="widht:20%;text-align:center; vertical-align: middle;">
+							<h:outputText
+								value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.descripcionNumeroTarjeta(firmante.id)}" />
+						</p:column>
+						<p:column headerText="Número de tarjeta"
+							style="widht:30%;text-align:left; vertical-align: middle;">
+							<h:outputText value="#{firmante.numTarjeta}" />
+						</p:column>
+						<p:column headerText="Unidad Ejecutora/empresa"
+							style="widht:50%; text-align:left;vertical-align: middle;">
+							<h:outputText value="#{firmante.empresa}" />
+						</p:column>
+						<p:column headerText="Tipo"
+							style="widht:50%; text-align:left;vertical-align: middle;">
+							<h:outputText
+								value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.descripcionTipoTarjeta(firmante.tipoTarjeta,firmante.diseno)}" />
+						</p:column>
+						<p:column headerText="Estado"
+							style="widht:50%; text-align:left;vertical-align: middle;">
+							<h:outputText
+								value="#{cambiarEstadoTarjetaController.cambiarEstadoTarjetaModel.descripcionEstadoTarjeta(firmante.estado)}" />
+						</p:column>
+					</p:dataTable>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="SolicitarTarjeta" modal="true" closable="true"
+			appendTo="@(body)" resizable="false" closeOnEscape="false"
+			draggable="false" position="center" showEffect="clip"
+			header="Solicitar Tarjeta" widgetVar="dgSolicitarTarjeta">
+			<h:form id="formSolicitarTarjeta">
+				<p:panelGrid columns="1">
+					<center>
+						<p:fieldset legend="Datos de entrega"
+							style="width:520px;height:250px;">
+
+							<h:panelGrid id="pgEntregaUbicacion">
+								<h:outputText value="Entregar tarjeta en *" />
+								<p:selectOneMenu id="somEntregaUbicacion" required="true"
+									style="width:162px;"
+									requiredMessage="seleccione ubicación de entrega"
+									value="#{solicitarTarjertaController.solicitarTarjetaModel.tarjeta.entregaUbicacion}">
+									<p:ajax
+										update=":formSolicitarTarjeta:pgOpcionTipoUbicacion :formSolicitarTarjeta:pgReferencia :formSolicitarTarjeta:pgUbigeoEntrega"
+										listener="#{solicitarTarjertaController.mostrarOpcionPorTipoUbicacion()}" />
+									<f:selectItem itemLabel="Seleccione" itemValue="null" />
+									<f:selectItem itemLabel="Agencia" itemValue="4" />
+									<f:selectItem itemLabel="Unidad Ejecutora" itemValue="3" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+							<br />
+							<h:panelGrid id="pgUbigeoEntrega" columns="3">
+								<h:outputText value="Departamento *"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaBN}" />
+								<h:outputText value="Provincia *"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaBN}"
+									style="margin-left:5px;" />
+								<h:outputText value="Distrito *"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaBN}"
+									style="margin-left:5px;" />
+
+								<p:selectOneMenu id="somDepartamento" style="width:162px;"
+									required="true" requiredMessage="Seleccione un departamento"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaBN}"
+									value="#{solicitarTarjertaController.solicitarTarjetaModel.tarjeta.entregaDepartamento}">
+									<f:selectItem itemLabel="Seleccione" itemValue=" " />
+									<p:ajax
+										update=":formSolicitarTarjeta:somProvincia :formSolicitarTarjeta:somDistrito :formSolicitarTarjeta:pgOpcionTipoUbicacion :formSolicitarTarjeta:pgReferencia"
+										listener="#{solicitarTarjertaController.buscarProvincias()}" />
+									<f:selectItems
+										value="#{solicitarTarjertaController.solicitarTarjetaModel.departamentos}"
+										var="item" itemLabel="#{item.descripcion}"
+										itemValue="#{item.codDepartamento}" />
+								</p:selectOneMenu>
+								<p:selectOneMenu id="somProvincia"
+									style="width:162px;margin-left:5px;"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaBN}"
+									required="true" requiredMessage="Seleccione una provincia"
+									value="#{solicitarTarjertaController.solicitarTarjetaModel.tarjeta.entregaProvincia}">
+									<f:selectItem itemLabel="Seleccione" itemValue=" " />
+									<p:ajax
+										update=":formSolicitarTarjeta:somDistrito :formSolicitarTarjeta:pgReferencia"
+										listener="#{solicitarTarjertaController.buscarDistritos()}" />
+									<f:selectItems
+										value="#{solicitarTarjertaController.solicitarTarjetaModel.provincias}"
+										var="item" itemLabel="#{item.descripcion}"
+										itemValue="#{item.codProvincia}" />
+								</p:selectOneMenu>
+								<p:selectOneMenu id="somDistrito"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaBN}"
+									style="width:162px;margin-left:5px;" required="true"
+									requiredMessage="Seleccione un distrito"
+									value="#{solicitarTarjertaController.solicitarTarjetaModel.tarjeta.entregaDistrito}">
+									<f:selectItem itemLabel="Seleccione" itemValue=" " />
+									<p:ajax
+										listener="#{solicitarTarjertaController.buscarAgenciasPorUbigeo()}"
+										update=":formSolicitarTarjeta:pgOpcionTipoUbicacion :formSolicitarTarjeta:pgReferencia" />
+									<f:selectItems
+										value="#{solicitarTarjertaController.solicitarTarjetaModel.distritos}"
+										var="item" itemLabel="#{item.descripcion}"
+										itemValue="#{item.codDistrito}" />
+								</p:selectOneMenu>
+
+							</h:panelGrid>
+							<br></br>
+							<h:panelGrid id="pgOpcionTipoUbicacion">
+								<h:outputText value="Dirección *"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaUE}" />
+								<h:outputText value="Agencia BN *"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaBN}" />
+								<p:inputText id="entregaUE" style="width:340px;" required="true"
+									requiredMessage="Ingrese la dirección" readonly="true"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaUE}"
+									value="#{solicitarTarjertaController.solicitarTarjetaModel.tarjeta.entregaDireccion}" />
+								<p:selectOneMenu id="somAgenciaBN" style="width:340px;"
+									required="true" requiredMessage="Seleccione agencia BN"
+									converter="omnifaces.SelectItemsConverter"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaBN}"
+									value="#{solicitarTarjertaController.solicitarTarjetaModel.agenciaSeleccionada}">
+									<p:ajax
+										listener="#{solicitarTarjertaController.buscarDatosAgencia()}"
+										update=":formSolicitarTarjeta:pgReferencia" />
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<f:selectItems
+										value="#{solicitarTarjertaController.solicitarTarjetaModel.agenciasBN}"
+										var="item"
+										itemLabel="#{item.codAgencia} - #{item.descripcion}"
+										itemValue="#{item}" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+							<br />
+							<h:panelGrid id="pgReferencia" style="margin-bottom:10px;">
+								<h:outputText value="Referencia *"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaReferencia}" />
+								<p:inputText id="referencia" style="width:340px;"
+									readonly="true" required="true"
+									requiredMessage="Ingrese una referencia"
+									rendered="#{solicitarTarjertaController.solicitarTarjetaModel.esEntregaReferencia}"
+									value="#{solicitarTarjertaController.solicitarTarjetaModel.tarjeta.entregaReferencia}" />
+							</h:panelGrid>
+
+						</p:fieldset>
+						<p:panelGrid columns="1" style="margin-left:300px">
+							<p:commandButton id="cambiarEstadoTarjetaBloqueo" value="Aceptar"
+								actionListener="#{cambiarEstadoTarjetaController.bloquearTarjetaRobo()}" />
+						</p:panelGrid>
+					</center>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

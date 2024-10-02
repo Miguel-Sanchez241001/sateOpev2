@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="../plantilla/plantilla.xhtml"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h2>SOLICITAR TARJETA</h2>
+
+		<center class="pasos">
+			<div id="c0" class="circulo c-activo">
+				<span>1</span>
+			</div>
+			<div class="barra-contenedor">
+				<div id="b1" class="barra b-inactivo"></div>
+			</div>
+			<div id="c1" class="circulo c-inactivo">
+				<span>2</span>
+			</div>
+			<div class="barra-contenedor">
+				<div id="b2" class="barra b-inactivo"></div>
+			</div>
+			<div id="c2" class="circulo c-inactivo">
+				<span>3</span>
+			</div>
+			<div class="barra-contenedor">
+				<div id="b3" class="barra b-inactivo"></div>
+			</div>
+			<div id="c3" class="circulo c-inactivo">
+				<span>4</span>
+			</div>
+		</center>
+		<h:form id="formSolicitarTarjeta" class="formularioTarjeta">
+			<center>
+				<p:panel style="margin:30px 80px 30px 80px;padding:20px;">
+					<center>
+					<!-- Paso 1: Datos del Solicitante -->
+			<h:panelGrid id="pgBusqueda" columns="1"
+		    rendered="#{solicitarTarjetaController.solicitarTarjetaModel.pasoActual==0}"
+		    style="width:80%;">
+		
+		    <h3 style="text-align: center">Datos del solicitante</h3>
+		    <div class="dashed"></div>
+		
+		    <p:panelGrid columns="2" style="margin:auto;">
+		
+		        <h:outputText value="Tipo de documento *" />
+		        <h:outputText value="Número de documento *" style="margin-left:20px;" />
+		
+		        <p:selectOneMenu id="somTipoDocumento"
+		            widgetVar="selectTipoDocumento"
+		            onchange="onCall(this)"
+		            style="width:155px;vertical-align:middle;"
+		            value="#{solicitarTarjetaController.solicitarTarjetaModel.tipoDocumentoSeleccionado}"
+		            required="true"
+		            requiredMessage="#{valMsg['required.tipoDocumento']}">
+		            <p:ajax event="change"
+		                listener="#{solicitarTarjetaController.reiniciarFormularioCliente}"
+		                update="formSolicitarTarjeta:pgBusqueda" />
+		            <f:selectItems
+		                value="#{solicitarTarjetaController.solicitarTarjetaModel.listaTipoDocumento}"
+		                var="item"
+		                itemLabel="#{item.nombre}"
+		                itemValue="#{item.codigoBduc}" />
+		        </p:selectOneMenu>
+		
+		        <h:panelGroup>
+		            <p:inputText id="numDocumento"
+		                style="margin-left:20px;vertical-align:middle;"
+		                required="true"
+		                value="#{solicitarTarjetaController.solicitarTarjetaModel.numDocumentoSeleccionado}"
+		                onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+		                maxlength="#{solicitarTarjetaController.solicitarTarjetaModel.obtenerDocumentoLength()}"
+		                requiredMessage="#{solicitarTarjetaController.solicitarTarjetaModel.obtenerDocumentoRequiredMessage()}"
+		                validatorMessage="#{solicitarTarjetaController.solicitarTarjetaModel.obtenerDocumentoValidatorMessage()}">
+ 		              
+		                <f:validateLength
+		                    minimum="#{solicitarTarjetaController.solicitarTarjetaModel.obtenerDocumentoLength()}" />
+		            </p:inputText>
+		
+		            <p:commandButton value="Buscar"
+		                onclick="statusDialog.show();"
+		                oncomplete="statusDialog.hide();"
+		                disabled="#{!solicitarTarjetaController.solicitarTarjetaModel.esTipoDocumentoDNI()}"
+		                process="@this somTipoDocumento,numDocumento"
+		                actionListener="#{solicitarTarjetaController.buscarCliente()}"
+		                update=":formSolicitarTarjeta:pgBusqueda :formSolicitarTarjeta:pgDatosContacto msgs"
+		                style="border-top: 1px dashed #B8B8B8;margin-left:10px;" />
+		        </h:panelGroup>
+		
+		        <h:outputText value="Nombres *" />
+		        <h:outputText value="Apellido Paterno *" style="margin-left:20px;" />
+		
+		        <p:inputText id="itNombres"
+		            maxlength="30"
+		            onkeypress="return validarSoloLetras(event)"
+		            readonly="#{solicitarTarjetaController.solicitarTarjetaModel.esTipoDocumentoDNI()}"
+		            required="true"
+		            requiredMessage="#{valMsg['required.nombres']}"
+ 		            value="#{solicitarTarjetaController.solicitarTarjetaModel.clienteSeleccionado.nombres}" >
+ 		               </p:inputText>
+		
+		        <p:inputText id="itApPaterno"
+		            required="true"
+		            style="margin-left:20px;"
+		            maxlength="30"
+		            onkeypress="return validarSoloLetras(event)"
+		            requiredMessage="#{valMsg['required.apPaterno']}"
+		            readonly="#{solicitarTarjetaController.solicitarTarjetaModel.esTipoDocumentoDNI()}"
+		            value="#{solicitarTarjetaController.solicitarTarjetaModel.clienteSeleccionado.apPaterno}" />
+		
+		        <h:outputText value="Apellido materno *" />
+		        <h:outputText value="Fecha de nacimiento *" style="margin-left:20px;" />
+		
+		        <p:inputText id="itApMaterno"
+		            required="true"
+		            maxlength="30"
+		            requiredMessage="#{valMsg['required.apMaterno']}"
+		            onkeypress="return validarSoloLetras(event)"
+		            readonly="#{solicitarTarjetaController.solicitarTarjetaModel.esTipoDocumentoDNI()}"
+		            value="#{solicitarTarjetaController.solicitarTarjetaModel.clienteSeleccionado.apMaterno}" />
+		
+		        <p:calendar id="itFechaNacimiento"
+		            locale="es"
+		            style="margin-left:20px;"
+		            readonlyInput="true"
+		            
+ 		            
+		            placeholder="DD/MM/AAAA"
+		            disabled="#{solicitarTarjetaController.solicitarTarjetaModel.esTipoDocumentoDNI()}"
+		            navigator="true"
+		            required="true"
+		            requiredMessage="#{valMsg['required.fechaNacimiento']}"
+		            value="#{solicitarTarjetaController.solicitarTarjetaModel.clienteSeleccionado.fechaNacimiento}"
+		            pattern="dd/MM/yyyy"
+		            mask="true" 
+		            mode="popup"
+		            showButtonPanel="true"
+		            />
+		
+		        <h:outputText value="Sexo *" />
+		        <h:outputText value="Estado civil *" style="margin-left:20px;" />
+		
+		        <p:selectOneRadio id="soSexo"
+		            required="true"
+		            requiredMessage="#{valMsg['required.sexo']}"
+		            disabled="#{solicitarTarjetaController.solicitarTarjetaModel.esTipoDocumentoDNI()}"
+		            value="#{solicitarTarjetaController.solicitarTarjetaModel.clienteSeleccionado.sexo}">
+		            <f:selectItem itemLabel="Masculino" itemValue="M" />
+		            <f:selectItem itemLabel="Femenino" itemValue="F" />
+		        </p:selectOneRadio>
+		
+		        <p:selectOneMenu id="itEstadoCivil"
+		            style="width:162px;margin-left:20px;"
+		            required="true"
+		            requiredMessage="#{valMsg['required.estadoCivil']}"
+		            value="#{solicitarTarjetaController.solicitarTarjetaModel.clienteSeleccionado.estadoCivil}"
+		            disabled="#{solicitarTarjetaController.solicitarTarjetaModel.esTipoDocumentoDNI()}">
+		            <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+		            <f:selectItems
+		                value="#{solicitarTarjetaController.solicitarTarjetaModel.listaEstadoCivil}"
+		                var="item"
+		                itemLabel="#{item.descripcion}"
+		                itemValue="#{item.codigoTrama}" />
+		        </p:selectOneMenu>
+		
+		    </p:panelGrid>
+		
+		    <div class="dashed"></div>
+		
+		    <p:column>
+		        <p:commandButton id="siguiente0"
+		            value="Siguiente"
+		            styleClass="btnGrande"
+		            style="float:right"
+		            process="@this, somTipoDocumento,numDocumento, itNombres, itApPaterno, itApMaterno, itFechaNacimiento, soSexo, itEstadoCivil"
+		            actionListener="#{solicitarTarjetaController.avanzarPaso()}"
+		            update="msgs :formSolicitarTarjeta"
+		            onclick="statusDialog.show();"
+		            oncomplete="statusDialog.hide();" />
+		    </p:column>
+
+</h:panelGrid>
+
+					</center>
+					<center>
+					<!-- Paso 2: Datos de Contacto -->
+						<h:panelGrid id="pgDatosContacto" columns="1"
+						    style="width:80%;"
+						    rendered="#{solicitarTarjetaController.solicitarTarjetaModel.pasoActual==1}">
+						
+						    <h3 style="text-align: center">Datos de contacto</h3>
+						    <div class="dashed"></div>
+						
+						    <p:panelGrid columns="2" style="margin:auto;">
+						
+						        <h:outputText value="Operador celular *" />
+						        <h:outputText value="Número de celular *" style="margin-left:20px;" />
+						
+						        <p:selectOneMenu id="somOperador"
+						            style="width:162px"
+						            required="true"
+						            requiredMessage="#{valMsg['required.operadorCelular']}"
+						            value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.operadorCelular}">
+						            <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+						            <f:selectItems
+						                value="#{solicitarTarjetaController.solicitarTarjetaModel.listaOperadorMovil}"
+						                var="item"
+						                itemLabel="#{item.descripcion}"
+						                itemValue="#{item.id}" />
+						        </p:selectOneMenu>
+						
+						        <p:inputText id="numCelular"
+						            style="margin-left:20px;"
+						            required="true"
+						            onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+						            requiredMessage="#{valMsg['required.numCelular']}"
+						            maxlength="9"
+						            validatorMessage="#{valMsg['validator.numCelular']}"
+						            value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.numeroCelular}">
+						            <p:ajax update="msgs" event="keyup" />
+						            <f:validateRegex pattern="^9[0-9]{8}$*" />
+						        </p:inputText>
+						
+						        <h:outputText value="Correo electrónico *" />
+						        <h:outputText value="Teléfono de casa *" style="margin-left:20px;" />
+						
+						        <p:inputText id="email"
+						            maxlength="30"
+						            validatorMessage="#{valMsg['validator.email']}"
+						            value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.email}">
+						            <p:ajax update="msgs" event="keyup" />
+						            <f:validateRegex
+						                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						        </p:inputText>
+						
+						        <p:inputText id="telefonoCasa"
+						            style="margin-left:20px;"
+						            maxlength="7"
+						            onkeypress="return validarSoloNumeros(event)"
+						            required="true"
+						            requiredMessage="#{valMsg['required.telefonoCasa']}"
+						            validatorMessage="#{valMsg['validator.telefonoCasa']}"
+						            value="#{solicitarTarjetaController.solicitarTarjetaModel.clienteSeleccionado.telefonoCasa}">
+						            <f:validateRegex pattern="^[0-9]{7}$" />
+						        </p:inputText>
+						
+						    </p:panelGrid>
+						
+						    <div class="dashed"></div>
+						
+						    <p:column>
+						        <p:commandButton id="atras1"
+						            value="Atrás"
+						            styleClass="btnGrande"
+						            process="@this"
+						            style="float:left;"
+						            actionListener="#{solicitarTarjetaController.retrocederPaso()}"
+						            update="msgs :formSolicitarTarjeta"
+						            onclick="statusDialog.show();"
+						            oncomplete="statusDialog.hide();" />
+						
+						        <p:commandButton id="siguiente1"
+						            value="Siguiente"
+						            style="float:right;"
+						            styleClass="btnGrande"
+						            process="@this, somOperador, numCelular, email, telefonoCasa"
+						            actionListener="#{solicitarTarjetaController.avanzarPaso()}"
+						            update="msgs :formSolicitarTarjeta"
+						            onclick="statusDialog.show();"
+						            oncomplete="statusDialog.hide();" />
+						    </p:column>
+						
+						</h:panelGrid>
+
+					</center>
+					<center>
+					<!-- Paso 3: Datos de la Tarjeta -->
+						<h:panelGrid id="pgDatosTarjeta" columns="1" style="width:80%;"
+							rendered="#{solicitarTarjetaController.solicitarTarjetaModel.pasoActual==2}">
+
+							<h3 style="text-align: center">Datos de la tarjeta</h3>
+							<div class="dashed"></div>
+
+							<p:panelGrid columns="3" style="margin:auto;">
+								<h:outputText value="Disposición de efectivo? *" />
+ 								<h:outputText value="Tipo de moneda *" style="margin-left:20px;" />								
+								<h:outputText value="Uso en Compras por Internet *" style="margin-left:20px;" />								
+	
+								<p:selectOneMenu id="disposicionEfectivo" style="width:162px"
+									required="true"
+									requiredMessage="#{valMsg['required.disposicionEfectivo']}"
+									value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.usoDispocionEfectivo}">
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<f:selectItem itemLabel="SI" itemValue="T" />
+									<f:selectItem itemLabel="NO" itemValue="N" />
+ 								</p:selectOneMenu>
+								
+ 								
+								<p:selectOneMenu id="tipoMoneda" disabled="true"
+									style="width:162px;margin-left:20px;" required="true"
+									requiredMessage="#{valMsg['required.tipoMoneda']}"
+									value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.tipoMoneda}">
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<f:selectItems
+										value="#{solicitarTarjetaController.solicitarTarjetaModel.listaTipoMoneda}"
+										var="item" itemLabel="#{item.descripcion}"
+										itemValue="#{item.id}" />
+								</p:selectOneMenu>
+								<p:selectOneMenu style="width:162px;margin-left:20px;" id="usoComprasWeb"
+									required="true"
+									requiredMessage="#{valMsg['required.usoComprasWeb']}"
+									value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.usoComprasWeb}">
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<f:selectItem itemLabel="SI" itemValue="SI" />
+									<f:selectItem itemLabel="NO" itemValue="NO" />
+								</p:selectOneMenu>
+								
+								
+								<h:outputText value="Uso en el extranjero? *" />
+								<h:outputText value="Tipo de tarjeta *"	 style="margin-left:20px;" />
+ 								<h:outputText value="Tipo de gasto *"	 style="margin-left:20px;" />
+								<p:selectOneMenu style="width:162px" id="usoExtranjero"
+									required="true"
+									requiredMessage="#{valMsg['required.usoExtranjero']}"
+									value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.usoExtranjero}">
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<p:ajax update=":formSolicitarTarjeta:somTipoTarjeta"
+										listener="#{solicitarTarjetaController.buscarTipoTarjeta()}" />
+									<f:selectItem itemLabel="SI" itemValue="SI" />
+									<f:selectItem itemLabel="NO" itemValue="NO" />
+								</p:selectOneMenu>
+								
+								<p:selectOneMenu style="width:162px;margin-left:20px;"
+									id="somTipoTarjeta" required="true"
+									requiredMessage="#{valMsg['required.tipoTarjeta']}"
+									value="#{solicitarTarjetaController.solicitarTarjetaModel.tipoTarjetaSeleccionada}"
+									 >
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<p:ajax update=":formSolicitarTarjeta:somTipoGasto"
+										listener="#{solicitarTarjetaController.buscarTipoTarjetaNegocio()}" />
+									<f:selectItems
+										value="#{solicitarTarjetaController.solicitarTarjetaModel.listaTipoTarjeta}"
+										var="item" itemLabel="#{item.descripcion}" itemValue="#{item}" />
+								</p:selectOneMenu>
+ 								
+ 								
+						 	<p:selectOneMenu style="width:162px;margin-left:20px;"
+									id="somTipoGasto" required="true"
+									requiredMessage="#{valMsg['required.tipoTarjetaGasto']}"
+									value="#{solicitarTarjetaController.solicitarTarjetaModel.tipoTarjetaNegocioSeleccionada}"
+									 >
+									<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+									<p:ajax
+										listener="#{solicitarTarjetaController.fijarTipoTarjetaYDiseno()}" />
+									<f:selectItems
+										value="#{solicitarTarjetaController.solicitarTarjetaModel.listaTipoTarjetaNegocio}"
+										var="item" itemLabel="#{item.descripcion}" itemValue="#{item}" />
+								</p:selectOneMenu>
+
+								<h:outputText value="Observaciones" />
+								<p:inputTextarea id="observaciones" styleClass="text-area"
+									style="margin:10px 0 0 -45px;" rows="5" cols="33"
+									value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.observaciones}" />
+
+							</p:panelGrid>
+
+
+							<div class="dashed"></div>
+							<p:column>
+								<p:commandButton id="atras2" value="Atrás"
+									styleClass="btnGrande" process="@this" style="float:left;"
+									actionListener="#{solicitarTarjetaController.retrocederPaso()}"
+									update="msgs :formSolicitarTarjeta"
+									onclick="statusDialog.show();"
+									oncomplete="statusDialog.hide();" />
+
+								<p:commandButton id="siguiente2" value="Siguiente"
+									style="float:right;" styleClass="btnGrande"
+									process="@this, disposicionEfectivo, tipoMoneda, usoExtranjero,usoComprasWeb, somTipoTarjeta, somTipoGasto,observaciones"
+									actionListener="#{solicitarTarjetaController.avanzarPaso()}"
+									update="msgs :formSolicitarTarjeta"
+									onclick="statusDialog.show();"
+									oncomplete="statusDialog.hide();" />
+							</p:column>
+
+						</h:panelGrid>
+					</center>
+
+					<center>
+					<!-- Paso 4: Datos de Entrega -->
+						<h:panelGrid id="pgEntrega" style="width:80%;"
+							rendered="#{solicitarTarjetaController.solicitarTarjetaModel.pasoActual==3}">
+
+							<h3 style="text-align: center">Datos de entrega</h3>
+							<div class="dashed"></div>
+
+							<p:panelGrid id="pgEntregaUbicacion" columns="1"
+								style="margin:auto;">
+								<h:panelGrid style="margin:auto;">
+									<h:outputText value="Entregar tarjeta en *" />
+									<p:selectOneMenu id="somEntregaUbicacion" required="true"
+										style="width:162px;"
+										requiredMessage="#{valMsg['required.entregaUbicacion']}"
+										value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.entregaUbicacion}"
+										disabled="true">
+										<p:ajax
+											update=":formSolicitarTarjeta:pgEntregaUbicacion :formSolicitarTarjeta:pgUbigeoEntrega"
+											listener="#{solicitarTarjetaController.mostrarOpcionPorTipoUbicacion()}" />
+										<f:selectItem itemLabel="Agencia" itemValue="4" />
+										<f:selectItem itemLabel="Unidad Ejecutora" itemValue="3" />
+									</p:selectOneMenu>
+								</h:panelGrid>
+								<h:panelGroup>
+									<h:panelGrid id="pgUbigeoEntrega" columns="3">
+										<h:outputText value="Departamento *"
+											rendered="#{solicitarTarjetaController.solicitarTarjetaModel.esEntregaBN}" />
+										<h:outputText value="Provincia *"
+											rendered="#{solicitarTarjetaController.solicitarTarjetaModel.esEntregaBN}"
+											style="margin-left:5px;" />
+										<h:outputText value="Distrito *"
+											rendered="#{solicitarTarjetaController.solicitarTarjetaModel.esEntregaBN}"
+											style="margin-left:5px;" />
+
+										<p:selectOneMenu id="somDepartamento" style="width:162px;"
+											required="true" requiredMessage="#{valMsg['required.departamento']}"
+											rendered="#{solicitarTarjetaController.solicitarTarjetaModel.esEntregaBN}"
+											value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.entregaDepartamento}">
+											<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+											<p:ajax
+												update=":formSolicitarTarjeta:somProvincia :formSolicitarTarjeta:somDistrito"
+												listener="#{solicitarTarjetaController.buscarProvincias()}" />
+											<f:selectItems
+												value="#{solicitarTarjetaController.solicitarTarjetaModel.departamentos}"
+												var="item" itemLabel="#{item.descripcion}"
+												itemValue="#{item.codDepartamento}" />
+										</p:selectOneMenu>
+										<p:selectOneMenu id="somProvincia"
+											style="width:162px;margin-left:5px;"
+											rendered="#{solicitarTarjetaController.solicitarTarjetaModel.esEntregaBN}"
+											required="true" requiredMessage="#{valMsg['required.provincia']}"
+											value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.entregaProvincia}">
+											<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+											<p:ajax update=":formSolicitarTarjeta:somDistrito"
+												listener="#{solicitarTarjetaController.buscarDistritos()}" />
+											<f:selectItems
+												value="#{solicitarTarjetaController.solicitarTarjetaModel.provincias}"
+												var="item" itemLabel="#{item.descripcion}"
+												itemValue="#{item.codProvincia}" />
+										</p:selectOneMenu>
+										<p:selectOneMenu id="somDistrito"
+											rendered="#{solicitarTarjetaController.solicitarTarjetaModel.esEntregaBN}"
+											style="width:162px;margin-left:5px;" required="true"
+											requiredMessage="#{valMsg['required.distrito']}"
+											value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.entregaDistrito}">
+											<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+											<p:ajax
+												listener="#{solicitarTarjetaController.buscarAgenciasPorUbigeo()}"
+												update=":formSolicitarTarjeta:somAgenciaBN" />
+											<f:selectItems
+												value="#{solicitarTarjetaController.solicitarTarjetaModel.distritos}"
+												var="item" itemLabel="#{item.descripcion}"
+												itemValue="#{item.codDistrito}" />
+										</p:selectOneMenu>
+
+
+									</h:panelGrid>
+								</h:panelGroup>
+
+								<h:panelGrid style="margin:auto;">
+									<h:outputText value="Agencia BN *"
+										rendered="#{solicitarTarjetaController.solicitarTarjetaModel.esEntregaBN}" />
+
+									<p:selectOneMenu id="somAgenciaBN" style="width:340px;"
+										required="true" requiredMessage="#{valMsg['required.agenciaBN']}"
+										converter="omnifaces.SelectItemsConverter"
+										rendered="#{solicitarTarjetaController.solicitarTarjetaModel.esEntregaBN}"
+										value="#{solicitarTarjetaController.solicitarTarjetaModel.agenciaSeleccionada}">
+										<p:ajax
+											listener="#{solicitarTarjetaController.buscarDatosAgencia()}"
+											update=":formSolicitarTarjeta:direccion :formSolicitarTarjeta:referencia" />
+										<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+										<f:selectItems
+											value="#{solicitarTarjetaController.solicitarTarjetaModel.agenciasBN}"
+											var="item"
+											itemLabel="#{item.codAgencia} - #{item.descripcion}"
+											itemValue="#{item}" />
+									</p:selectOneMenu>
+
+									<h:outputText value="Dirección *" />
+									<p:inputText id="direccion" style="width:340px;"
+										required="true" requiredMessage="#{valMsg['required.direccion']}"
+ 										readonly="true"
+										value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.entregaDireccion}"> 
+ 										</p:inputText>
+
+									<h:outputText value="Referencia *"
+										rendered="#{!solicitarTarjetaController.solicitarTarjetaModel.esEntregaBN}" />
+									<p:inputText id="referencia" style="width:340px;"
+										readonly="true" required="true"
+										requiredMessage="Ingrese una referencia"
+										rendered="#{!solicitarTarjetaController.solicitarTarjetaModel.esEntregaBN}"
+										value="#{solicitarTarjetaController.solicitarTarjetaModel.tarjeta.entregaReferencia}" />
+								</h:panelGrid>
+							</p:panelGrid>
+
+
+							<div class="dashed"></div>
+							<p:column>
+								<p:commandButton id="atras3" value="Atrás"
+									styleClass="btnGrande" process="@this" style="float:left;"
+									actionListener="#{solicitarTarjetaController.retrocederPaso()}"
+									update="msgs :formSolicitarTarjeta"
+									onclick="statusDialog.show();"
+									oncomplete="statusDialog.hide();" />
+
+								<p:commandButton id="registrar" value="Registrar"
+									styleClass="btnGrande" style="float:right;"
+									process="@this somDepartamento,somProvincia,somDistrito,somEntregaUbicacion, somAgenciaBN, direccion"
+									actionListener="#{solicitarTarjetaController.registrarSolicitudTarjeta()}"
+									update="msgs :formSolicitarTarjeta"
+									onclick="statusDialog.show();"
+									oncomplete="statusDialog.hide();" />
+							</p:column>
+
+						</h:panelGrid>
+					</center>
+
+					<div style="text-align: left;">
+						<p:messages id="msgs" showDetail="true" showSummary="false"
+							closable="true" />
+					</div>
+
+				</p:panel>
+			</center>
+
+
+
+
+			<script type="text/javascript">
+			
+				var tipDoc;
+
+				function validarNumDocumento(e) {
+					var tecla = e.keyCode;
+					if (tecla == 8 || tecla == 9 || tecla == 13) {
+						return true;
+					}
+					var patron;
+					if (tipDoc == 1) {
+						patron = /[0-9]/;
+					} else if (tipDoc == 4) {
+						patron = /^[a-z0-9]+$/i;
+					} else if (tipDoc == 5) {
+						patron = /^[a-z0-9]+$/i;
+					}
+
+					var tecla_final = String.fromCharCode(tecla);
+					return patron.test(tecla_final);
+				}
+
+				function validarSoloLetras(e) {
+					var tecla = e.keyCode;
+					if (tecla == 8 || tecla == 9 || tecla == 13) {
+						return true;
+					}
+					var patron = /^[a-zA-Z\s]*$/;
+					var tecla_final = String.fromCharCode(tecla);
+					return patron.test(tecla_final);
+				}
+
+				function validarSoloNumeros(e) {
+					var tecla = e.keyCode;
+					if (tecla == 8 || tecla == 9 || tecla == 13) {
+						return true;
+					}
+					var patron = /[0-9]/;
+					var tecla_final = String.fromCharCode(tecla);
+					return patron.test(tecla_final);
+				}
+
+				function onCall() {
+					tipDoc = PF("selectTipoDocumento").getSelectedValue();
+				}
+
+				function activar(paso) {
+					document.getElementById('c' + paso).className = 'circulo c-activo';
+					document.getElementById('b' + paso).className = 'barra b-activo';
+				}
+
+				function desactivar(paso) {
+					document.getElementById('c' + paso).className = 'circulo c-inactivo';
+					document.getElementById('b' + paso).className = 'barra b-inactivo';
+				}
+
+				function reiniciar(paso) {
+					for (var i = paso; i > 0; i--) {
+						let k = i;
+						setTimeout(function(){desactivar(k);}, 900 -300 * k);
+					}
+				}
+			</script>
+		</h:form>
+	</ui:define>
+</ui:composition>

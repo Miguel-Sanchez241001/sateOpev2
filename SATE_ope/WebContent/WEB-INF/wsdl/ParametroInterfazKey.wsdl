@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+targetNamespace="http://service.ws.comp.bn.com.pe" 
+xmlns:impl="http://service.ws.comp.bn.com.pe" 
+xmlns:intf="http://service.ws.comp.bn.com.pe" 
+xmlns:tns2="http://bean.ws.comp.bn.com.pe" 
+xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" 
+xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.ws.comp.bn.com.pe">
+   <import namespace="http://bean.ws.comp.bn.com.pe"/>
+   <element name="datoParametroServiceResponse">
+    <complexType>
+     <sequence>
+      <element name="datoParametroServiceReturn" nillable="true" type="tns2:SistemaParametro"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="datoParametroService">
+    <complexType>
+     <sequence>
+      <element name="sistema" nillable="true" type="xsd:string"/>
+      <element name="cuenta" nillable="true" type="xsd:string"/>
+      <element name="semilla" nillable="true" type="xsd:string"/>
+      <element name="llave" type="xsd:base64Binary"/>
+      <element name="idUsuario" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://bean.ws.comp.bn.com.pe">
+   <complexType name="SistemaParametro">
+    <sequence>
+     <element name="aliasSistema" nillable="true" type="xsd:string"/>
+     <element name="grupoParametro" nillable="true" type="tns2:ArrayOfGrupoParametro"/>
+     <element name="proceso" nillable="true" type="tns2:ReturnProceso"/>
+    </sequence>
+   </complexType>
+   <complexType name="GrupoParametro">
+    <sequence>
+     <element name="tipoGrupo" nillable="true" type="xsd:string"/>
+     <element name="aliasDescripGrupo" nillable="true" type="xsd:string"/>
+     <element name="aliasGrupo" nillable="true" type="xsd:string"/>
+     <element name="parametro" nillable="true" type="tns2:ArrayOfParametro"/>
+    </sequence>
+   </complexType>
+   <complexType name="Parametro">
+    <sequence>
+     <element name="aliasParam" nillable="true" type="xsd:string"/>
+     <element name="campoParam" nillable="true" type="xsd:string"/>
+     <element name="descripcionParam" nillable="true" type="xsd:string"/>
+     <element name="tipoParam" nillable="true" type="xsd:string"/>
+     <element name="valorParam" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfParametro">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="Parametro" nillable="true" type="tns2:Parametro"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfGrupoParametro">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="GrupoParametro" nillable="true" type="tns2:GrupoParametro"/>
+    </sequence>
+   </complexType>
+   <complexType name="ReturnProceso">
+    <sequence>
+     <element name="codigo" nillable="true" type="xsd:string"/>
+     <element name="descripcion" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  </wsdl:types>
+  <wsdl:message name="datoParametroServiceResponse">
+    <wsdl:part element="impl:datoParametroServiceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="datoParametroServiceRequest">
+    <wsdl:part element="impl:datoParametroService" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ParametroInterfazKey">
+    <wsdl:operation name="datoParametroService">
+      <wsdl:input message="impl:datoParametroServiceRequest" name="datoParametroServiceRequest">
+    </wsdl:input>
+      <wsdl:output message="impl:datoParametroServiceResponse" name="datoParametroServiceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ParametroInterfazKeySoapBinding" type="impl:ParametroInterfazKey">
+<wsaw:UsingAddressing wsdl:required="false"/>
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="datoParametroService">
+      <wsdlsoap:operation soapAction="datoParametroService"/>
+      <wsdl:input name="datoParametroServiceRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="datoParametroServiceResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ParametroInterfazKeyService">
+    <wsdl:port binding="impl:ParametroInterfazKeySoapBinding" name="ParametroInterfazKey">
+      <wsdlsoap:address location="http://10.7.12.140:80/WSParamService12/services/ParametroInterfazKey"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

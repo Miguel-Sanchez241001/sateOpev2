@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libraries:Library xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:libraries="http://www.ibm.com/websphere/appserver/schemas/5.0/libraries.xmi" xmi:id="Library_1537101867056" name="SATEope" isolatedClassLoader="true">
+  <classPath>C:\Users\Renzo Broncano\IBM\rationalsdp\workspace\SATE_ope\WebContent\WEB-INF\lib</classPath>
+</libraries:Library>

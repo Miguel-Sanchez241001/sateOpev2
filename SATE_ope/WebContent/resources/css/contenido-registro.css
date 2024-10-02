@@ -1,0 +1,616 @@
+/*
+Project Name: Banco de la Nacion Multired
+Author: the Medialab team
+Author URI: http://www.medialabla.com/
+Description: Main CSS for Banco de la Naci&oacute;n
+Version: 1.0
+Tags: Banco de la Naci&oacute;n, Banco, Banco Peru, Banco Lima, Per&uacute;, per&uacute;, banco provincias...
+*/
+
+
+/* =Global
+----------------------------------------------- */
+
+#barra-opciones h1 {
+    font: 18px/44px 'daxcompact-mediumregular';
+    text-align: left;
+    margin: 0 0 20px 16px;
+}
+#barra-opciones h1 img {
+    vertical-align: top;
+}
+#barra-opciones #cerrar-sesion {
+    right: 16px;
+    position: absolute;
+    top: 28px;
+}
+#barra-opciones #cerrar-sesion a {
+    background: url(../../images/cerrar-sesion.jpg) no-repeat right center;
+    color: #2a2a2a;
+    display: block;
+    font: 14px/29px 'daxcompact-mediumregular';
+    height: 29px;
+    text-transform: uppercase;
+    text-align: left;
+    width: 115px;
+}
+#bienvenidos-contenido {
+    background: url(../../images/border-derecha.jpg) repeat-y right top;
+    padding: 0px 4px 0px 0px;
+    width: 900px;
+}
+
+
+/* bn-contenidos */
+
+#bn-contenidos #enlaces-rapidos {
+    margin: 0 0 0 20px;
+    padding: 16px 0px 0px 0px;
+    text-align: left;
+    width: 135px;
+}
+#bn-contenidos #enlaces-rapidos li {
+    padding: 0px 0px 6px 0px;
+}
+#bn-contenidos #enlaces-rapidos a {
+    color: #3b3b3b;
+    display: block;
+    font: 12px/25px 'daxcompact-regularregular';
+}
+#bn-contenidos #enlaces-rapidos a:hover {
+    text-decoration: underline;
+}
+#bn-contenidos #enlaces-rapidos a img {
+    margin: 0px 5px 0px 0px;
+    vertical-align: middle;
+}
+
+
+/* contenidos informativos */
+
+#contenidos-informativos {
+    float: left;
+    width: 650px;
+}
+#contenidos-informativos h2 {
+   /*  color: #c51416; */
+    font: 18px 'daxcompact-regularregular';
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0px 0px 18px 0px;
+}
+
+
+#contenidos-informativos legend {
+	background-color: white;
+}
+
+#contenidos-informativos p {
+    color: #555555;
+    font: 11px/13px arial;
+    margin: 0 auto;
+    text-align: justify;
+    padding: 0px 0px 8px 0px;
+}
+#contenidos-informativos .sub-titulo {
+    background: #d7d7d7;
+    color: #343434;
+    height: 30px;
+    font: 14px/30px 'daxcompact-mediumregular';
+    text-align: center;
+    text-transform: uppercase;
+    margin: 8px 0px 25px 0px;
+}
+#contenidos-informativos .fila {
+    margin: 0px 0px 11px 0px;
+}
+.espacio-arriba {
+    padding: 20px 0px 10px 0px;
+}
+#contenidos-informativos .ui-selectonemenu label {
+    color: #4f4f4f;
+    display: block;
+    float: left;
+    font: 12px/21px arial !important;
+    padding: 0px 5px 0px 8px;
+}
+#contenidos-informativos label {
+    color: #4f4f4f;
+    display: block;
+    float: left;
+    font: 13px arial;
+    padding: 0px 5px 0px 8px;
+}
+
+#contenidos-informativos label.ui-outputlabel {
+    text-align: right;
+    width: 200px;
+}
+
+#contenidos-informativos label.radio {
+    margin: 0px 10px 0px 0px;
+    padding: 0px 0px 0px 10px;
+    width: 100px !important; /*form transf individual*/
+}
+#contenidos-informativos label.radio input {
+    margin: 0px;
+}
+
+
+
+.ui-widget, .ui-widget-content{
+	font-size:0.8em;
+}
+
+.ui-datatable-data .ui-widget, .ui-widget-content{
+	font-size:0.9em;
+}
+
+.ui-datatable-data td label,.ui-datatable-data td input{
+	text-align: left !important;	
+	font: 10px arial !important;
+}
+
+.ui-datatable-data tr.ui-state-highlight{
+	background: #a0c3d6;
+}
+
+
+.ui-datatable-data tr.ui-row-editing td.ui-editable-column{
+	padding: 5px 5px !important;
+}
+
+.ui-icon-triangle-1-s {
+}
+
+.ui-selectonemenu-item {
+	font: 11px arial;
+}
+
+ #contenidos-informativos .ui-selectonemenu{
+	//border:none;
+	border-radius:4px;
+	float:left;
+	top: 0px;
+	border-color:#C7C7C7;
+	
+}
+#contenidos-informativos .ui-selectonemenu-label{
+	width: 246px;
+	border-radius:4px;
+}
+#contenidos-informativos .ui-selectonemenu-trigger{
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border:none;
+} 
+
+ #contenidos-informativos .ui-widget label{
+ 	font: 12px arial;
+ }
+#contenidos-informativos .ui-selectoneradio.ui-widget td{
+	vertical-align: middle;
+	padding: 0 5px 0 1px;
+}
+
+/* padding: 0 12px 0 0*/
+#contenidos-informativos .ui-selectoneradio.ui-widget td label{
+	padding: 7px 4px 0px 0px; 
+	float:right;
+}
+
+
+#contenidos-informativos .ui-panelgrid .ui-panelgrid-cell{
+	padding: 1px 10px;
+}
+
+#contenidos-informativos .input-chico[readonly]{
+	opacity: 0.65;
+}
+#contenidos-informativos .input-grande[readonly]{
+	opacity: 0.65;
+}
+
+#contenidos-informativos .ui-inputfield[readonly]{
+	opacity: 0.65;
+}
+#contenidos-informativos .ui-inputfield[disabled]{
+	opacity: 0.65;
+}
+#contenidos-informativos .ui-inputfield{
+	 font: 12px arial;
+	border-radius: 4px;
+	border-color: #C7C7C7;
+	
+}
+#contenidos-informativos .input-grande {
+    //background: url(../img/plantillaBN/input-grande.jpg) no-repeat;
+    float: left;
+    font: 12px arial;
+    padding: 0px 10px 0px 10px;
+    width: 250px;
+    height: 20px;
+    border-radius: 4px;
+	border-color: #C7C7C7;
+}
+
+#contenidos-informativos .ui-calendar{
+	padding: 0px 0px 7px 0px;
+	text-align: left;
+}
+
+#contenidos-informativos #botones-clave {
+    float: left;
+    padding: 0px 0px 0px 6px;
+    width: 92px;
+}
+#contenidos-informativos #botones-clave a {
+    background: url(../../images/btn-boton.jpg) no-repeat;
+    color: #343434;
+    display: block;
+    font: 16px/25px 'daxcompact-boldregular';
+    height: 25px;
+    float: left;
+    margin: 0px 5px 5px 0px;
+    text-align: center;
+    width: 25px;
+}
+
+#contenidos-informativos #botones-clave a:hover {
+    background: url(../../images/btn-boton-active.jpg) no-repeat;
+    color: #fff;
+}
+#contenidos-informativos #botones-clave a.limpiar {
+    background: url(../../images/btn-limpiar.jpg) no-repeat;
+    color: #fff;
+    font: 12px/25px 'daxcompact-boldregular';
+    width: 55px;
+}
+
+#contenidos-informativos #botones-clave div {
+    background: url(../../images/btn-boton.jpg) no-repeat;
+    color: #343434;
+    display: block;
+    font: 16px/25px 'daxcompact-boldregular';
+    height: 25px;
+    float: left;
+    margin: 0px 5px 5px 0px;
+    text-align: center;
+    width: 25px;
+    cursor:pointer;
+}
+
+#contenidos-informativos #botones-clave div:hover {
+    background: url(../../images/btn-boton-active.jpg) no-repeat;
+    color: #fff;
+}
+#contenidos-informativos #botones-clave div.limpiar {
+    background: url(../../images/btn-limpiar.jpg) no-repeat;
+    color: #fff;
+    font: 12px/25px 'daxcompact-boldregular';
+    width: 55px;
+}
+
+#contenidos-informativos #campo-clave {
+    float: left;
+    padding: 0px 0px 0px 10px;
+    width: 120px;
+}
+#contenidos-informativos #campo-clave p {
+    color: #7b7b7b;
+    font: 11px/13px arial;
+    text-align: center;
+    padding: 0px 5px 10px;
+    width: 100% !important;
+}
+#contenidos-informativos #campo-clave input {
+    background: url(../../images/bg-input-small.jpg) no-repeat;
+    border: none;
+    height: 23px;
+    padding: 0px 20px;
+    width: 110px;
+}
+#contenidos-informativos #campo-clave .olvido-clave {
+    padding: 20px 0px 0px 0px;
+    position: relative;
+}
+#contenidos-informativos #campo-clave a.olvide-clave {
+    background: url(../../images/olvide-clave.jpg) no-repeat;
+    color: #ba1113;
+    display: block;
+    font: 12px arial;
+    height: 24px;
+    font: 12px/24px arial;
+    text-align: left;
+    text-decoration: underline;
+    padding: 0px 0px 0px 27px;
+}
+#contenidos-informativos #campo-clave .texto-olvide-clave {
+    display: none;
+    position: absolute;
+    right: -140px;
+    top: 2px;
+}
+#contenidos-informativos #campo-clave .olvido-clave:hover .texto-olvide-clave {
+    display: block;
+}
+#contenidos-informativos #campo-clave .texto-olvide-clave img {
+    position: absolute;
+    top: 23px;
+    left: -15px;
+}
+#contenidos-informativos #campo-clave .texto-olvide-clave div {
+    background: #000;
+    color: #d5d5d5;
+    height: 50px;
+    text-align: center;
+    font: 11px/12px arial;
+    padding: 5px 0px;
+    width: 120px;
+}
+#contenidos-informativos .input-chico {
+    font: 12px arial;
+    height: 20px;
+    float: left;
+    padding: 0px 10px;
+    width: 100px;
+    border-radius: 4px;
+    border-color: #C7C7C7;
+    
+}
+#contenidos-informativos .input-chiquitito {
+    font: 12px arial;
+    height: 20px;
+    float: left;
+    padding: 0px 10px;
+    width: 20px;
+    border-radius: 4px;
+    border-color: #C7C7C7;
+       
+}
+#contenidos-informativos .input-medio {
+    font: 12px arial;
+    height: 20px;
+    float: left;
+    padding: 0px 10px;
+    width: 175px;
+    border-radius: 4px;
+    border-color: #C7C7C7;
+    
+}
+
+#contenidos-informativos .toke {
+    float: left;
+    height: 23px;
+    padding: 0px 0px 0px 38px;
+    position: relative;
+}
+#contenidos-informativos .toke img {
+    left: 15px;
+    position: absolute;
+    top: -22px;
+}
+#contenidos-informativos .botones {
+    border-top: 1px dashed #B8B8B8;
+    margin: 20px 0px 0px 0px;
+    padding: 15px 0px 15px 0px;
+}
+
+
+#contenidos-informativos .botones button {
+    //background: url(../../images/boton.jpg) no-repeat;
+   /*  border: none; */
+   /*  color: #fff; */
+    cursor: pointer;
+    /* height: 30px; */
+    font: 16px/30px 'daxcompact-boldregular';
+    width: 100px;
+    border-radius:4px;
+}
+
+.submitButton {
+    background: url(../../images/boton.jpg) no-repeat;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 30px;
+    font: 16px/30px 'daxcompact-boldregular';
+    margin: 0px 0px 0px 10px;
+    width: 100px;
+}
+
+.lineasPunteadas {
+    border-top: 1px dashed #B8B8B8;
+    padding: 20px 0px 0px 0px;
+}
+
+ul.select-bienvenidos {
+    width: 85px !important;
+}
+
+/* Botones */
+
+#contenidos-informativos #botones {
+    padding: 32px 0px 0px 120px;
+}
+#contenidos-informativos #botones #continuarIndividual {
+    background: url(../../images/boton.jpg) no-repeat;
+    color: #fff;
+    display: block;
+    height: 24px;
+    float: left;
+    font: 14px/24px 'daxcompact-boldregular';
+    margin: 0px 30px 0px 0px;
+    padding: 0px 0px 0px 34px;
+    text-transform: uppercase;
+    width: 76px;
+}
+#contenidos-informativos #botones #continuarIndividual:hover {
+    background: url(../../images/boton-active.jpg) no-repeat;
+}
+#contenidos-informativos #botones #continuarMasivo {
+    background: url(../../images/boton.jpg) no-repeat;
+    color: #fff;
+    display: block;
+    height: 24px;
+    float: left;
+    font: 14px/24px 'daxcompact-boldregular';
+    margin: 0px 30px 0px 0px;
+    padding: 0px 0px 0px 34px;
+    text-transform: uppercase;
+    width: 66px;
+}
+#contenidos-informativos #botones #continuarMasivo:hover {
+    background: url(../../images/boton-active.jpg) no-repeat;
+}
+#contenidos-informativos #botones #regresar {
+    background: url(../../images/btn-regresar.jpg) no-repeat;
+    color: #fff;
+    display: block;
+    height: 24px;
+    float: left;
+    font: 14px/24px 'daxcompact-boldregular';
+    margin: 0px 30px 0px 0px;
+    padding: 0px 0px 0px 44px;
+    text-transform: uppercase;
+    width: 56px;
+}
+#contenidos-informativos #botones #regresar:hover {
+    background: url(../../images/btn-regresar-active.jpg) no-repeat;
+}
+
+.tres-botones {
+    text-align: center;
+}
+
+.datos-transaccion{
+	border-bottom: 1px dashed #b8b8b8;
+	padding: 0px 0px 36px 0px;
+}
+
+.titulo-constancia{
+	background: #484848;
+	color: #fff;
+	height: 30px;
+	font: 14px/30px 'daxcompact-mediumregular';
+	margin: 0px 0px 1px 0px;
+	text-transform: uppercase;
+	text-align: center;
+	width: 601px;
+}
+
+.td-class{
+	background: #e3e3e3;
+	color: #000;
+	height: 30px;
+	float: left;
+	font: 12px/30px arial;
+	border:1px solid #fff;
+	padding: 0px 0px 0px 13px;
+	width: 287px;
+}
+
+/** TABLE */
+table#tabla-resultados{
+	margin: 0px 0px 0px 0px;
+}
+
+table#tabla-resultados thead td{
+	background: #cacaca;
+	border-right: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	color: #000;
+	font: 12px arial;
+	text-transform: uppercase;
+	padding: 10px 10px;
+}
+
+table#tabla-resultados tbody td{
+	background: #f1f1f1;
+	border-right: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	color: #000;
+	font: 12px arial;
+	padding: 9px 10px 6px;
+}
+
+table#tabla-resultados td{
+}
+
+table#tabla-resultados td.none{
+	padding: 0;
+}
+
+.titulo-tabla{
+	background: #909090;
+	color: #fff;
+	font: 14px 'daxcompact-mediumregular';
+	margin: 0px 0px 1px 0px;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 8px 0px;
+	width: 632px;
+}
+
+table.Grilla-Resultados tr.odd {
+    background-color: #f1f1f1;
+    FONT-FAMILY: Arial, TheSansCorrespondence;
+    font-size: 12px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-variant: normal;
+    color: #4f4f4f;
+    BORDER-RIGHT: white 1px solid;
+    BORDER-TOP: white 1px solid;
+    BORDER-LEFT: white 1px solid;
+    BORDER-BOTTOM: white 1px solid;
+    padding: 5px;
+}
+table.Grilla-Resultados tr.even {
+    background-color: #FEFEFE;
+    FONT-FAMILY: Arial, TheSansCorrespondence;
+    font-size: 12px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-variant: normal;
+    color: #4f4f4f;
+    BORDER-RIGHT: white 1px solid;
+    BORDER-TOP: white 1px solid;
+    BORDER-LEFT: white 1px solid;
+    BORDER-BOTTOM: white 1px solid;
+    padding: 5px;
+}
+table.Grilla-Resultados thead th{
+	background: #cacaca;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    color: #000;
+    font: 12px arial;
+    text-transform: uppercase;
+    padding: 10px 10px;
+}
+
+
+/** datatable*/
+.ui-datatable .ui-datatable-scrollable-header table thead tr{
+	 color: #000;
+	  font: 12px arial;
+}
+
+.ui-datatable-scrollable-theadclone th.ui-state-default{
+	 background-color:#ff0000;
+}
+
+/* table[role=grid] td{ */
+/* 	text-align : left; */
+/* } */
+
+table[role=grid] td input.ui-autocomplete-input{
+	width: 250px;
+}
+
+

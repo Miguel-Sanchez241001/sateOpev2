@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h2>AUTORIZAR SOLICITUDES</h2>
+
+		<h:form id="formAutorizarSolicitud">
+
+
+
+			<center>
+				<p:panel style="margin:30px 80px 30px 80px;padding:20px;">
+					<h:panelGrid style="width:90%;" columns="1">
+						<h3 style="text-align: center">Lista de solicitudes a
+							autorizar o rechazar</h3>
+						<div class="dashed"></div>
+
+						<p:dataTable var="solicitud" id="dtSolicitudes"
+							value="#{autorizarSolicitudesController.autorizarSolicitudModel.solicitudesTarjeta}"
+							selection="#{autorizarSolicitudesController.autorizarSolicitudModel.solicitudesTarjetaSeleccionado}"
+							rowKey="#{solicitud.id}"
+							style="table-layout: fixed;margin:10px auto 20px auto;"
+							rowIndexVar="index">
+
+							<p:ajax event="rowSelectCheckbox" process="@this"
+								update=":formAutorizarSolicitud" />
+							<p:ajax event="rowUnselectCheckbox" process="@this"
+								update=":formAutorizarSolicitud" />
+							<p:ajax event="toggleSelect" process="@this"
+								update=":formAutorizarSolicitud" />
+
+							<p:columnGroup type="header">
+								<p:row>
+									<p:column rowspan="2" headerText="Nro.Solicitud" />
+									<p:column colspan="4" headerText="Solicitante" />
+									<p:column colspan="3" headerText="Tarjeta" />
+									<p:column rowspan="2" selectionMode="multiple"
+										style="width:16px;text-align:center" />
+								</p:row>
+								<p:row>
+									<p:column headerText="Tipo de documento" />
+									<p:column headerText="Número de documento" />
+									<p:column headerText="Nombres" />
+									<p:column headerText="Apellidos" />
+									<p:column headerText="Disposición de efectivo" />
+									<p:column headerText="Uso en el extranjero" />
+									<p:column headerText="Tipo de gasto" />
+
+								</p:row>
+							</p:columnGroup>
+
+							<p:column style="text-align: center">
+								<h:outputText
+									value="#{autorizarSolicitudesController.autorizarSolicitudModel.formatoNumeroSolicitud(solicitud.id)}" />
+							</p:column>
+							<p:column style="text-align: center">
+								<h:outputText
+									value="#{autorizarSolicitudesController.autorizarSolicitudModel.descripcionTipoDocumento(solicitud.tipoDocumento)}" />
+							</p:column>
+							<p:column style="text-align: center">
+								<h:outputText value="#{solicitud.numDocumento}" />
+							</p:column>
+							<p:column style="text-align: center">
+								<h:outputText value="#{solicitud.nombres}" />
+							</p:column>
+							<p:column style="text-align: center">
+								<h:outputText value="#{solicitud.apellidos}" />
+							</p:column>
+							<p:column style="text-align: center">
+								<h:outputText
+									value="#{autorizarSolicitudesController.autorizarSolicitudModel.descripcionDisposicionEfectivo(solicitud.dispEfectivo)}" />
+							</p:column>
+							<p:column style="text-align: center">
+								<h:outputText value="#{solicitud.usoExtranjero}" />
+							</p:column>
+							<p:column style="text-align: center">
+								<h:outputText
+									value="#{autorizarSolicitudesController.autorizarSolicitudModel.descripcionTipoTarjeta(solicitud.tipoTarjeta,solicitud.diseno)}" />
+							</p:column>
+
+							<p:column selectionMode="multiple"
+								style="width:16px;text-align:center" />
+						</p:dataTable>
+
+						<div class="dashed"></div>
+
+
+						<p:panelGrid columns="2" style="margin:auto;">
+							<p:commandButton id="afiliar" value="Autorizar"
+								styleClass="btnGrande" process="@this"
+								update="msgs :formAutorizarSolicitud:dtSolicitudes"
+								actionListener="#{autorizarSolicitudesController.autorizarSolicitudTarjeta}" />
+							<p:commandButton id="limpiar" value="Rechazar"
+								styleClass="btnGrande"
+								actionListener="#{autorizarSolicitudesController.rechazarSolicitudTarjeta}"
+								update="msgs :formAutorizarSolicitud:dtSolicitudes"
+								process="@this" style="margin-left:20px;" />
+						</p:panelGrid>
+
+						<div style="width: 100%; margin: auto;">
+							<p:messages id="msgs" showDetail="true" showSummary="false"
+								closable="true" />
+						</div>
+
+					</h:panelGrid>
+
+
+
+				</p:panel>
+			</center>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

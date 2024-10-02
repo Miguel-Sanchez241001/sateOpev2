@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://interfaz.mq2.bn" xmlns:impl="http://interfaz.mq2.bn" xmlns:intf="http://interfaz.mq2.bn" xmlns:tns2="http://bean.mq2.bn" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://interfaz.mq2.bn">
+   <import namespace="http://bean.mq2.bn"/>
+   <element name="consulta7Response">
+    <complexType>
+     <sequence>
+      <element name="consulta7Return" nillable="true" type="tns2:Identidad2"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consulta1">
+    <complexType>
+     <sequence>
+      <element name="sistema" nillable="true" type="xsd:string"/>
+      <element name="usrapp" nillable="true" type="xsd:string"/>
+      <element name="claveapp" nillable="true" type="xsd:string"/>
+      <element name="user" nillable="true" type="xsd:string"/>
+      <element name="numReg" type="xsd:int"/>
+      <element name="initGroup" type="xsd:int"/>
+      <element name="apePat" nillable="true" type="xsd:string"/>
+      <element name="apeMat" nillable="true" type="xsd:string"/>
+      <element name="nombre" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consulta1Response">
+    <complexType>
+     <sequence>
+      <element name="consulta1Return" nillable="true" type="tns2:IdentidadInfo2"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consulta4">
+    <complexType>
+     <sequence>
+      <element name="sistema" nillable="true" type="xsd:string"/>
+      <element name="usrapp" nillable="true" type="xsd:string"/>
+      <element name="claveapp" nillable="true" type="xsd:string"/>
+      <element name="user" nillable="true" type="xsd:string"/>
+      <element name="dni" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consulta4Response">
+    <complexType>
+     <sequence>
+      <element name="consulta4Return" nillable="true" type="tns2:Firma2"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consulta3">
+    <complexType>
+     <sequence>
+      <element name="sistema" nillable="true" type="xsd:string"/>
+      <element name="usrapp" nillable="true" type="xsd:string"/>
+      <element name="claveapp" nillable="true" type="xsd:string"/>
+      <element name="user" nillable="true" type="xsd:string"/>
+      <element name="dni" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consulta3Response">
+    <complexType>
+     <sequence>
+      <element name="consulta3Return" nillable="true" type="tns2:Foto2"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consulta2">
+    <complexType>
+     <sequence>
+      <element name="sistema" nillable="true" type="xsd:string"/>
+      <element name="usrapp" nillable="true" type="xsd:string"/>
+      <element name="claveapp" nillable="true" type="xsd:string"/>
+      <element name="user" nillable="true" type="xsd:string"/>
+      <element name="dni" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consulta2Response">
+    <complexType>
+     <sequence>
+      <element name="consulta2Return" nillable="true" type="tns2:IdentidadHuman2"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consulta7">
+    <complexType>
+     <sequence>
+      <element name="sistema" nillable="true" type="xsd:string"/>
+      <element name="usrapp" nillable="true" type="xsd:string"/>
+      <element name="claveapp" nillable="true" type="xsd:string"/>
+      <element name="user" nillable="true" type="xsd:string"/>
+      <element name="dni" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns2_nillable_IdentidadResume2">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="IdentidadResume2" nillable="true" type="tns2:IdentidadResume2"/>
+    </sequence>
+   </complexType>
+  </schema>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://bean.mq2.bn">
+   <import namespace="http://interfaz.mq2.bn"/>
+   <complexType name="Identidad2">
+    <sequence>
+     <element name="fechaCaducidad" nillable="true" type="xsd:string"/>
+     <element name="apellidoCasada" nillable="true" type="xsd:string"/>
+     <element name="apellidoMaterno" nillable="true" type="xsd:string"/>
+     <element name="apellidoPaterno" nillable="true" type="xsd:string"/>
+     <element name="block" nillable="true" type="xsd:string"/>
+     <element name="blockPrefCod" nillable="true" type="xsd:string"/>
+     <element name="blockPrefDes" nillable="true" type="xsd:string"/>
+     <element name="constanciaVotacion" nillable="true" type="xsd:string"/>
+     <element name="desError" nillable="true" type="xsd:string"/>
+     <element name="direccion" nillable="true" type="xsd:string"/>
+     <element name="direccionNum" nillable="true" type="xsd:string"/>
+     <element name="direccionPrefCod" nillable="true" type="xsd:string"/>
+     <element name="direccionPrefDes" nillable="true" type="xsd:string"/>
+     <element name="docSustentNum" nillable="true" type="xsd:string"/>
+     <element name="docSustentTipCod" nillable="true" type="xsd:string"/>
+     <element name="docSustentTipDes" nillable="true" type="xsd:string"/>
+     <element name="domicDistCod" nillable="true" type="xsd:string"/>
+     <element name="domicDistDes" nillable="true" type="xsd:string"/>
+     <element name="domicDptoCod" nillable="true" type="xsd:string"/>
+     <element name="domicDptoDes" nillable="true" type="xsd:string"/>
+     <element name="domicProvCod" nillable="true" type="xsd:string"/>
+     <element name="domicProvDes" nillable="true" type="xsd:string"/>
+     <element name="error" nillable="true" type="xsd:string"/>
+     <element name="estadoCivilCod" nillable="true" type="xsd:string"/>
+     <element name="estadoCivilDes" nillable="true" type="xsd:string"/>
+     <element name="estaturaCod" nillable="true" type="xsd:string"/>
+     <element name="estaturaDes" nillable="true" type="xsd:string"/>
+     <element name="etapa" nillable="true" type="xsd:string"/>
+     <element name="fechaExpedicion" nillable="true" type="xsd:string"/>
+     <element name="fechaInscripcion" nillable="true" type="xsd:string"/>
+     <element name="fechaNacimiento" nillable="true" type="xsd:string"/>
+     <element name="gradoInstruccionCod" nillable="true" type="xsd:string"/>
+     <element name="gradoInstruccionDes" nillable="true" type="xsd:string"/>
+     <element name="interior" nillable="true" type="xsd:string"/>
+     <element name="interiorPrefCod" nillable="true" type="xsd:string"/>
+     <element name="interiorPrefDes" nillable="true" type="xsd:string"/>
+     <element name="lote" nillable="true" type="xsd:string"/>
+     <element name="manzana" nillable="true" type="xsd:string"/>
+     <element name="nacDistCod" nillable="true" type="xsd:string"/>
+     <element name="nacDistDes" nillable="true" type="xsd:string"/>
+     <element name="nacDptoCod" nillable="true" type="xsd:string"/>
+     <element name="nacDptoDes" nillable="true" type="xsd:string"/>
+     <element name="nacProvCod" nillable="true" type="xsd:string"/>
+     <element name="nacProvDes" nillable="true" type="xsd:string"/>
+     <element name="nombreMadre" nillable="true" type="xsd:string"/>
+     <element name="nombrePadre" nillable="true" type="xsd:string"/>
+     <element name="nombres" nillable="true" type="xsd:string"/>
+     <element name="numDoc" nillable="true" type="xsd:string"/>
+     <element name="reservado" nillable="true" type="xsd:string"/>
+     <element name="restriccionCodHost" nillable="true" type="xsd:string"/>
+     <element name="restriccionCodWS" nillable="true" type="xsd:string"/>
+     <element name="restrincionDes" nillable="true" type="xsd:string"/>
+     <element name="sexoCod" nillable="true" type="xsd:string"/>
+     <element name="sexoDes" nillable="true" type="xsd:string"/>
+     <element name="urbanizacion" nillable="true" type="xsd:string"/>
+     <element name="urbanizacionPrefCod" nillable="true" type="xsd:string"/>
+     <element name="urbanizacionPrefDes" nillable="true" type="xsd:string"/>
+     <element name="verificacion" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="IdentidadInfo2">
+    <sequence>
+     <element name="desError" nillable="true" type="xsd:string"/>
+     <element name="error" nillable="true" type="xsd:string"/>
+     <element name="LIdentidad" nillable="true" type="impl:ArrayOf_tns2_nillable_IdentidadResume2"/>
+     <element name="numIncidencias" nillable="true" type="xsd:string"/>
+     <element name="reservado" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="IdentidadResume2">
+    <sequence>
+     <element name="apellidoMaterno" nillable="true" type="xsd:string"/>
+     <element name="apellidoPaterno" nillable="true" type="xsd:string"/>
+     <element name="datos" nillable="true" type="xsd:string"/>
+     <element name="fichaRegistral" nillable="true" type="xsd:string"/>
+     <element name="imagen" nillable="true" type="xsd:string"/>
+     <element name="numDoc" nillable="true" type="xsd:string"/>
+     <element name="preNombres" nillable="true" type="xsd:string"/>
+     <element name="reservado" nillable="true" type="xsd:string"/>
+     <element name="verificacion" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Firma2">
+    <sequence>
+     <element name="desError" nillable="true" type="xsd:string"/>
+     <element name="error" nillable="true" type="xsd:string"/>
+     <element name="firma" type="xsd:base64Binary"/>
+    </sequence>
+   </complexType>
+   <complexType name="Foto2">
+    <sequence>
+     <element name="desError" nillable="true" type="xsd:string"/>
+     <element name="error" nillable="true" type="xsd:string"/>
+     <element name="foto" type="xsd:base64Binary"/>
+    </sequence>
+   </complexType>
+   <complexType name="IdentidadHuman2">
+    <sequence>
+     <element name="firma" nillable="true" type="tns2:Firma2"/>
+     <element name="foto" nillable="true" type="tns2:Foto2"/>
+     <element name="identidad" nillable="true" type="tns2:Identidad2"/>
+    </sequence>
+   </complexType>
+  </schema>
+  </wsdl:types>
+  <wsdl:message name="consulta2Request">
+    <wsdl:part element="intf:consulta2" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consulta4Request">
+    <wsdl:part element="intf:consulta4" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consulta1Response">
+    <wsdl:part element="intf:consulta1Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consulta1Request">
+    <wsdl:part element="intf:consulta1" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consulta2Response">
+    <wsdl:part element="intf:consulta2Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consulta7Response">
+    <wsdl:part element="intf:consulta7Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consulta3Request">
+    <wsdl:part element="intf:consulta3" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consulta7Request">
+    <wsdl:part element="intf:consulta7" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consulta3Response">
+    <wsdl:part element="intf:consulta3Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consulta4Response">
+    <wsdl:part element="intf:consulta4Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="ServiceReniec2">
+    <wsdl:operation name="consulta7">
+      <wsdl:input message="intf:consulta7Request" name="consulta7Request"/>
+      <wsdl:output message="intf:consulta7Response" name="consulta7Response"/>
+    </wsdl:operation>
+    <wsdl:operation name="consulta1">
+      <wsdl:input message="intf:consulta1Request" name="consulta1Request"/>
+      <wsdl:output message="intf:consulta1Response" name="consulta1Response"/>
+    </wsdl:operation>
+    <wsdl:operation name="consulta4">
+      <wsdl:input message="intf:consulta4Request" name="consulta4Request"/>
+      <wsdl:output message="intf:consulta4Response" name="consulta4Response"/>
+    </wsdl:operation>
+    <wsdl:operation name="consulta3">
+      <wsdl:input message="intf:consulta3Request" name="consulta3Request"/>
+      <wsdl:output message="intf:consulta3Response" name="consulta3Response"/>
+    </wsdl:operation>
+    <wsdl:operation name="consulta2">
+      <wsdl:input message="intf:consulta2Request" name="consulta2Request"/>
+      <wsdl:output message="intf:consulta2Response" name="consulta2Response"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceReniec2SoapBinding" type="intf:ServiceReniec2">
+<wsaw:UsingAddressing wsdl:required="false"/>
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consulta7">
+      <wsdlsoap:operation soapAction="consulta7"/>
+      <wsdl:input name="consulta7Request">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consulta7Response">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta1">
+      <wsdlsoap:operation soapAction="consulta1"/>
+      <wsdl:input name="consulta1Request">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consulta1Response">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta4">
+      <wsdlsoap:operation soapAction="consulta4"/>
+      <wsdl:input name="consulta4Request">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consulta4Response">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta3">
+      <wsdlsoap:operation soapAction="consulta3"/>
+      <wsdl:input name="consulta3Request">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consulta3Response">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta2">
+      <wsdlsoap:operation soapAction="consulta2"/>
+      <wsdl:input name="consulta2Request">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consulta2Response">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceReniec2Service">
+    <wsdl:port binding="intf:ServiceReniec2SoapBinding" name="ServiceReniec2">
+<!--       <wsdlsoap:address location="http://10.7.12.64:9080/WSConsultaReniec/services/ServiceReniec2"/> --> 
+           <wsdlsoap:address location="http://10.7.12.123:9080/WSConsultaReniec/services/ServiceReniec2"/>
+      
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

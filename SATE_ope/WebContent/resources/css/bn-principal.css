@@ -1,0 +1,477 @@
+body,html {
+	/*background: url(../imagenes/bg-body.jpg) repeat;*/
+	background: #FFFFFF;
+	overflow-y: visible !important;
+}
+
+/*bn-principal */
+#contenido-cabecera {
+	background: url(../images/bg-body.jpg) repeat-x top left;
+	color: #121212;
+	font-family: 'arial';
+	overflow-x: hidden;
+	position: relative;
+	text-align: left;
+	margin: 0 auto;
+}
+
+#contenido-cabecera-1 {
+	background: url(../img/plantillaBN/00000001_r1_c2.png) repeat-x top left;
+	color: #121212;
+	font-family: 'arial';
+	overflow-x: hidden;
+	position: relative;
+	text-align: left;
+	margin: 0 auto;
+	height: 100px;
+	box-sizing: border-box;
+}
+
+#contenedor {
+	margin: 0 auto;
+	position: relative;
+	/*     text-align: center; */
+	width: 100%; /*998px;*/
+}
+
+#cabecera {
+	height: 70px;
+	margin: 0 auto; //
+	position: relative;
+}
+
+#cabecera #logo-sabe {
+	left: 0px;
+	position: absolute;
+	top: 10px;
+}
+
+#cabecera #logo-bn {
+	right: 0px;
+	position: absolute;
+	top: 33px;
+}
+
+#cabecera-bn {
+	height: 73px;
+	margin: 0 auto;
+	position: relative;
+	width: 898px;
+}
+
+#cabecera-bn #logo-sate {
+	left: 2px;
+	position: absolute;
+	top: 1px;
+}
+
+#cabecera-bn #logo-bn1 {
+	right: 0px;
+	position: absolute;
+	top: 11px;
+}
+
+#cuerpo {
+	position: relative;
+	margin: 0 auto;
+	padding: 20px 0 0 2px; /*20px*/
+	width: 85%;
+}
+
+#barra-opciones {
+	position: relative;
+	margin: 0 auto;
+	padding: 2px 0 0px 2px; /*20px*/
+	/* width: 905px; */
+}
+
+#barra-opciones h1 {
+	color: #343434;
+	margin: 0px 0px 20px 0px;
+	text-align: center;
+}
+
+#barra-opciones h1 img {
+	margin: 0px 12px 0px 0px;
+}
+
+#barra-opciones h1 span {
+	color: #c21315;
+}
+
+/*fin bn_principal*/
+#cabecera { //
+	height: 80px; //
+	text-align: right;
+}
+
+#cabecera img {
+	/* margin: 18px 28px 0 0; */
+	
+}
+
+#bn-contenidos {
+	/* background: url(../img/plantillaBN/border-derecha.jpg) repeat-y right top #fff; */
+	border: 1px solid #adadad;
+	padding: 27px 2px 20px 0px;
+	margin: 0 auto;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px #888888;
+	/* width: 899px; */
+}
+
+#bn-contenidos #cuerpo {
+	background: #f0f0f0;
+	border-left: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	position: relative;
+}
+
+#bn-contenidos #cuerpo #logo-transferencia {
+	left: 30px;
+	position: absolute;
+	top: -37px;
+}
+
+#bn-contenidos #cuerpo h1 {
+	background: url(../imagenes/candado.jpg) no-repeat 624px 3px;
+	border-bottom: 1px solid #c0c0c0;
+	color: #343434;
+	font: 18px/30px 'daxcompact-regularregular';
+	margin: 0 auto;
+	padding: 5px 40px 7px 0px;
+	text-align: right;
+	width: 607px;
+}
+
+#bn-contenidos #cuerpo h1 span {
+	color: #c21315;
+}
+
+#border-inferiror {
+	height: 8px;
+	margin: 0 auto;
+	width: 902px;
+}
+
+#pie-pagina {
+	color: #676767;
+	text-align: center;
+	font: 11px arial;
+	padding: 26px 0px 30px 0px;
+}
+
+#pie-pagina #titulo-pie-pagina {
+	color: #373737;
+	font: bold 12px arial;
+	padding: 0px 0px 8px 0px;
+}
+
+#pie-pagina #oficinas {
+	color: #5e5e5f;
+	font: 11px arial;
+}
+
+.limpiar:after {
+	content: ".";
+	display: block;
+	height: 0;
+	font-size: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.limpiar {
+	display: inline-block;
+}
+
+* html .limpiar {
+	height: 1%;
+}
+
+.limpiar {
+	display: block;
+}
+
+/*Estilo para las tablas*/
+.tabla-detalle {
+	border-collapse: collapse;
+	background-color: #F0F0F0 !important;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #FFFFFF;
+	margin: 10px 0;
+	width: 100%;
+	color: inherit;
+}
+
+.tabla-detalle caption {
+	text-align: left;
+	font: 14px 'daxcompact-regularregular';
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #616161;
+	padding: 10px;
+	border: solid 2px #fff;
+}
+
+.tabla-detalle thead tr th {
+	background-color: #CDCDCD;
+	color: #333333;
+	border: solid 2px #fff;
+	text-align: left;
+	padding: 10px;
+	font-weight: bold;
+	font: 14px 'daxcompact-mediumregular';
+}
+
+.tabla-detalle tbody tr td {
+	border: solid 2px #fff;
+	color: #444;
+	padding: 5px;
+	background-color: #F0F0F0 !important;
+	padding-left: 10px;
+	font-size: 0.9em;
+	vertical-align: middle;
+	font-family: Arial, Helvetica, sans-serif !important;
+	text-align: left !important;
+}
+
+.tabla-detalle tbody tr td a {
+	color: #CE4652;
+	font-weight: bold;
+}
+
+.tabla-detalle tbody tr td a:hover {
+	color: #990000;
+}
+
+/*Estilo de listas*/
+
+/*Estilo de listas y niveles ul*/
+/* estilos para listas con LI*/
+ul.lista {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	margin-left: 10px;
+}
+
+.lista li {
+	margin-bottom: 0.2em;
+	margin-top: 0.2em;
+	padding-bottom: 0.3em;
+	padding-left: 3px !important;
+	text-align: justify;
+}
+/* tipos de estilo y niveles de las listas*/
+.cuadrado-plomo {
+	list-style-image: url(../imagenes/iconos/cuadrado-plomo.png);
+}
+
+.cuadrado-plomo2 {
+	list-style-image: url(../imagenes/iconos/cuadrado-plomo2.png);
+}
+
+.cuadrado-rojo {
+	list-style-image: url(../imagenes/iconos/cuadrado-rojo.png);
+}
+
+.cuadrado-rojo2 {
+	list-style-image: url(../imagenes/iconos/cuadrado-rojo2.gif);
+}
+
+.cuadrado-naranja {
+	list-style-image:
+		url(../imagenes/iconos/cuadrado-rojocuadrado-naranja.jpg);
+}
+
+.triangulo-rojo {
+	list-style-image: url(../imagenes/iconos/flechas.png);
+}
+
+.lista-pdf {
+	list-style-image: url(../imagenes/iconos/pdf.gif);
+}
+
+.lista-ie {
+	list-style-image: url(../imagenes/iconos/ie.gif);
+}
+
+.lista-xls {
+	list-style-image: url(../imagenes/iconos/xls.gif);
+}
+
+.lista-ppt {
+	list-style-image: url(../imagenes/iconos/ppt.gif);
+}
+
+.lista-zip {
+	list-style-image: url(../imagenes/iconos/zip.gif);
+}
+
+.lista-doc {
+	list-style-image: url(../imagenes/iconos/doc.gif);
+}
+
+.lista-flv {
+	list-style-image: url(../imagenes/iconos/pelicula.png);
+}
+
+.lista-form {
+	list-style-image: url(../imagenes/iconos/formulario.png);
+}
+
+.lista-agencia {
+	list-style-image: url(../imagenes/iconos/icono-agencia.png);
+}
+
+.lista-cajero {
+	list-style-image: url(../imagenes/iconos/icono-cajero.png);
+}
+
+.lista-agente {
+	list-style-image: url(../imagenes/iconos/icono-agentes.png);
+}
+
+.lista-facebook {
+	list-style-image: url(../imagenes/iconos/icono-facebook.png);
+}
+
+.lista-twitter {
+	list-style-image: url(../imagenes/iconos/icono-twitter.png);
+}
+
+/*Niveles*/
+.nivel1 {
+	margin-left: 1.3em;
+}
+
+.nivel2 {
+	margin-left: 2.8em;
+}
+
+.nivel3 {
+	margin-left: 4.6em;
+}
+
+.nivel4 {
+	margin-left: 5.9em;
+}
+
+.nivel5 {
+	margin-left: 7.2em;
+}
+
+.nivel6 {
+	margin-left: 8.8em;
+}
+
+/* estilos para iconos de tipos de archivos */
+.desie {
+	background: url(../imagenes/iconos/ie.gif) 0 1px no-repeat;
+	padding: 0 0 0 20px;
+	margin: 0;
+}
+
+.despdf {
+	background: url(../imagenes/iconos/pdf.gif) 0 1px no-repeat;
+	padding: 2px 0 2px 20px;
+	margin: 0;
+}
+
+.desxls {
+	background: url(../imagenes/iconos/xls.gif) 0 1px no-repeat;
+	padding: 0 0 0 20px;
+	margin: 0;
+}
+
+.desppt {
+	background: url(../imagenes/iconos/ppt.gif) 0 1px no-repeat;
+	padding: 0 0 0 20px;
+	margin: 0;
+}
+
+.deszip {
+	background: url(../imagenes/iconos/zip.gif) 0 1px no-repeat;
+	padding: 0 0 0 20px;
+	margin: 0;
+}
+
+.desdoc {
+	background: url(../imagenes/iconos/doc.gif) 0 1px no-repeat;
+	padding: 0 0 0 20px;
+	margin: 0;
+}
+
+.desvideo {
+	background: url(../imagenes/iconos/video.gif) 0 1px no-repeat;
+	padding: 0 0 0 20px;
+	margin: 0;
+}
+
+.desfotos {
+	background: url(../imagenes/iconos/fotos.jpg) 0 1px no-repeat;
+	padding: 0px 0 0px 20px;
+	margin: 0;
+}
+
+.desflv {
+	background: url(../imagenes/iconos/pelicula.png) 0 1px no-repeat;
+	padding: 2px 0 2px 20px;
+	margin: 0;
+}
+
+.desform {
+	background: url(../imagenes/iconos/formulario.png) 0 1px no-repeat;
+	padding: 2px 0 2px 20px;
+	margin: 0;
+}
+
+.destelefono {
+	background: url(../imagenes/iconos/telefono.png) 0 1px no-repeat;
+	padding: 2px 0 2px 24px;
+	margin: 0;
+	color: #a61219;
+}
+
+/*Estilo de títulos*/
+.titulo1 {
+	color: #343434;
+	font: 18px/30px 'daxcompact-boldregular';
+}
+
+.titulo2 {
+	color: #343434;
+	font: 15px/25px 'daxcompact-boldregular';
+}
+
+.titulo3 {
+	color: #343434;
+	font: 12px/20px 'daxcompact-boldregular';
+}
+
+/*colores*/
+.negro {
+	color: #2E2E2E;
+}
+
+.rojo {
+	color: #C10005;
+}
+
+.naranja {
+	color: #EA7500;
+}
+
+.amarillo {
+	color: #F3BA43;
+}
+
+/* menu principal*/
+.ui-panelmenu .ui-panelmenu-content {
+	overflow-x: hidden;
+}
+
+
+

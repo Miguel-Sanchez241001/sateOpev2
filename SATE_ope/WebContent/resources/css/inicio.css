@@ -1,0 +1,77 @@
+body, html{
+	background: url(../imagenes/bg-body.jpg) repeat;
+}
+
+#cabecera{
+	height: 80px;
+	text-align: right;
+}
+
+#cabecera img{
+	margin: 18px 28px 0 0;
+}
+
+#bn-contenidos #cuerpo{
+	background: #f0f0f0;
+	border-left: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	position: relative;
+}
+
+#bn-contenidos #cuerpo #logo-transferencia{
+	left: 30px;
+    position: absolute;
+    top: -37px;
+}
+
+#bn-contenidos #cuerpo h1{
+	background: url(../imagenes/candado.jpg) no-repeat 624px 3px;
+	border-bottom: 1px solid #c0c0c0;
+	color: #343434 ;
+	font: 18px/30px 'daxcompact-regularregular';
+	margin: 0 auto;
+	padding: 5px 40px 7px 0px;
+	text-align: right;
+	width: 607px;
+}
+
+#bn-contenidos #cuerpo h1 span{
+	color: #c21315 ;
+}
+
+#pie-pagina{
+	color: #676767;
+	text-align: center;
+	font: 11px arial;
+	padding: 26px 0px 30px 0px;
+}
+
+.limpiar:after { content: "."; display: block; height: 0; font-size:0; clear: both; visibility:hidden; }
+.limpiar{ display: inline-block;}
+* html .limpiar { height: 1%; }
+.limpiar{display:block;} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

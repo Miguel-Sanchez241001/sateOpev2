@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:form id="formmenu">
+
+		<div class="menuPanel sombra-inferior">
+
+			<div class="subMenu">
+				<p:commandButton value="Inicio" styleClass="menuBtn"
+					actionListener="#{seguridadController.redireccionar}">
+					<f:attribute name="pagina"
+						value="/principal.jsf?faces-redirect=true" />
+				</p:commandButton>
+			</div>
+
+			<div class="subMenu">
+				<p:commandButton value="Operaciones" styleClass="menuBtn"
+					rendered="#{seguridadController.renderizar('ACCESO_OPERACIONES')}">
+				</p:commandButton>
+				<div class="subMenuContent sombra-inferior">
+					<p:commandButton value="Solicitar tarjeta" styleClass="subMenuBtn"
+						rendered="#{seguridadController.renderizar('ACCESO_OPERACIONES_SOLICITAR_TARJETA')}"
+						actionListener="#{seguridadController.redireccionar}">
+						<f:attribute name="pagina"
+							value="/operaciones/solicitarTarjeta.jsf?faces-redirect=true" />
+					</p:commandButton>
+					<p:commandButton value="Cambiar estado tarjeta"
+						styleClass="subMenuBtn"
+						rendered="#{seguridadController.renderizar('ACCESO_OPERACIONES_CAMBIAR_ESTADO_TARJETA')}"
+						actionListener="#{seguridadController.redireccionar}">
+						<f:attribute name="pagina"
+							value="/operaciones/cambiarEstadoTarjeta.jsf?faces-redirect=true" />
+					</p:commandButton>
+					<p:commandButton value="Autorizar tarjeta" styleClass="subMenuBtn"
+						rendered="#{seguridadController.renderizar('ACCESO_OPERACIONES_AUTORIZAR_TARJETA')}"
+						actionListener="#{seguridadController.redireccionar}">
+						<f:attribute name="pagina"
+							value="/operaciones/autorizarTarjeta.jsf?faces-redirect=true" />
+					</p:commandButton>
+					<p:commandButton value="Buscar tarjeta" styleClass="subMenuBtn"
+						rendered="#{seguridadController.renderizar('ACCESO_OPERACIONES_BUSCAR_TARJETA')}"
+						actionListener="#{seguridadController.redireccionar}">
+						<f:attribute name="pagina"
+							value="/operaciones/buscarTarjeta.jsf?faces-redirect=true" />
+					</p:commandButton>
+				</div>
+			</div>
+
+			<div class="subMenu">
+				<p:commandButton value="Consultas" styleClass="menuBtn"
+					rendered="#{seguridadController.renderizar('ACCESO_CONSULTA')}">
+				</p:commandButton>
+				<div class="subMenuContent sombra-inferior">
+					<p:commandButton value="Movimientos por tarjeta"
+						styleClass="subMenuBtn"
+						rendered="#{seguridadController.renderizar('ACCESO_CONSULTA_MOVIMIENTO_TARJETA')}"
+						actionListener="#{seguridadController.redireccionar}">
+						<f:attribute name="pagina"
+							value="/consultas/movimientoPorTarjeta.jsf?faces-redirect=true" />
+					</p:commandButton>
+					<p:commandButton value="Rendición de cuentas por tarjeta"
+						styleClass="subMenuBtn"
+						rendered="#{seguridadController.renderizar('ACCESO_CONSULTA_RENDICION_CUENTA_TARJETA')}"
+						actionListener="#{seguridadController.redireccionar}">
+						<f:attribute name="pagina"
+							value="/consultas/rendicionCuentaPorTarjeta.jsf?faces-redirect=true" />
+					</p:commandButton>
+
+				</div>
+			</div>
+
+			<div class="subMenu">
+				<p:commandButton value="Reportes" styleClass="menuBtn"
+					rendered="#{seguridadController.renderizar('ACCESO_REPORTE')}">
+				</p:commandButton>
+				<div class="subMenuContent sombra-inferior">
+					<p:commandButton value="Tarjeta empresarial"
+						styleClass="subMenuBtn"
+						rendered="#{seguridadController.renderizar('ACCESO_REPORTE_TARJETA')}"
+						actionListener="#{seguridadController.redireccionar}">
+						<f:attribute name="pagina"
+							value="/reportes/reporteResumen.jsf?faces-redirect=true" />
+					</p:commandButton>
+				</div>
+			</div>
+
+
+			<div class="subMenu" id="cuentasDiv">
+				<p:commandButton value="Cuentas" styleClass="menuBtn"
+					rendered="#{seguridadController.renderizar('ACCESO_CUENTAS')}">
+				</p:commandButton>
+				<div class="subMenuContent sombra-inferior" id="subCuentasDiv">
+					<p:commandButton value="Crear cuenta de usuario"
+						styleClass="subMenuBtn"
+						rendered="#{seguridadController.renderizar('ACCESO_CREAR_USUARIO')}"
+						actionListener="#{seguridadController.redireccionar}">
+						<f:attribute name="pagina"
+							value="/cuentas/crearCuentaUsuario.jsf?faces-redirect=true" />
+					</p:commandButton>
+					<p:commandButton value="Modificar cuenta de usuario"
+						styleClass="subMenuBtn"
+						rendered="#{seguridadController.renderizar('ACCESO_MODIFICAR_USUARIO')}"
+						actionListener="#{seguridadController.redireccionar}">
+						<f:attribute name="pagina"
+							value="/cuentas/modificarCuentaUsuario.jsf?faces-redirect=true" />
+					</p:commandButton>
+					<p:commandButton value="Actualizar datos de usuario"
+						styleClass="subMenuBtn"
+						rendered="#{seguridadController.renderizar('ACCESO_ACTUALIZAR_USUARIO')}"
+						actionListener="#{seguridadController.redireccionar}">
+
+						<f:attribute name="pagina"
+							value="/cuentas/actualizarDatosUsuario.jsf?faces-redirect=true" />
+					</p:commandButton>
+
+				</div>
+			</div>
+		</div>
+
+	</h:form>
+</ui:composition>

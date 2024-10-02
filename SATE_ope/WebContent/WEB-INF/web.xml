@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" id="WebApp_ID"
+	version="3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>SATE_ope</display-name>
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>pe.bn.com.sate.ope.transversal.configuration.init.ApplicationContextInitializer</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/ERROR/error500.jsf</location>
+	</error-page>
+
+
+	<!-- Welcome page -->
+	<welcome-file-list>
+		<welcome-file>index.jsf</welcome-file>
+	</welcome-file-list>
+
+
+	<!-- JSF mapping -->
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>javax.faces.FACELETS_DEVELOPMENT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>primefaces.FONT_AWESOME</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<service-ref>
+		<description>
+		WSDL Service ServiceReniec2Service</description>
+		<service-ref-name>service/ServiceReniec2Service</service-ref-name>
+		<service-interface>pe.bn.com.sate.ope.infrastructure.service.external.domain.reniec.ServiceReniec2Service</service-interface>
+		<wsdl-file>WEB-INF/wsdl/ServiceReniec2.wsdl</wsdl-file>
+		<service-qname xmlns:pfx="http://interfaz.mq2.bn">pfx:ServiceReniec2Service</service-qname>
+		<port-component-ref>
+			<service-endpoint-interface>pe.bn.com.sate.ope.infrastructure.service.external.domain.reniec.ServiceReniec2</service-endpoint-interface>
+			<enable-mtom>false</enable-mtom>
+		</port-component-ref>
+	</service-ref>
+	<service-ref>
+		<service-ref-name>service/GatewayInterfaceService</service-ref-name>
+		<service-interface>pe.bn.com.sate.ope.infrastructure.service.external.domain.interfaz.GatewayInterfaceService</service-interface>
+		<wsdl-file>WEB-INF/wsdl/GatewayInterface.wsdl</wsdl-file>
+		<service-qname xmlns:pfx="http://interfaz.service.bn.pe">pfx:GatewayInterfaceService</service-qname>
+		<port-component-ref>
+			<service-endpoint-interface>pe.bn.com.sate.ope.infrastructure.service.external.domain.interfaz.GatewayInterface</service-endpoint-interface>
+			<enable-mtom>false</enable-mtom>
+		</port-component-ref>
+	</service-ref>
+
+	
+	<service-ref>
+		<service-ref-name>service/ServiceMessageService</service-ref-name>
+		<service-interface>pe.bn.com.sate.ope.infrastructure.service.external.domain.message.ServiceMessageService</service-interface>
+		<wsdl-file>WEB-INF/wsdl/ServiceMessage.wsdl</wsdl-file>
+		<service-qname xmlns:pfx="http://service.open.ws.simm.bn.www">pfx:ServiceMessageService</service-qname>
+		<port-component-ref>
+			<service-endpoint-interface>pe.bn.com.sate.ope.infrastructure.service.external.domain.message.ServiceMessage</service-endpoint-interface>
+			<enable-mtom>false</enable-mtom>
+		</port-component-ref>
+	</service-ref>
+	<service-ref>
+		<service-ref-name>service/Service1</service-ref-name>
+		<service-interface>pe.bn.com.sate.ope.infrastructure.service.external.domain.mc.Service1</service-interface>
+<!-- 		<wsdl-file>WEB-INF/wsdl/Service1.svc.wsdl</wsdl-file>-->		
+			<wsdl-file>WEB-INF/wsdl/Service2.svc.wsdl</wsdl-file>
+ 			<service-qname xmlns:pfx="http://tempuri.org/">pfx:Service1</service-qname>
+		<port-component-ref>
+			<service-endpoint-interface>pe.bn.com.sate.ope.infrastructure.service.external.domain.mc.IService1</service-endpoint-interface>
+			<enable-mtom>false</enable-mtom>
+		</port-component-ref>
+	</service-ref>
+	<service-ref>
+		<service-ref-name>service/ParametroInterfazKeyService</service-ref-name>
+		<service-interface>pe.bn.com.sate.ope.infrastructure.service.external.domain.comp.ParametroInterfazKeyService</service-interface>
+		<wsdl-file>WEB-INF/wsdl/ParametroInterfazKey.wsdl</wsdl-file>
+		<service-qname xmlns:pfx="http://service.ws.comp.bn.com.pe">pfx:ParametroInterfazKeyService</service-qname>
+		<port-component-ref>
+			<service-endpoint-interface>pe.bn.com.sate.ope.infrastructure.service.external.domain.comp.ParametroInterfazKey</service-endpoint-interface>
+			<enable-mtom>false</enable-mtom>
+		</port-component-ref>
+	</service-ref>
+</web-app>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.ope.persistence.mapper.external.UbigeoMapper">
+
+	<resultMap id="mapUbigeo" type="Ubigeo">
+		<result property="id" column="B08_ID_UBI" />
+		<result property="codDepartamento" column="B08_COD_DEPARTAMENTO" />
+		<result property="codProvincia" column="B08_COD_PROVINCIA" />
+		<result property="codDistrito" column="B08_COD_DISTRITO" />
+		<result property="descripcion" column="B08_DESCRIPCION" />
+	</resultMap>
+	
+</mapper>

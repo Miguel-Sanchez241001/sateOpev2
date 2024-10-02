@@ -1,0 +1,258 @@
+#menu-internas{
+	float: left;
+	padding: 14px 0px 0px 8px;
+	text-align: left;
+	width: 220px;
+}
+
+ul li.ui-menuitem-active>a {
+	background-image: none !important;
+	background-color: #c21315 !important;
+	color: white;
+}
+
+li ul li.ui-menuitem-active>a {
+	background-image: none !important;
+	background-color: #c21315 !important;
+	color: white;
+}
+ul li a.amenuitem-active{
+	background-image: none !important;
+	background-color: #c21315 !important;
+}
+
+ul li a.amenuitem-active span{
+	color: white !important;
+	font-weight: bold;
+}
+
+SPAN.ui-menuitem-text{
+	color: #FFF;
+}
+
+.ui-menu.ui-widget li > .ui-menuitem-link.ui-state-hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #c21315;
+  background-color: #c21315;
+  background-position: 0px;
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#E0898A', endColorstr='#c21315', GradientType=0);
+  background: #c21315; /* for non-css3 browsers */
+  background: -webkit-gradient(linear, left top, left bottom, from(#E0898A), to(#c21315)); /* for webkit browsers */
+  background: -moz-linear-gradient(top,  #E0898A,  #c21315); /* for firefox 3.6+ */
+}
+
+.ui-menu.ui-widget li > .ui-menuitem-link.ui-state-hover .ui-menuitem-text {
+    color:white;
+}
+
+.ui-menuitem-link .ui-corner-all .ui-state-hover{
+color:red;
+}
+
+
+
+.ui-menu A SPAN.ui-menuitem-text {
+	color: white;
+}
+
+
+
+.ui-datatable-scrollable-theadclone th span.ui-column-title {
+display: none !important;
+height: 0px;
+}
+
+
+.ui-widget-content .ui-state-default,.ui-panel-titlebar,.ui-widget-header{
+	border-color:	white;
+	/* background: #c21315; // #CDCDCD; */
+	color:#333333;
+	font:12px 'daxcompact-mediumregular';
+}
+
+
+.button{
+	background: #c21315;
+	color:#333333;
+	font:12px 'daxcompact-mediumregular';
+}
+
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;
+}
+
+.ui-layout-unit-content {
+	overflow: visible !important;
+} 
+
+.ui-menu,.ui-menubar,.ui-megamenu {
+	background: #c21315 !important;
+	font-size: 0.8em;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger{
+	/* background: #c21315; */
+}
+
+.column1 {
+	width: 12.5%
+}
+
+.ui-layout-container {
+	font-size: 11px;
+}
+
+span.ui-menuitem-text {
+	float: left;
+}
+
+.menuItems ul li a span.ui-menuitem-text {
+	float: left;
+}
+
+.ui-growl {
+	position: absolute;
+	right: 8px;
+	top: 75px;
+}
+
+.ui-selectonemenu{
+	top:7px;
+}
+
+.ui-selectoneradio .ui-widget{
+	vertical-align: middle;
+}
+
+.ui-chkbox .ui-widget{
+	vertical-align: middle;
+}
+
+
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield {
+    background: #ffffff;
+    -moz-box-shadow: inset 0 2px 2px #8f8f8f;
+    -webkit-box-shadow: inset 0 2px 2px #8f8f8f;
+    box-shadow: inset 0 2px 2px #8f8f8f;
+    color: #4C3000;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited{
+      color: black;
+}
+
+.ui-accordion .ui-icon.ui-icon-triangle-1-e {
+    background-position: -16px -128px;
+}
+
+.red{
+   background-color:white !important;
+   background-image:white !important;
+}
+
+#cerrar {
+	background: url(../img/plantillaBN/btn-cerrar.jpg) no-repeat 1302px 0px;
+	color: #343434;
+	font: 14px/18px 'daxcompact-boldregular';
+	text-align: right;
+	padding: 5px 30px 16px 0px;
+	height: 5px;
+	margin: -56px 34px 0px 70px;
+	zoom:95%;
+	
+}
+
+#cerrar a{
+	color: #343434;
+}
+
+#cerrar a:hover{
+	color: #c21315;
+}
+
+.ui-datatable-data .ui-widget-content{
+	background-color: #ffffff;
+}
+
+.ui-datatable .ui-datatable-data tr,.ui-datatable 
+.ui-datatable-data-empty tr,.ui-datatable .ui-datatable-data
+ td,.ui-datatable .ui-datatable-data-empty td{
+  border:1px dotted !important;
+}
+
+
+#cabecera{ 
+	 width:100%; 
+	/*  background-image:url("../img/plantillaBN/bg-body.jpg");  */
+	 background-position:top; 
+	 background-color:#F0F0F0; 
+	 background-repeat:repeat-x; 
+	 overflow:hidden; 
+	 margin-top: -9px;
+ }
+ 
+#cabecera .logo-sv{ width:19%; width:190px;   margin-left:20px; margin-top:-15px; float:left; overflow:hidden;}
+#cabecera .centrar{width:55%; height:50px; float:left;  text-align:center; }
+#cabecera .centrar .presentacion{ min-width:390px;    font-family:Arial, Helvetica, sans-serif; font-size:0.9em;margin-top:20px;}
+#cabecera .centrar .presentacion .derecha{float:right; width:40%; line-height:20px;}
+#cabecera .centrar .presentacion .izquierda{float:left; width:60%; line-height:20px;}
+#cabecera .logo-bn{ width:22%; width:225px; zoom:75%;  margin-right:20px; float:right; margin-top:5px;}
+
+
+strong{ font-weight:bold;}
+
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {
+    border: 1px solid #c21315;
+}
+
+.pe-dynaform-cell .ui-icon-calendar{
+	background-color: #c21315;
+	border: 1px solid #c21315;
+}
+SPAN.ui-button-text{
+	/* background-color: #c21315;
+	color:white;
+	border:  1px solid #c21315 !important; */
+}
+
+.ui-button-text-only .ui-button-text{
+	padding: .2em 1em;
+}
+
+.ui-datepicker-prev .ui-state-hover .ui-datepicker-prev-hover{
+	background-color: #c21315 !important;
+	color: #c21315 !important;
+}
+
+.ui-datatable tr.ui-datatable-even:hover, .ui-datatable tr.ui-datatable-odd:hover {
+   // background: #D45A5B;
+}
+
+.ui-selectonemenu-item.ui-selectonemenu-list-item.ui-state-hover {
+    background: #D45A5B;
+}
+
+
+ .ui-datepicker .ui-state-highlight{
+	 background-color: #FEF1A9 !important; 
+}
+
+
+.ui-panelgrid tr,.ui-panelgrid td {
+	background: none;
+	border-style: none !important;
+	padding: 3px 8px;
+}
+
+
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+	opacity: 0.65;
+}
+
+ .selected-menu-style-background .ui-menuitem{
+	background-color:green !important;	// not working
+}
+

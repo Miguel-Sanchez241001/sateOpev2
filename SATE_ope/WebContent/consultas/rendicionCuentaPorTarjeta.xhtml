@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+
+		<h2>RENDICIÓN DE CUENTAS POR TARJETA</h2>
+		<h:form id="formRendicionCuenta">
+			<center>
+				<p:panel style="margin:30px 80px 30px 80px;padding:20px;">
+					<h:panelGrid style="width:80%;text-align:center;">
+						<p:panelGrid columns="2" style="margin:0 auto 10px;">
+							<h:outputText value="Nro.tarjeta *" />
+							<p:inputText id="numTarjeta" required="true"
+								requiredMessage="Ingrese el número de tarjeta"
+								value="#{buscarTarjetaController.buscarTarjetaModel.numDocumento}"></p:inputText>
+
+						</p:panelGrid>
+
+						<p:commandButton id="buscarRendCuenta" value="Buscar"
+							styleClass="btnGrande" process="@this numTarjeta"
+							onstart="PF('statusDialog').show()"
+							oncomplete="PF('statusDialog').hide()"
+							update="formRendicionCuenta" />
+
+
+						<div>
+							<p:messages id="msgs" showDetail="true" showSummary="false"
+								closable="true" />
+						</div>
+
+						<div class="dashed"></div>
+
+
+						<p:panel id="pgResultado" style="margin-top:10px;border:none;">
+							<center>
+								<p:dataTable var="solicitud" id="dtSolicitudes" rendered="false"
+									value="#{autorizarSolicitudesController.autorizarSolicitudModel.solicitudesTarjeta}"
+									rowKey="#{solicitud.id}"
+									style="table-layout: fixed;margin-top:30px;width:80%;"
+									rowIndexVar="index">
+
+									<p:column headerText="Fecha autorización"
+										style="text-align: center">
+										<h:outputText
+											value="#{autorizarSolicitudesController.autorizarSolicitudModel.formatoNumeroSolicitud(solicitud.id)}" />
+									</p:column>
+									<p:column headerText="Fecha salida" style="text-align: center">
+										<h:outputText
+											value="#{autorizarSolicitudesController.autorizarSolicitudModel.descripcionTipoDocumento(solicitud.tipoDocumento)}" />
+									</p:column>
+									<p:column headerText="Fecha retorno" style="text-align: center">
+										<h:outputText value="#{solicitud.numDocumento}" />
+									</p:column>
+									<p:column headerText="Duración" style="text-align: center">
+										<h:outputText value="#{solicitud.nombres}" />
+									</p:column>
+									<p:column headerText="Monto línea asignado (S/.)"
+										style="text-align: center">
+										<h:outputText value="#{solicitud.apellidos}" />
+									</p:column>
+									<p:column headerText="Monto línea utilizado (S/.)"
+										style="text-align: center">
+										<h:outputText
+											value="#{autorizarSolicitudesController.autorizarSolicitudModel.descripcionDisposicionEfectivo(solicitud.dispEfectivo)}" />
+									</p:column>
+									<p:column headerText="Nro.autorización"
+										style="text-align: center">
+										<h:outputText value="#{solicitud.usoExtranjero}" />
+									</p:column>
+									<p:column headerText="Monto línea devuelta (S/.)"
+										style="text-align: center">
+										<h:outputText
+											value="#{autorizarSolicitudesController.autorizarSolicitudModel.descripcionTipoTarjeta(solicitud.tipoTarjeta)}" />
+									</p:column>
+								</p:dataTable>
+
+							</center>
+						</p:panel>
+					</h:panelGrid>
+				</p:panel>
+			</center>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.ope.persistence.mapper.internal.TransaccionMapper">
+
+	<resultMap id="mapTransaccion" type="Transaccion">
+		<result property="numeroTarjeta" column="B14_NUM_TARJETA"></result>
+		<result property="fechaOperacion" column="B14_FEC_OPERACION"></result>
+		<result property="fechaPosteo" column="B14_FEC_POSTEO"></result>
+		<result property="operacion" column="B14_OPERACION"></result>
+		<result property="comercio" column="B14_COMERCIO"></result>
+		<result property="monto" column="B14_MONTO"></result>
+		<result property="autorizacionPMC" column="B14_AUTORIZACION_PMC"></result>
+		<result property="numeroAutorizacion" column="B14_NUM_AUTORIZACION"></result>
+		<result property="estado" column="B14_ESTADO"></result>
+	</resultMap>
+</mapper>
